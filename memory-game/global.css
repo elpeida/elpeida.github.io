@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+body {
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+}
+
+body main {
+    width: 100%;
+    max-width: calc((100vh /9) * 16);
+    height: 100%;
+    max-height: calc((100vw / 16) * 9);
+    position: relative;
+    display: flex;
+}
+
+body main #wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+body main #wrapper .pencil {
+    width: auto;
+    height: 33.8%;
+    position: absolute;
+    bottom: 5%;
+    left: 6%;
+}
+
+body main #wrapper .home {
+    height: 10.4%;
+    position: absolute;
+    bottom: 5.5%;
+    left: 17.8%;
+}

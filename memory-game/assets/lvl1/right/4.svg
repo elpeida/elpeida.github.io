@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="6.6623cm" height="9.0219cm"
+    viewBox="0 0 188.8539 255.7397">
+    <defs>
+        <style>
+        
+            .cls-15 {
+                fill: #4258cb;
+            }
+
+            .cls-16 {
+                stroke: #2e3191;
+                stroke-miterlimit: 10;
+                stroke-width: 3px;
+            }
+
+
+            .cls-29 {
+                fill: #fff;
+            }
+        </style>
+    </defs>
+    <g id="lvl_1_-_back" data-name="lvl 1 - back">
+        <g id="trigono_anapoda" data-name="trigono anapoda">
+            <rect class="cls-29" x="-1.7619" y="-2.6419" width="192.3777" height="260.3289" />
+            <polyline class="cls-15" points="30.327 196.026 94.912 37.349 159.496 196.026" />
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title>Μετρήστε και γράψτε</title>
+	
+	
+	<link rel="stylesheet" href="css/jexcel.css">
+	<link rel="stylesheet" href="css/jsuites.css">
+  <link rel="stylesheet" href="css/style.css">
+	
+</head>
+<body>
+
+<div id="toolbar">
+
+  <div class="btn" id="newFile"  onclick="init();">
+    <img src="./imgs/new.svg" alt="Νέο" title="Νέο">
+  </div>
+  <div class="btn">
+  </div>
+  <div class="btn" id="undo"  onclick="undojexcel();">
+    <img src="./imgs/undo.svg" alt="Αναίρεση" title="Αναίρεση">
+  </div>
+  <div class="btn" id="redo" onclick="redojexcel();">
+    <img src="./imgs/redo.svg" alt="Επανάληψη" title="Επανάληψη">
+  </div>
+  <div class="btn" >
+  </div>          
+  <div class="btn" id="insertRow"  onclick="insertRow();">
+    <img src="./imgs/insertRow.svg" alt="Εισαγωγή γραμμής" title="Εισαγωγή γραμμής">
+  </div>
+  <div class="btn" id="deleteRow" onclick="deleteRow();">
+    <img src="./imgs/deleteRow.svg" alt="Αφαίρεση γραμμής" title="Αφαίρεση γραμμής">
+  </div>
+  <div class="btn" >
+  </div>
+  <div class="btn" id="sortAsc"  onclick="sortAsc();">
+    <img src="./imgs/sortAsc.svg" alt="Αύξουσα Ταξινόμηση" title="Αύξουσα Ταξινόμηση">
+  </div>
+  <div class="btn" id="sortDesc"  onclick="sortDesc();">
+    <img src="./imgs/sortDesc.svg" alt="Φθίνουσα Ταξινόμηση" title="Φθίνουσα Ταξινόμηση">
+  </div>
+  <div class="btn" >
+  </div>
+  <div class="btn" id="barbtn" onclick = "togglebar();">
+    <img src="./imgs/btnbaroff.svg" id="barbtnimg" alt="Ραβδόγραμμα" title="Ραβδόγραμμα">
+  </div>
+  <div class="btn" id="piebtn" onclick = "togglepie();">
+    <img src="./imgs/btnpieoff.svg" id="piebtnimg" alt="Πίτα" title="Πίτα">
+  </div>          
+  <div class="btn" id="linebtn" onclick = "toggleline();">
+    <img src="./imgs/btnlineoff.svg" id="linebtnimg" alt="Γραμμή" title="Γραμμή">
+  </div>          
+
+  <div class="btn" id="print" onclick="winprint();">
+    <img src="./imgs/print.svg" alt="Εκτύπωση"  title="Εκτύπωση">
+  </div>
+<!--  <div class="btn" id="about" onclick="window.open('./credits/index_DS_II.html');">
+    <img src="./imgs/bar_about.svg" alt="Σχετικά" title="Σχετικά">
+  </div>-->
+</div>
+<div class="float-container">
+  <div class="column">
+    <div id="spreadsheet"></div>
+  </div>
+  
+  <div class="column">
+    <div id="bardiv" class="graph"><canvas id="mybar"></canvas></div>
+    <div id="piediv" class="graph"><canvas id="mypie"></canvas></div>
+    <div id="linediv" class="graph"><canvas id="myline"></canvas></div>
+  </div>
+  
+</div>
+
+	<script src="libs/jexcel.js"></script>
+	<script src="libs/jsuites.js"></script>
+  <script src="libs/chart.min.js"></script>
+  <script src="libs/chartjs-plugin-datalabels.js"></script>
+  <script src="libs/spreadsheet.js"></script>
+</body>
+</html>

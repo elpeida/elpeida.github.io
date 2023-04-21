@@ -1,0 +1,343 @@
+body {
+	
+	/* Location of the image */
+background-image: url(../Images/BG.png);
+
+/* Background image is centered vertically and horizontally at all times */
+background-position: center center;
+
+/* Background image doesn't tile */
+background-repeat: no-repeat;
+
+/* Background image is fixed in the viewport so that it doesn't move when
+the content's height is greater than the image's height */
+background-attachment: fixed;
+
+/* This is what makes the background image rescale based
+on the container's size */
+background-size: cover;
+
+/* Set a background color that will be displayed
+while the background image is loading */
+/*background-color: #464646;*/
+
+
+}
+
+.ActionTitleButtons{
+	width:1.5vw;
+	border:1px solid grey; 
+	border-radius:50px;
+}
+
+.SlideTitleBg{
+	height:95%;
+	width:100%;
+	background:#f9f2e0;
+	margin-bottom:10px
+}
+
+.Capture{
+	text-align:center;
+	font-size:3vh;
+}
+.SlideText{
+	border-top:1px solid grey; 
+	height:18%;
+	width:100%;
+	background:#f9f2e0;
+	margin: 0px 0px 10px 0px;
+}
+#SlideLast{
+	height:95%;
+	width:100%;
+	background:#f9f2e0;
+	margin-bottom:5px;
+}
+.EditText{
+
+	
+	/*margin:5px;*/
+	margin:2%; 
+	cursor:pointer; 
+	background: url(../Images/pen_rot.png); 
+	background-repeat: no-repeat;
+
+	background-size: contain; 
+	background-position: center; 
+	border: 1px solid grey;
+	border-radius: 50px;
+}
+
+.DeleteText{
+	/*margin:5px;*/
+	margin:2%;  
+	cursor:pointer; 
+	background: url(../Images/no_pen_rot.png)no-repeat; 
+	background-size: contain; 
+	background-position: center;    
+	border: 1px solid grey;
+    border-radius: 50px;
+}
+
+.DeleteSound{
+	/*margin:5px;*/
+	margin:2%;   
+	cursor:pointer; 
+	background: url(../Images/no_mic.png)no-repeat; 
+	background-size: contain; 
+	background-position: center;    
+	border: 1px solid grey;
+    border-radius: 50px;
+}
+
+.EditSound{
+	/*margin:5px;*/
+	margin:2%;   
+	cursor:pointer; 
+	background: url(../Images/mic.png); 
+	background-repeat: no-repeat;
+
+	background-size: contain; 
+	background-position: center; 
+	border: 1px solid grey;
+	border-radius: 50px;
+}
+
+.PlaySound{
+	/*margin:5px;*/
+	margin:2%;   
+	cursor:pointer; 
+	background: url(../Images/play.png); 
+	background-repeat: no-repeat;
+
+	background-size: contain; 
+	background-position: center; 
+	border: 1px solid grey;
+	border-radius: 50px;
+}
+
+
+.Slide{
+	height:65%;width:100%;
+	background:#f9f2e0;
+	margin-bottom:0px;
+	background-size: contain;
+	/*background-attachment: fixed;*/
+	background-repeat: no-repeat;
+	background-position: center center;
+
+}
+
+.SideSlide{
+	height:95%;width:100%;
+	background:#f9f2e0;
+	margin-bottom:5px;
+	background-size: contain;
+	/*background-attachment: fixed;*/
+	background-repeat: no-repeat;
+	background-position: center center;
+
+}
+
+.imagecontent {
+   display: inline-block;
+    position: relative;
+    width: 100%;
+	
+}
+
+.dummy {
+    margin-top: 55%;
+}
+
+
+.dummyTitle {
+    margin-top: 100%;
+}
+
+.dummy2 {
+    margin-top: 15%;
+}
+
+.imageelement {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	background-image:url(../Images/Asset_BG.png);
+    /*background-color: silver;*/
+	text-align:center;
+	display:inline-flex;
+}
+
+.textelement {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /*background-color: silver;*/
+	background:white;
+	text-align:center;
+	background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.vertical-center {
+  min-height: 100%; 
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+}
+
+.varticalBottom{
+	margin-top:auto;
+	
+}
+
+.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:10px;
+		right: auto;
+		width: 80%;
+		z-index:-1;
+		
+	}
+
+.ImageTextCenter {
+	margin:auto;
+	text-align:center;
+	position: relative;
+	top: 50%; 
+	transform: translateY(-50%);
+}
+
+.effect1{
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+     -moz-box-shadow: 0 10px 6px -6px #777;
+          box-shadow: 0 10px 6px -6px #777;
+}
+@media  (max-aspect-ratio: 9/4) {
+	
+	.vertical-center {
+  min-height: 100%; 
+  min-height: 30vh;
+
+  display: flex;
+  align-items: center;
+}
+
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:10px;
+		right: auto;
+		width: 70%;
+		z-index:-1;
+	}
+	
+}
+
+@media  (max-aspect-ratio: 8/4) {
+
+	.vertical-center {
+		min-height: 100%;
+		min-height: 95vh;
+		display: flex;
+		align-items: center;
+	}
+
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:10px;
+		right: auto;
+		width: 70%;
+		z-index:-1;
+	}
+	
+}
+
+@media  (max-aspect-ratio: 9/5) {
+
+	.vertical-center {
+		min-height: 100%;
+		min-height: 90vh;
+		display: flex;
+		align-items: center;
+	}
+
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:10px;
+		right: auto;
+		width: 70%;
+		z-index:-1;
+	}
+	
+}
+
+@media  (max-aspect-ratio: 7/5) {
+	
+	.vertical-center {
+  min-height: 100%; 
+  min-height: 80vh;
+
+  display: flex;
+  align-items: center;
+}
+
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:10px;
+		right: auto;
+		width: 80%;
+		z-index:-1;
+	}
+	
+}
+
+@media  (max-aspect-ratio: 135/100) {
+
+	.dummy {
+		margin-top: 80%;
+	}
+
+	.dummy2 {
+		margin-top: 30%;
+	}
+
+	.vertical-center {
+		min-height: 100%;
+		min-height: 80vh;
+		display: flex;
+		align-items: center;
+	}
+
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:10px;
+		right: auto;
+		width: 80%;
+		z-index:-1;
+	}
+	
+}
+
+
+@media only screen and (max-width: 730px) {
+	
+	.textelement_tdWidth{
+		width:70%;
+	}
+	
+}
+
+

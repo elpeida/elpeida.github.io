@@ -1,0 +1,514 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	
+	<link rel="stylesheet" href="bootstrap-5.0.2/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" href="css/pattern.css">
+
+	<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+	
+	<link rel="stylesheet" type="text/css" href="css/demo1.css" />
+
+	<title>Ιστορίες</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<style>
+	.bb-custom-wrapper {
+	width: 72vh;
+	position: relative;
+	margin: 0 auto 40px;
+	text-align: center;
+	}
+
+	.bb-bookblock {
+		width: 70vh;
+		height: 70vh;
+		margin: 0 auto;
+		position: relative;
+		z-index: 100;
+		-webkit-perspective: 1300px;
+		perspective: 1300px;
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+	}
+
+	</style>
+</head>
+<body>
+
+	<div class="modal fade" id="HelpModal" tabindex="-1" role="dialog" aria-labelledby="FillPatternModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-body">
+					<h2 class="ModalMessages" id="ModalMessage_WellDone" style="text-align: justify; line-height: 1.3;display:none;background:green;color:white;text-align:center;font-size:200px">
+						<i class="fa fa-2x fa-check" aria-hidden="true"></i>
+					</h2>
+					<h2 class="ModalMessages" id="ModalMessage_Error" style="text-align: justify; line-height: 1.3;display:none;background:red;color:white;text-align:center;font-size:200px">
+						<i class="fa fa-2x fa-times" aria-hidden="true"></i>
+					</h2>
+					<h2 class="ModalMessages" id="ModalMessage_DeleteFirstSlide" style="text-align: justify; line-height: 1.3;display:none">Δεν μπορεί να διαγραφεί η πρώτη διαφάνεια</h2>
+					<h2 class="ModalMessages" id="ModalMessage_MoveUp" style="text-align: justify; line-height: 1.3;display:none">Δεν μπορεί να μετακινηθεί προς τα πάνω η διαφάνεια</h2>
+					<h2 class="ModalMessages" id="ModalMessage_MoveDown" style="text-align: justify; line-height: 1.3;display:none">Δεν μπορεί να μετακινηθεί προς τα κάτω η διαφάνεια</h2>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="TextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 id="TextModalTitle" class="modal-title">Modal title</h5>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<!--<label id="TextModalLabel" for="message-text" class="col-form-label">Τίτλος:</label>-->
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" id="CancelButton">Άκυρο</button>
+					<button type="button" class="btn btn-primary" onclick="SubmitText(this)" id="SubmitButton">ΟΚ</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="BookModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+			<div class="modal-content">
+
+				<div class="modal-body">
+					<div class="bb-custom-wrapper">
+
+						<div id="bb-bookblock" class="bb-bookblock">
+							<div class="bb-item">
+
+								<h1 id="BookTitle" style="margin-top:10vh"></h1>
+								<h2 id="BookSubTitle"></h2>
+							</div>
+
+							<div class="BookSlide bb-item" id="BookSlide1">
+								<img class="BookImage" id="BookImage1" src="#" style="max-height:65vh;width:100%" />
+								<h3 class="BookText" id="BookText1"></h3>
+							</div>
+
+							<div id="LastBookItem" class="bb-item">
+
+								<h1 id="BookEndTitle" style="margin-top:10vh"></h1>
+
+							</div>
+						</div>
+						<nav>
+							
+							<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+							<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+							<!--<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>-->
+							<div>
+								<button class="btn btn-light btn-sm" id="PlayAgainBtn"><i class="fa fa-music" aria-hidden="true"></i></button>
+							</div>
+						</nav>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="mainRow" class="row" style="height:80vh; margin-left:5%;margin-right:5%">
+		<div class="col-sm-2 col-lg-2 col-xl-2 col-xxl-2" ></div>
+		
+		<div id="mainRow1" class="col-sm-2 col-lg-2 col-xl-2 col-xxl-2"  style="border:groove; padding-top:10px; height:70vh;margin-top:1%;overflow-y:scroll">
+			
+			<div style="height:10vh;">
+				<div class="effect1 SideSlide" id="SideSlideFirst" style="height:95%;width:100%;background:#f9f2e0;margin-bottom:5px">
+					<div class="ImageTextCenter">
+						<h1 style="font-size:1vw;">
+							<span id="SlideTitle">Τίτλος</span>
+						</h1>
+						<h2 style="font-size:0.5vw;"><span id="SlideSubTitle">Υπότιτλος</span></h2>
+					</div>
+				</div>
+			</div>
+
+			<!--<div class="SideSlideContainer" style="height:10vh;">
+				<div id="SideSlide1" class="SideSlide effect1">
+					<div style="float:right;margin-right:2px;">
+						<i class="fa fa-times-circle" aria-hidden="true" style="vertical-align:top;cursor:pointer;font-size:1vw;" onclick="removeSlide(this)"></i>
+					</div>
+
+					<div style="margin-left:2px">
+						<i class="fa fa-arrow-circle-up" onclick="MoveUp(this)" aria-hidden="true" style="vertical-align:top;margin-right:2px;cursor:pointer;font-size:1vw;"></i>
+						<i class="fa fa-arrow-circle-down" onclick="MoveDown(this)" aria-hidden="true" style="vertical-align:top;cursor:pointer;font-size:1vw;"></i>
+					</div>
+					
+					<div class="ImageTextCenter" style="top:20%">
+			
+						<h1 class="SideSlideHeader" id="SideSlideHeader1" data-title="Διαφάνεια" style="font-size:1vw;">Διαφάνεια 1</h1>
+						
+					</div>
+					
+				</div>
+			</div>-->
+
+			<div class="SideSlideContainer" style="height:10vh;">
+				<div id="SideSlide1" class="SideSlide effect1">
+					<div class="row" style="max-height:1.5vw">
+						
+
+						<div class="col" style="margin-left:2px">
+							<i class="fa fa-arrow-circle-up" onclick="MoveUp(this)" aria-hidden="true" style="vertical-align:top;margin-right:2px;cursor:pointer;font-size:1vw;"></i>
+							<i class="fa fa-arrow-circle-down" onclick="MoveDown(this)" aria-hidden="true" style="vertical-align:top;cursor:pointer;font-size:1vw;"></i>
+						</div>
+						<div class="col" style="text-align:right;margin-right:2px;">
+							<i class="fa fa-times-circle" aria-hidden="true" style="vertical-align:top;cursor:pointer;font-size:1vw;" onclick="removeSlide(this)"></i>
+						</div>
+					</div>
+					<div style="margin-left:auto;margin-right:auto;display:table">
+
+						<h1 class="SideSlideHeader" id="SideSlideHeader1" data-title="Διαφάνεια" style="font-size:1vw;">Διαφάνεια 1</h1>
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="SideSlideEndContainer" style="height:10vh;">
+				<div class="effect1 SideSlide" id="SideSlideLast" style="height:95%;width:100%;margin-bottom:5px">
+					<div class="ImageTextCenter">
+						<h1 style="font-size:1vw;">
+							<span id="SlideEndTitle">Τέλος</span>
+						</h1>
+						
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+		<div id="mainRow2" class="col-sm-8 col-lg-8 col-xl-8 col-xxl-8" style="border:groove; height:70vh;margin-top:1%; overflow-y:scroll">
+
+			
+			<div class="SlideTitleBg effect1" id="SlideFirst" style="">
+				<div class="row">
+					<div style="text-align:right">
+						<span id="EditTitle_Sound" style="cursor:pointer"><img src="./Images/mic.png" class="ActionTitleButtons" /></span>
+						<span id="DeleteTitle_Sound" style="cursor:pointer"><img src="./Images/no_mic.png" class="ActionTitleButtons" /> </span>
+						<span id="PlayTitle_Sound" style="cursor:pointer"><img src="./Images/play.png" class="ActionTitleButtons" /></span>
+
+					</div>
+				</div>
+				<div class="ImageTextCenter">
+					<h1 style="font-size:2vw;">
+						<span id="Title" data-title="Τίτλος">Τίτλος</span>
+						<span id="EditTitle" style="cursor:pointer" data-title="Τίτλος" ><img src="./Images/pen.png" style="width:1.5vw;transform: rotate(25deg)" /></span>
+						<span id="DeleteTitle" style="cursor:pointer" data-title="Τίτλος"><img src="./Images/no_pen.png" style="width:1.5vw;transform: rotate(25deg)" /></span>
+					</h1>
+					<h2 style="font-size:1vw;">
+						<span id="SubTitle" data-title="Υπότιτλος">Υπότιτλος</span>
+						<span id="EditSubTitle" style="cursor:pointer" data-title="Υπότιτλος"><img src="./Images/pen.png" style="width:1.5vw;transform: rotate(25deg)" /></span>
+						<span id="DeleteSubTitle" style="cursor:pointer" data-title="Υπότιτλος"><img src="./Images/no_pen.png" style="width:1.5vw;transform: rotate(25deg)" /></span>
+					</h2>
+				</div>
+				<input id="SoundInput_Title" type='file' style="display:none" />
+			</div>
+
+
+			<div id="Slide1" class="Slide effect1">
+				<div style="float:right">
+					<div>
+						<span class="EditImage" id="EditImage1" style="cursor:pointer"><img src="./Images/camera.png" style="width:22px" /></span>
+					</div>
+					<div>
+						<span class="DeleteImage" id="DeleteImage1" style="cursor:pointer"><img src="./Images/x.png" style="width:22px" /></span>
+					</div>
+				</div>
+				<div class="ImageTextCenter">
+					<h1 class="SlideHeader" id="SlideHeader1" data-title="Διαφάνεια">Διαφάνεια 1</h1>
+				</div>
+				<input class="ImageInput" accept="image" type='file' id="ImageInput1" style="display:none" />
+				
+			</div>
+
+			<div id="SlideText1" class="SlideText effect1 row">
+				<div class="Capture col-sm-9 col-lg-10 col-xl-10 col-xxl-10" id="Capture1" style="height:100%;overflow-y:scroll"></div>
+				<div class="col-sm-3 col-lg-2 col-xl-2 col-xxl-2" style="float:right;text-align:center">
+					
+						
+					<div class="row" style="height:50%">
+						<div class="col EditText" id="EditText1"></div>
+						<div class="col DeleteText" id="DeleteText1"></div>
+					</div>
+					<div class="row" style="height:50%">
+						<div class="col EditSound" id="EditSound1"></div>
+						<div class="col DeleteSound" data-soundID="1" id="DeleteSound1"></div>
+						<div class="col PlaySound" data-soundID="1" id="PlaySound1"></div>
+						<input class="SoundInput" data-soundID="1" id="SoundInput1" type='file' style="display:none" />
+					</div>
+					
+				</div>
+			</div>
+
+
+			<div class="effect1" id="SlideLast"> 
+				<div class="row">
+					<div style="text-align:right">
+						<span id="EditEnd_Sound" style="cursor:pointer"><img src="./Images/mic.png" class="ActionTitleButtons" /></span>
+						<span id="DeleteEnd_Sound" style="cursor:pointer"><img src="./Images/no_mic.png" class="ActionTitleButtons" /> </span>
+						<span id="PlayEnd_Sound" style="cursor:pointer"><img src="./Images/play.png" class="ActionTitleButtons" /></span>
+
+					</div>
+				</div>
+				<div class="ImageTextCenter">
+					<h1 style="font-size:2vw;">
+						<span id="EndTitle" data-title="Τέλος">Τέλος</span>
+						<span id="EditEndTitle" style="cursor:pointer" data-title="Τέλος"><img src="./Images/pen.png" style="width:1.5vw;transform: rotate(25deg)" /></span>
+						<span id="DeleteEndTitle" style="cursor:pointer" data-title="Τέλος"><img src="./Images/no_pen.png" style="width:1.5vw;transform: rotate(25deg)" /></span>
+					</h1>
+					
+				</div>
+				<input id="SoundInput_End" type='file' style="display:none" />
+			</div>
+	</div>
+
+		
+	</div>
+
+	<div class="bottomRow">
+		<div class="row">
+			<div class="col-sm-3 col-lg-3 col-xl-3 col-xxl-3">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272.85 376.91"><g id="Layer_2" data-name="Layer 2"><g id="κουμπια"><path d="M202.07,170.5c53.07-6.49,62.08-49.38,62.08-49.38s7.72-.3,8.65-8.05c.49-4-2.84-5-4.68-3.95,0-2.88-2.9-4.51-6-2.08,0-2.3,2.13-13.32-2-14-3.34-.54-3.23,6.23-4.51,13.3-2.85-.68-5.49.51-5.86,3.81-.59,5.23,5.62,9,5.62,9s-4.07,36.08-54.13,45C196.39,166.18,197,171.77,202.07,170.5Z" style="fill:#100b09" /><path d="M105,301.76s40.67,75.13,49,75.15c6.84,0,29-51.32,40.58-77.34,1.83-14.55-3.36-33.38-44.54-33.38C105.53,266.19,105,301.76,105,301.76Z" style="fill:#ffb676" /><path d="M150.07,266.19A61.31,61.31,0,0,0,130.79,269c-1,.32-1.88.66-2.77,1s-1.75.74-2.57,1.14a37.39,37.39,0,0,0-6.54,4c-.63.49-1.24,1-1.82,1.5A37.17,37.17,0,0,0,105,301.76l.66,1c6.93-18.27,18.47-20.48,27.66-8.75,6.68-16.57,29.06-19.83,38.36-.63,5.72-10.09,20.8-10.9,22.75,6.6.05-.13.11-.26.17-.39C196.44,285,191.25,266.19,150.07,266.19Z" style="fill:#ffc18b" /><path d="M161.11,275.59S145.68,376.89,154,376.91c6.84,0,29-51.32,40.58-77.34C202.25,269.85,161.11,275.59,161.11,275.59Z" style="fill:#ffcea1" /><path d="M133.33,293c1.92,10.79,14.36,81.83,19.69,83.66,12.49-26.08,18.67-83.32,18.67-83.32s6.16-19.88-17.42-21.53S133.33,293,133.33,293Z" style="fill:#ffc18b" /><path d="M131.66,281.07c0,15.52,5.62,44.95,11.24,62.25C139.73,313.49,131.66,281.07,131.66,281.07Z" style="fill:#ffdec0" /><path d="M171.81,291.16c.22,9.36.16,25.17-8,50.34C167.82,308.31,171.81,291.16,171.81,291.16Z" style="fill:#ffdec0" /><path d="M150.07,266.19c-44.54,0-45.06,35.57-45.06,35.57l.66,1c6.16-16.24,18.17-18.91,27.66-8.75,6.68-16.57,29.06-19.83,38.36-.63,5.72-10.09,20.8-10.9,22.75,6.6.05-.13.11-.26.17-.39C196.44,285,191.25,266.19,150.07,266.19Z" style="fill:#dd6f32" /><path d="M192.37,283c-8.52-10.59-31.26-7.42-31.26-7.42s-.4,2.28-1,6.1c4.56,1.9,8.72,5.7,11.62,11.67,4.91-8.32,20.8-10.9,22.75,6.6.05-.13.11-.26.17-.39C195.28,294.25,195,288.35,192.37,283Z" style="fill:#d76b29" /><path d="M154.27,271.83C130.68,270.18,133.33,293,133.33,293c0,.21.08.44.12.68,6.52-13.63,28.6-16.9,38.24-.34C171.69,293.36,177.85,273.48,154.27,271.83Z" style="fill:#db7748" /><path d="M154,376.91c3.63,0,11.6-14.49,20-32-1.63-7.63-43.2-6.46-43.2,1.75C140.68,362.72,150.4,376.9,154,376.91Z" style="fill:#100b09" /><path d="M166,345.84c-2.76-1.86-9.62,15.24-6.9,16.66S168.76,347.69,166,345.84Z" style="fill:#a09f9e" /><path d="M157.78,366.06c-1.54-1-4,4.49-2.5,5.29S159.31,367.09,157.78,366.06Z" style="fill:#a09f9e" /><path d="M197.91,75.38c-1.24-28.44-.84-33.21-4-45.36S187.17,1.2,145,0c-23-.63-56,6.16-69.09,19.61s-9,29.86-7.69,43.64a196.17,196.17,0,0,0,4.26,25.76Z" style="fill:#fd73ae" /><path d="M180.67,13C172.22,4.89,139.32.84,141.09,8.1c1,4.26,25,15.91,36.56,16.09C186,24.32,186.86,19,180.67,13Z" style="fill:#ffa4cb" /><path d="M135.87,7.49c.45-3.86-12.25-3.16-12.28.43S135.42,11.34,135.87,7.49Z" style="fill:#ffa4cb" /><path d="M71.66,99.53S102.46,261.37,105,301.76c7.1-18.65,18.84-20.83,28.32-8.74-2.58-46.75-15.74-171.52-19-211.33C85.85,88.66,71.66,99.53,71.66,99.53Z" style="fill:#0071bd" /><path d="M114.34,81.69c-28.49,7-42.68,17.84-42.68,17.84s.6,3.16,1.64,8.72a240.78,240.78,0,0,1,42.28-12.38C115.08,90.42,114.66,85.63,114.34,81.69Z" style="fill:#004b83" /><path d="M166.07,80s7,171.16,5.62,212.37c-8.55-19.66-31.47-17.19-38.36.63-2.58-46.75-15.74-171.52-19-211.33C150.62,77.68,166.07,80,166.07,80Z" style="fill:#0091db" /><path d="M166.55,92.08c-.3-7.62-.48-12.06-.48-12.06s-15.45-2.34-51.73,1.67c.32,3.94.74,8.73,1.24,14.18A213.56,213.56,0,0,1,166.55,92.08Z" style="fill:#0071bd" /><path d="M133.33,293c-4.74-38.56-17.68-177.91-19-211.33C121.26,125.21,133.69,278.21,133.33,293Z" style="fill:#92dbf9" /><path d="M166.07,80s7,171.16,5.62,212.37c5.95-10.5,22.05-12.76,22.92,7.18,4.64-17.09,10.45-157.17,8.54-209C194.6,83.64,166.07,80,166.07,80Z" style="fill:#00a4e9" /><path d="M191.54,217.74c-6.8-1.57-7.41,37.13-1,37.88S198.34,219.31,191.54,217.74Z" style="fill:#92dbf9" /><path d="M190.59,263.6c-3.78-.87-4.48,11.83-.91,12.25S194.37,264.47,190.59,263.6Z" style="fill:#92dbf9" /><path d="M203.15,90.55C194.6,83.64,166.07,80,166.07,80s.18,4.44.48,12.06c22.51,1.1,35.9,5.67,35.9,5.67a3.21,3.21,0,0,0,.91.1C203.3,95.26,203.24,92.82,203.15,90.55Z" style="fill:#0091db" /><path d="M171.69,292.39c1.64-37-6.3-178.59-5.62-212.37C171.53,125.45,175.26,280.54,171.69,292.39Z" style="fill:#92dbf9" /><path d="M203.1,50.78c3.77,3.74,7.57,25.14,6.65,34.45S203.44,93,203.44,93s-53.72-22.26-131,11.25c-4.11.84-7.55-2-9.9-13.71-1.31-6.56-2.78-18.5-.49-27S88.81,44.85,128.82,39C168.62,33.24,193.29,41,203.1,50.78Z" style="fill:#d7d8d8" /><path d="M60.18,81a3.17,3.17,0,0,1-1.12-.21,3.13,3.13,0,0,1-1.8-4c3.45-9,29.6-21.09,72.9-26.83,21.75-2.88,40.49-2.76,55.71.37,11.63,2.39,20.75,6.59,25,11.54a3.13,3.13,0,1,1-4.74,4.08c-5.28-6.13-27.78-16.07-75.16-9.79C106.73,59.35,90.7,64.26,81.52,67.8,68.43,72.86,63.78,77.23,63.1,79A3.14,3.14,0,0,1,60.18,81Z" style="fill:#afb1b1" /><path d="M63.93,99.61a3.05,3.05,0,0,1-.6-.06,3.13,3.13,0,0,1-2.47-3.67c.86-4.45,7.55-9.67,18.35-14.34,9.31-4,26.12-9.47,53.39-12.68,42.92-5,72.85,3.49,79.56,10.86a3.13,3.13,0,0,1-4.62,4.21c-2.16-2.36-10.11-5.91-22.49-8.13-10.47-1.88-28-3.53-51.72-.73-50.83,6-65.71,19.73-66.34,22A3.11,3.11,0,0,1,63.93,99.61Z" style="fill:#afb1b1" /><path d="M145,41.37c-2.9,3.8,34,5.91,36.15,2.26S147.92,37.58,145,41.37Z" style="fill:#e7e7e7" /><ellipse cx="111.98" cy="142.05" rx="11.75" ry="5.87" transform="translate(-4.74 3.87) rotate(-1.94)" style="fill:#fd73ae" /><ellipse cx="180.72" cy="136.25" rx="11.75" ry="5.87" transform="translate(-15.49 23.44) rotate(-7.12)" style="fill:#fd73ae" /><circle cx="114.22" cy="116.64" r="16.85" style="fill:#fff" /><circle cx="116.14" cy="116.88" r="12.45" transform="translate(-21.65 26.53) rotate(-11.93)" style="fill:#100b09" /><path d="M114.16,113.39a3.6,3.6,0,1,1-3.46-3.74A3.6,3.6,0,0,1,114.16,113.39Z" style="fill:#fff" /><path d="M124.33,122.56a1.88,1.88,0,1,1-1.8-1.94A1.87,1.87,0,0,1,124.33,122.56Z" style="fill:#fff" /><circle cx="172.68" cy="111.89" r="16.85" transform="translate(-32.87 121.24) rotate(-35.55)" style="fill:#fff" /><circle cx="170.82" cy="112.43" r="12.45" transform="translate(-6.85 11.17) rotate(-3.67)" style="fill:#100b09" /><circle cx="175.76" cy="107.97" r="3.6" transform="translate(-26.34 66.68) rotate(-20.02)" style="fill:#fff" /><path d="M163.64,119.33a1.87,1.87,0,1,0,1.47-2.2A1.87,1.87,0,0,0,163.64,119.33Z" style="fill:#fff" /><path d="M148.53,164.45a38.43,38.43,0,0,1-10.46-.41c2,2.15,5.58,3.8,10.69,3.39s8-2.48,10-5.05A35.63,35.63,0,0,1,148.53,164.45Z" style="fill:#fd73ae" /><path d="M146.43,138.37a51.45,51.45,0,0,1-22-3c4.37,13.38,12.43,25.12,23.68,24.23s16.45-12.92,19.56-27.65A51.54,51.54,0,0,1,146.43,138.37Z" style="fill:#100b09" /><path d="M160,135.47a52.46,52.46,0,0,1-28.08,2c4,4.8,9,7.73,14.85,7.27S156.81,140.8,160,135.47Z" style="fill:#fff" /><path d="M144.23,149.44a22.9,22.9,0,0,0-13,.17c4.37,6.35,10,10.51,16.9,10a14.61,14.61,0,0,0,7.39-2.65A23.07,23.07,0,0,0,144.23,149.44Z" style="fill:#fd73ae" /><path d="M141.25,122.3c-1.83-.51-4.36,5.26-1.07,6.18C141.83,129,143,122.79,141.25,122.3Z" style="fill:#100b09" /><path d="M148.17,121.75c1.72-.79,5.13,4.51,2,5.94C148.64,128.41,146.49,122.52,148.17,121.75Z" style="fill:#100b09" /><path d="M98.62,91.33c1-6.47,7.3-14.18,16.65-13.54l.12,0c1.88.21,4.19,7.44,1.9,7.87A41.11,41.11,0,0,0,99.43,91.8.51.51,0,0,1,98.62,91.33Z" style="fill:#100b09" /><path d="M183.07,87.7c-.72-6.51-6.65-14.51-16-14.29h-.13c-1.88.12-4.53,7.24-2.26,7.77a41.18,41.18,0,0,1,17.57,6.94A.51.51,0,0,0,183.07,87.7Z" style="fill:#100b09" /><rect y="173.63" width="145.78" height="101.76" rx="3.36" style="fill:#fd73ae" /><rect x="7.24" y="180.05" width="131.1" height="88.92" rx="3.36" style="fill:#fff" /><path d="M63.88,168.63c-4.08,2.26-7.32,10.21-3.51,14.76,2.55,3.06,3.06-1.95,4.44-6-.41,5.3,4.2,14.06,6.39-.18,1.09,5.88,5.13,11.3,6.14,2.9-.23-.49-.13-5.83,1.36-6,1.84-.21,3.24.2,5.81-.1C87.46,172,74.43,162.82,63.88,168.63Z" style="fill:#100b09" /><path d="M71.93,199.48c-40.26,30.28-40.14,19.41,0,49.65,3.18,2.32,7.49-.12,7.49-4.24V203.72C79.42,199.59,75.11,197.15,71.93,199.48Z" style="fill:#100b09" /><path d="M89.25,209.46c.39.28,11.92-4.75,12.52-4.86,2.87-1.06,1.29-6-1.68-4.8l-11.68,4.7C86,205.36,86.64,209.52,89.25,209.46Z" style="fill:#100b09" /><path d="M101.77,244.17l-11-6.64c-2.79-1.67-5,3-2.34,4.47.57.2,11.73,7.45,12.18,7C103,249,103.86,245.31,101.77,244.17Z" style="fill:#100b09" /><path d="M104,221H89.25a2.57,2.57,0,0,0,0,5.12H104C107.1,226.15,107.1,220.93,104,221Z" style="fill:#100b09" /></g></g></svg>
+			</div>
+			<div class="col varticalBottom">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.64 113.47"><g data-name="Layer 2"><g id="κουμπια"><path d="M128.18,67.78C135.57,48,136.7,16.43,108.31,5.19s-92-6.32-107,35.74C-12.53,79.38,91.06,167,128.18,67.78Z" style="fill:#fff" /><path d="M102.17,46.35,74.44,15.93A7,7,0,0,0,64,16.08L37.22,47.34c-4.5,5.34.55,12.64,7.11,11.46l.28,18.51C44.69,83.17,43.41,93,52,93c13.4,1,9.93-5,10.22-14.89-.93-8.47,3.82-8.46,10.61-8.3,4.47-.13,5.66,4.49,5.26,8.12.5,4.2-1.91,14.78,5.12,14.59C96.68,93.3,96.15,88,95.71,76.75L95.43,58l1.71,0A7,7,0,0,0,102.17,46.35Z" style="fill:#100b09" /></g></g></svg>
+			</div>
+			<div class="col varticalBottom">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.64 113.47"><g id="createBook" data-name="Layer 2"><g id="pink_buttons" data-name="pink buttons"><path d="M117.1715,61.964c6.7573-18.0651,7.7956-46.942-18.1629-57.2187S14.9364-1.0309,1.1473,37.4152C-11.4588,72.563,83.2438,152.6674,117.1715,61.964Z" style="fill:#fff" /><path d="M66.8272,69.6786c-.3415-.0078-.2174-.2758-.2176-.4349q-.0094-7.801-.0035-15.6019,0-7.318-.0081-14.6362a2.4723,2.4723,0,0,1,.3633-1.3118,19.1206,19.1206,0,0,1,5.2756-6.0562,19.7475,19.7475,0,0,1,8.0871-3.25,25.2027,25.2027,0,0,1,10.4749.1516c.9406.2206.9594.2466.9595,1.2186q0,15.4143,0,30.8285c0,.0893-.0069.1793.0008.268.0347.4017-.1042.4928-.5005.3645A25.9188,25.9188,0,0,0,85.92,60.1077a21.7984,21.7984,0,0,0-8.99.9568,15.399,15.399,0,0,0-5.7929,3.0426A14.4388,14.4388,0,0,0,68.3763,67.36Z" /><path d="M62.9164,68.8916a24.4618,24.4618,0,0,0-2.4655-3.364c-2.2166-2.7159-5.2514-3.9836-8.5128-4.8447a22.9263,22.9263,0,0,0-12.684.4361c-.1368.0412-.2767.0725-.4124.1167-.2484.0808-.38-.0031-.3891-.2658-.0055-.1607-.0076-.3216-.0076-.4824q0-15.4419,0-30.8839c0-.761.0617-.861.7966-1.0245a24.8658,24.8658,0,0,1,16.5677,1.7545,17.2,17.2,0,0,1,7.246,7.03,3.8134,3.8134,0,0,1,.5541,2.0676q-.0247,14.7983-.02,29.5964c0,.2116.21.5574-.2162.6529C63.2958,69.3737,63.0455,69.1677,62.9164,68.8916Z" /><path d="M63.1405,69.8685c.0422.2448.335.3715.3136.7407-.41-.3685-.76-.7086-1.1361-1.0169A18.6038,18.6038,0,0,0,52.7472,65.61a32.21,32.21,0,0,0-14.9533,1.8859,35.4246,35.4246,0,0,0-8.0111,3.9376c-.323.2142-.4828.2094-.459-.2274.0059-.1069,0-.2144,0-.3216q0-14.8233,0-29.6464c0-.8906.0044-.9057.881-1.0859.7168-.1473,1.4373-.2769,2.1582-.4034.7877-.1381.8467-.0839.847.7477q.0018,5.3073,0,10.6148,0,7.8539.0005,15.7077c0,.6237.0012.62.5587.3728a37.3233,37.3233,0,0,1,12.5039-3.1631A24.1007,24.1007,0,0,1,57.65,65.787a14.389,14.389,0,0,1,3.5592,2.1641c.1482.1227.2722.2942.5005.2713A15.1441,15.1441,0,0,1,63.1405,69.8685Z" /><path d="M67.7155,69.0033c.4072-.1453.6306-.5157.9388-.78A17.9945,17.9945,0,0,1,77.26,64.3679a29.72,29.72,0,0,1,12.1734.4828,34.67,34.67,0,0,1,6.9012,2.3062c.6114.2806.6562.2592.6565-.4182q.0024-7.7757,0-15.5515,0-5.3626.0015-10.7252c0-.7852.0662-.8315.8289-.72.8319.1214,1.6509.3009,2.4714.4806a.6361.6361,0,0,1,.5928.73c-.0184,1.3762-.0063,2.7527-.0063,4.1291q0,12.8971,0,25.7941c0,.1252-.0026.25,0,.3754.0075.3972-.14.4169-.445.2145A37.02,37.02,0,0,0,85.59,65.7628,24.2,24.2,0,0,0,72.2638,66.992a15.48,15.48,0,0,0-5.3833,3.5323.67.67,0,0,1-.1374.0852c-.1152-.17.0551-.2634.0837-.3878Z" /><path d="M67.7155,69.0033l-.8887,1.2184c-.2069-.1813-.0071-.3622,0-.5432l1.549-2.319c.4257-.1173.63-.5028.9161-.78a17.19,17.19,0,0,1,6.0146-4.1132,23.3235,23.3235,0,0,1,10.7022-1.2425,25.75,25.75,0,0,1,6.2823,1.5169c.5775.22.5818.2157.5819-.4072q.0009-13.5628,0-27.1256c0-.7526.0016-.7657.7563-.6442.5283.0851,1.05.2108,1.5745.3208a.8478.8478,0,0,1,.7216.87c.0081.1426.0051.2858.0051.4288q0,14.5814.0005,29.1627c0,.0893-.005.179,0,.268.0248.415-.126.501-.51.3272A30.4134,30.4134,0,0,0,92.13,64.6576a29.3667,29.3667,0,0,0-7.4645-1.34,30.9066,30.9066,0,0,0-8.4759.484A15.1236,15.1236,0,0,0,67.7155,69.0033Z" /><path d="M63.1405,69.8685A15.1441,15.1441,0,0,0,61.71,68.2224a3.5337,3.5337,0,0,0-1.157-1.16,15.6669,15.6669,0,0,0-8.7721-3.624,37.0879,37.0879,0,0,0-11.2435.5441,29.9005,29.9005,0,0,0-5.6748,1.9221c-.5334.2352-.5888.2005-.5889-.3646q-.0033-14.7963,0-29.5927c0-.7062.1707-.9237.8573-1.0812.5912-.1357,1.19-.237,1.7853-.3561.2744-.0548.4089.0527.4079.333-.0007.1787.0038.3574.0038.536q.0006,13.4562.0009,26.9122c0,.6639.0022.6654.641.4257a24.5527,24.5527,0,0,1,9.3883-1.645,20.0308,20.0308,0,0,1,9.2471,2.191,19.2177,19.2177,0,0,1,5.9271,5.188c.1193.1538.2558.2944.3842.441.1291.276.3794.482.4565.7884-.0114.0991.1145.2147-.0025.287C63.33,69.9923,63.2191,69.9047,63.1405,69.8685Z" /></g></g></svg>
+			</div>
+			<div class="col varticalBottom">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.64 113.47"><g id="create_pdf" data-name="Layer 2"><g id="menu"><path d="M117.1715,61.964c6.7573-18.0651,7.7956-46.942-18.1629-57.2187S14.9364-1.0309,1.1473,37.4152C-11.4588,72.563,83.2438,152.6674,117.1715,61.964Z" style="fill:#fff" /><path d="M60.1383,14.5638c-9.27-.5389-8.9073,3.0931-8.6041,10.8643l.1963,12.912-4.1822.018A4.7949,4.7949,0,0,0,44.08,46.3837L63.1967,67.3575a4.7982,4.7982,0,0,0,7.1845-.1093L88.8565,45.7031c3.0975-3.681-.1965-8.688-7.9027-7.8986L80.76,25.0469c-.0583-4.0418.8253-10.8173-5.1113-10.81" style="fill:#0f0b09" /><path d="M35.2159,64.4033l-.2823,18.6353a3.8006,3.8006,0,0,0,3.75,3.75H93.7423a3.8045,3.8045,0,0,0,3.75-3.75V66.0974c0-4.8259-7.5-4.8339-7.5,0V83.0386l3.75-3.75H38.6836l3.75,3.75.2823-18.6353c.0732-4.8279-7.4268-4.83-7.5,0Z" style="fill:#0f0b09" /></g></g></svg>
+			</div>
+			<div class="col varticalBottom">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.64 113.47"><g id="addSlide" data-name="Layer 2"><g id="pink_buttons" data-name="pink buttons"><path d="M117.1715,61.964c6.7573-18.0651,7.7956-46.942-18.1629-57.2187S14.9364-1.0309,1.1473,37.4152C-11.4588,72.563,83.2438,152.6674,117.1715,61.964Z" style="fill:#fff" /><path d="M69.7111,44.1662V31.1a5.33,5.33,0,0,0-5.33-5.33H62.4424a5.33,5.33,0,0,0-5.33,5.33V44.1662H44.0463a5.33,5.33,0,0,0-5.33,5.33v1.9383a5.33,5.33,0,0,0,5.33,5.33h13.066V69.8309a5.33,5.33,0,0,0,5.33,5.33h1.9382a5.33,5.33,0,0,0,5.33-5.33V56.765H82.7769a5.33,5.33,0,0,0,5.33-5.33V49.4965a5.33,5.33,0,0,0-5.33-5.33Z" style="fill:#0f0b09" /></g></g></svg>
+			</div>
+			<div class="col varticalBottom">
+				<!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 113.47"><g id="removeSlide" data-name="Layer 2"><g id="pink_buttons" data-name="pink buttons"><rect width="63.7668" height="42.0984" style="fill:#fff" /><rect x="19.6011" y="18.3668" width="24.847" height="6.3529" rx="3.1765" style="fill:#0f0b09" /></g></g></svg>-->
+			</div>
+		</div>
+	</div>
+
+
+	<div id="HiddenSlide" style="display:none">
+
+		<div class="Slide effect1">
+			<div style="float:right">
+				<div>
+					<span class="EditImage" style="cursor:pointer"><img src="./Images/camera.png" style="width:22px" /></span>
+				</div>
+				<div>
+					<span class="DeleteImage"  style="cursor:pointer"><img src="./Images/x.png" style="width:22px" /></span>
+				</div>
+			</div>
+			<div class="ImageTextCenter">
+				<h1 class="SlideHeader" data-title="Διαφάνεια">Διαφάνεια 1</h1>
+			</div>
+			<input class="ImageInput" accept="image" type='file' id="ImageInput1" style="display:none" />
+			<input class="SoundInput" type='file' style="display:none" />
+		</div>
+
+	</div>
+
+
+	<div id="HiddenSlideText" style="display:none">
+
+		<div  class="SlideText effect1 row">
+			<div class="Capture col-sm-9 col-lg-10 col-xl-10 col-xxl-10"  style="height:100%;overflow-y:scroll"></div>
+			<div class="col-sm-3 col-lg-2 col-xl-2 col-xxl-2" style="float:right;text-align:center">
+
+				<div class="row" style="height:50%">
+					<div class="col EditText"></div>
+					<div class="col DeleteText"></div>
+				</div>
+				<div class="row" style="height:50%">
+					<div class="col EditSound" id="EditSound1"></div>
+					<div class="col DeleteSound" id="DeleteSound1"></div>
+					<div class="col PlaySound" id="PlaySound1"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="HiddenSideSlide" style="display:none">
+		<div class="SideSlideContainer" style="height:10vh;">
+			<div class="SideSlide effect1">
+				<div style="float:right;margin-right:2px;">
+					<i class="fa fa-times-circle" aria-hidden="true" style="vertical-align:top;cursor:pointer;font-size:1vw;" onclick="removeSlide(this)"></i>
+				</div>
+
+				<div style="margin-left:2px">
+					<i class="fa fa-arrow-circle-up" onclick="MoveUp(this)" aria-hidden="true" style="vertical-align:top;margin-right:2px;cursor:pointer;font-size:1vw;"></i>
+					<i class="fa fa-arrow-circle-down" onclick="MoveDown(this)" aria-hidden="true" style="vertical-align:top;cursor:pointer;font-size:1vw;"></i>
+				</div>
+
+				<div class="ImageTextCenter" style="top:20%">
+
+					<!--<h1><i class="fa fa-arrow-circle-up" aria-hidden="true"></i><i class="fa fa-arrow-circle-down" aria-hidden="true"></i><i class="fa fa-times-circle" aria-hidden="true"></i></h1>-->
+
+					<h1 class="SideSlideHeader"  data-title="Διαφάνεια" style="font-size:1vw;">Διαφάνεια 1</h1>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="HiddenBookArea">
+		<div class="BookSlide bb-item">
+			<img class="BookImage" src="#" style="max-height:65vh;width:100%" />
+			<h3 class="BookText"></h3>
+		</div>
+	</div>
+
+	<div id="HiddenPrintSlide" style="display:none">
+		<div class="PrintSlideContainer" style="width:24cm;height:15cm;border:1px solid lightgrey;margin-bottom:2cm">
+			<div class="PrintSlide" style="height:11cm;text-align:center">
+				<img class="PrintImage"  src="#" style="height:100%" ;width:auto />
+			</div>
+			<div style="text-align:center">
+				<h2 class="PrintText"></h2>
+			</div>
+		</div>
+	</div>
+
+	<div id="HiddenPrintArea" style="display:none">
+		<div id="PrintArea">
+			<div style="width:24cm;height:15cm;border:1px solid lightgrey;margin-bottom:2cm">
+				<div style="text-align:center;margin-top:5cm">
+					<h1 id="PrintTitle"></h1>
+					<h3 id="PrintSubTitle"></h3>
+				</div>
+			</div>
+
+			<div class="PrintSlideContainer" style="width:24cm;height:15cm;border:1px solid lightgrey;margin-bottom:2cm">
+				<div class="PrintSlide" id="PrintSlide1" style="height:11cm;text-align:center">
+					<img class="PrintImage" id="PrintImage1" src="#" style="height:100%";width:auto />
+				</div>
+				<div style="text-align:center">
+					<h2 class="PrintText" id="PrintText1"></h2>
+				</div>
+			</div>
+
+
+			<div id="PrintEndSlide" style="width:24cm;height:14cm;border:1px solid lightgrey">
+				<div style="text-align:center;margin-top:5cm">
+					<h1 id="PrintEndTitle"></h1>
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+
+
+
+<script type="text/javascript" src="jquery-3.6.3.min.js"></script>
+<!-- <script type="text/javascript" src="jquery.base64.js"></script> -->
+
+<script src="bootstrap-5.0.2/js/bootstrap.min.js"></script>
+<!-- <script src="./js/html2canvas.js"></script> -->
+<!-- <script src="./jsPDF-master/dist/jspdf.umd.js"></script> -->
+<!--<script src="./jsPDF-master/dist/LiberationSerif-Regular-normal.js"></script>-->
+
+<script src="./js/common.js"></script>
+<script type="text/javascript" src="js/sound.js"></script>
+<script type="text/javascript" src="print/printThis.js"></script>
+<script type="text/javascript" src="js/print.min.js"></script>
+<script src="js/book/modernizr.custom.js"></script>
+<script src="js/book/jquerypp.custom.js"></script>
+<script src="js/book/jquery.bookblock.js"></script>
+
+<script>
+
+	
+	
+
+	
+
+	var slide = 1;
+
+	var bookSlide = 1;
+
+	var audio = [];
+	var audioTitle;
+	var audioEnd;
+
+	$(function () {
+		
+		$("#CancelButton").on('click', function () {
+			$('#TextModal').modal('hide');
+
+		});
+
+
+		$("#EditSlide1_Text").on('click', function () {
+
+			$("#SubmitButton").attr('data-id', 'Slide1Text');
+
+			$("#TextModalLabel").text("Διαφάνεια 1:");
+			var titleText = $("#Slide1Text").text();
+			$("textarea").val(titleText);
+			$('#TextModal').modal('show');
+
+		});
+
+		InitImageInputs();
+		InitTextInputs();
+		InitSoundInputs();
+		InitButtons();
+		Page.init();
+		$('#create_pdf').on('click', function () {
+			
+			createPDF();
+		});
+
+		$('#createBook').on('click', function () {
+			
+			createBook();
+		});
+
+		$('#addSlide').on('click', function () {
+
+			addSlide();
+		});
+
+		$('#removeSlide').on('click', function () {
+
+			removeSlide();
+		});
+		
+		
+		
+
+	});
+
+	
+
+	
+</script>
+
+</html>
+

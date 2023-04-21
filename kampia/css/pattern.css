@@ -1,0 +1,275 @@
+.SelectedSizePattern{
+	margin:0px 2px; 
+	width:20%; 
+	border:1px solid black; 
+	height:40px;  
+	display:none
+}
+
+body {
+	
+	/* Location of the image */
+background-image: url(../Images/background.png);
+
+/* Background image is centered vertically and horizontally at all times */
+background-position: center center;
+
+/* Background image doesn't tile */
+background-repeat: no-repeat;
+
+/* Background image is fixed in the viewport so that it doesn't move when
+the content's height is greater than the image's height */
+background-attachment: fixed;
+
+/* This is what makes the background image rescale based
+on the container's size */
+background-size: cover;
+
+/* Set a background color that will be displayed
+while the background image is loading */
+/*background-color: #464646;*/
+}
+
+
+
+.ScaleBrushOrange{
+	
+	transform:scale(1.3);
+
+	transform-origin:24% 60%
+}
+
+.ScaleBrushGreen{
+	
+	transform:scale(1.3);
+
+	transform-origin:40% 60%
+}
+
+.ScaleBrushPink{
+	transform:scale(1.3);
+
+	transform-origin:60% 60%
+}
+
+.ScaleBrushPurple{
+	
+	transform:scale(1.3);
+
+	transform-origin:80% 60%
+
+}
+
+.varticalCenter{
+	margin-top:auto;
+	margin-bottom:auto;
+}
+
+.varticalBottom{
+	margin-top:auto;
+	
+}
+
+
+.notUsedPattern{
+	fill:url(#pattern-stripe);
+	cursor:not-allowed;
+}
+@media only screen and (max-width: 750px) {
+	#KampiaDiv{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	#KampiaDiv_Level3{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.bottomMenuRow {
+		position: absolute;
+		bottom: 3%;
+		left: 3%;
+		width: 50%;
+		z-index:-1;
+	}
+
+	.synnefoWidth{
+		width:180%
+	}
+
+	.LevelNumber{
+		border: 2px solid white; 
+		border-radius: 50%; 
+		/*padding:10px;*/
+		margin-bottom: 0px; 
+		color:white;
+		font-size:24px;
+	}
+
+	.WinSize{
+		width:200px;
+	}
+}
+@media only screen and (min-width: 750px) and (max-width: 900px) {
+	#KampiaDiv_Level3{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+
+	#KampiaDiv{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.bottomMenuRow {
+		position: absolute;
+		bottom: 3%;
+		left: 3%;
+		width: 50%;
+		z-index:-1;
+	}
+
+	.synnefoWidth{
+		width:180%
+	}
+
+	.LevelNumber{
+		border: 2px solid white; 
+		border-radius: 50%; 
+		padding:10px;
+		margin-bottom: 0px; 
+		color:white;
+		font-size:24px;
+	}
+	.WinSize{
+		width:200px;
+	}
+  
+}
+
+@media only screen and (min-width: 900px) and (max-width: 1000px) {
+	#KampiaDiv{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	#KampiaDiv_Level3{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.bottomMenuRow {
+		position: absolute;
+		bottom: 3%;
+		left: 3%;
+		width: 50%;
+		z-index:-1;
+	}
+
+	.synnefoWidth{
+		width:230%
+	}
+
+	.LevelNumber{
+		border: 4px solid white; 
+		border-radius: 50%; 
+		padding:10px;
+		margin-bottom: 0px; 
+		color:white;
+	}
+	.WinSize{
+		width:200px;
+	}
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1300px) {
+	#KampiaDiv{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	#KampiaDiv_Level3{
+		width:100%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	.bottomMenuRow {
+		position: absolute;
+		bottom: 3%;
+		left: 3%;
+		width: 50%;
+		z-index:-1;
+	}
+
+	.synnefoWidth{
+		width:250%
+	}
+
+	.LevelNumber{
+		border: 4px solid white; 
+		border-radius: 50%; 
+		padding:10px;
+		margin-bottom: 0px; 
+		color:white;
+	}
+	.WinSize{
+		width:200px;
+	}
+}
+
+@media only screen and (min-width: 1300px) and (max-width: 3000px) {
+	#KampiaDiv{
+		width:90%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	#KampiaDiv_Level3{
+		width:90%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	#KampiaDiv_Level4{
+		width:90%;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	
+	.bottomMenuRow {
+		position: absolute;
+		bottom: 3%;
+		left: 3%;
+		width: 35%;
+		z-index:-1;
+	}
+
+	.synnefoWidth{
+		width:250%
+	}
+
+	.LevelNumber{
+		border: 4px solid white; 
+		border-radius: 50%; 
+		padding:10px;
+		margin-bottom: 0px; 
+		color:white;
+	}
+  .WinSize{
+		width:400px;
+	}
+}
+
+
+

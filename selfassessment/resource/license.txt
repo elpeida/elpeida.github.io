@@ -1,0 +1,13 @@
+Copyright: 2023 Frida Kritikou
+License: CC BY-NC-SA 4.0
+Files:
+background.svg
+bar_about.svg
+bar_fullscreen.svg
+bar_home.svg
+bar_graph.svg
+bar_reset.svg
+checkmark.svg
+nextpage.svg
+prevpage.svg
+                                                                                                                                                                                                                                                                                                                                                                                                                

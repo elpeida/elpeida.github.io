@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="6.6623cm" height="9.0219cm"
+    viewBox="0 0 188.8539 255.7397">
+    <defs>
+        <style>
+            .cls-26 {
+                fill: #fff;
+            }
+
+            .cls-27 {
+                fill: #ff0019;
+            }
+        </style>
+        
+    </defs>
+
+    <g id="lvl_1_-_back" data-name="lvl 1 - back">
+        <g id="trigono_katheto" data-name="trigono katheto">
+            <rect class="cls-26" x="-2.8441" y="-3.9514" width="194.5422" height="263.6425" />
+            <polyline class="cls-27" points="143.781 171.823 52.653 171.823 52.653 80.695" />
+        </g>
+    </g>
+</svg>

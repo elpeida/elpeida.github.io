@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Memory Game</title>
+</head>
+
+<body class="loading">
+    <main>
+        <div id="wrapper">
+
+            <img class="pencil" src="assets/pencil.svg" />
+            <a class="home" href="#" onClick="goToHome()">
+                <img src="assets/home.svg" />
+            </a>
+            <button class="level__one" type="button" onClick="changeLevel(0)">
+                <img src="assets/lvl1/level.svg" />
+            </button>
+            <button class="level__one--active" type="button" disabled>
+                <img src="assets/lvl1/level-outlined.svg" />
+            </button>
+            <button class="level__two" type="button" onClick="changeLevel(1)">
+                <img src="assets/lvl2/level.svg" />
+            </button>
+            <button class="level__two--active" type="button" disabled>
+                <img src="assets/lvl2/level-outlined.svg" />
+            </button>
+
+
+            <button id="yes" type="button" onClick="check('yes')">
+                <img src="assets/yes.svg" />
+            </button>
+            <button id="no" type="button" onClick="check('no')">
+                <img src="assets/no.svg" />
+            </button>
+
+
+            <div class="cards__container">
+                <div id="cards__container-left" data-enabled="true">
+                    <button type="button" onClick="selectCard(0, 'left')" class="card" id="card-left-0" data-index="0">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="0"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="0"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(1, 'left')" class="card" id="card-left-1" data-index="1">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="1"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="1"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(2, 'left')" class="card" id="card-left-2" data-index="2">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="2"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="2"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(3, 'left')" class="card" id="card-left-3" data-index="3">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="3"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="3"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(4, 'left')" class="card" id="card-left-4" data-index="4">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="4"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="4"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(5, 'left')" class="card" id="card-left-5" data-index="5">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="5"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="5"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(6, 'left')" class="card" id="card-left-6" data-index="6">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="6"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="6"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(7, 'left')" class="card" id="card-left-7" data-index="7">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="7"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="7"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(8, 'left')" class="card" id="card-left-8" data-index="8">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="8"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="8"></div>
+                        </div>
+                    </button>
+                </div>
+
+                <div id="cards__container-right" data-enabled="true">
+                    <button type="button" onClick="selectCard(0, 'right')" class="card" id="card-right-0" data-index="0">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="0"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="0"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(1, 'right')" class="card" id="card-right-1" data-index="1">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="1"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="1"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(2, 'right')" class="card" id="card-right-2" data-index="2">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="2"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="2"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(3, 'right')" class="card" id="card-right-3" data-index="3">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="3"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="3"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(4, 'right')" class="card" id="card-right-4" data-index="4">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="4"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="4"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(5, 'right')" class="card" id="card-right-5" data-index="5">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="5"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="5"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(6, 'right')" class="card" id="card-right-6" data-index="6">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="6"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="6"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(7, 'right')" class="card" id="card-right-7" data-index="7">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="7"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="7"></div>
+                        </div>
+                    </button>
+                    <button type="button" onClick="selectCard(8, 'right')" class="card" id="card-right-8" data-index="8">
+                        <div class="card__inner">
+                            <div class="card-front" data-id="8"><div class="card-front__inner"></div></div>
+                            <div class="card-background"></div>
+                            <div class="card-puzzle" data-id="8"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

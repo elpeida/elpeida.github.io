@@ -1,0 +1,29 @@
+html,
+body,
+#myeditor {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+body {
+    background: rgb(100, 137, 191) url('resource/background.svg') no-repeat 0 0 fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.tox-editor-header, .tox-menubar, .tox-toolbar {
+    background: transparent !important;
+}
+
+.mce-container-body .tox .tox-edit-area__iframe {
+    background: #fffd;
+}
+
+.tox-icon {
+    background: #fff4 !important;
+}

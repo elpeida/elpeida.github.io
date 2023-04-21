@@ -1,0 +1,206 @@
+button {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    width: auto;
+    cursor: pointer;
+}
+
+a > img,
+button > img {
+    width: auto;
+    height: 100%;
+}
+
+.level__one,
+.level__two {
+    height: 6.9%;
+    position: absolute;
+    bottom: 7.3%;
+}
+.level__one--active,
+.level__two--active {
+    height: 10.9%;
+    position: absolute;
+    bottom: 5.5%;
+}
+
+.level__one {
+    left: 27.2%;
+}
+.level__two {
+    left: 34.6%;
+}
+.level__one--active {
+    left: 26.6%;
+}
+.level__two--active {
+    left: 32.1%;
+}
+
+.level__one,
+.level__two,
+.level__one--active,
+.level__two--active {
+    opacity: 0;
+    transition: scale 0.5s linear, opacity 0.5s linear;
+}
+
+#wrapper[data-level="lvl1"] .level__two--active,
+#wrapper[data-level="lvl1"] .level__one,
+#wrapper[data-level="lvl2"] .level__one--active,
+#wrapper[data-level="lvl2"] .level__two {
+    scale: 0;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#wrapper[data-level="lvl1"] .level__one--active,
+#wrapper[data-level="lvl1"] .level__two,
+#wrapper[data-level="lvl2"] .level__two--active,
+#wrapper[data-level="lvl2"] .level__one {
+    scale: 1;
+    z-index: 1;
+    opacity: 1;
+}
+
+#wrapper[data-level="lvl1"] .level__one--active,
+#wrapper[data-level="lvl2"] .level__two--active {
+    cursor: default;
+}
+
+/* Animations changing level */
+#wrapper {
+    transition: background-color 0.5s linear;
+}
+.card .card__inner .card-background {
+    transition: background-image 0.5s linear;
+}
+
+#yes,
+#no {
+    height: 7.7%;
+    position: absolute;
+    top: 76.4%;
+}
+#yes {
+    left: 44.7%;
+}
+#no {
+    left: 51.1%;
+}
+#yes:disabled,
+#yes[disabled],
+#no:disabled,
+#no[disabled] {
+    cursor: default;
+}
+
+.cards__container {
+    width: 58.6%;
+    height: 66.6%;
+    position: absolute;
+    top: 7.3%;
+    left: 20.95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5.5%;
+}
+
+#cards__container-left,
+#cards__container-right {
+    width: 50%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1.8%;
+}
+
+#cards__container-left[data-enabled="false"] .card,
+#cards__container-right[data-enabled="false"] .card {
+    pointer-events: none;
+    touch-action: none;
+    cursor: pointer;
+}
+
+.card {
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.card .card__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card.selected .card__inner {
+    transform: rotateY(180deg);
+}
+
+.card.won .card__inner {
+    transform: rotateY(0deg);
+}
+
+.card .card__inner .card-front,
+.card .card__inner .card-background,
+.card .card__inner .card-puzzle {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card .card__inner > div {
+    border-radius: 5%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.card .card__inner .card-front {
+    overflow: hidden;
+    background-color: #FFFFFF;
+    transform: rotateY(180deg);
+}
+.card .card__inner .card-front .card-front__inner {
+    width: 100%;
+    height: 100%;
+}
+
+
+.card .card__inner .card-background {
+    border: solid 2px #4358CB;
+}
+
+.card .card__inner .card-front__inner,
+.card .card__inner .card-background,
+.card .card__inner .card-puzzle {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card .card__inner .card-puzzle {
+    display: none;     
+}
+
+.card.won {
+    pointer-events: none;
+    cursor: default;
+}
+.card.won .card__inner .card-puzzle {
+    display: block;
+}
+
+.card.selected .card__inner .card-background,
+.card.won .card__inner .card-background {
+    display: none;
+}

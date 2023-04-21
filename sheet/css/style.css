@@ -1,0 +1,38 @@
+/** {border:1px solid red;}*/
+* {font-size: 20px;}
+
+html { 
+  background: url('../imgs/background.svg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#toolbar {
+  
+  width:700px;/*compute size*/
+  margin:auto;
+}
+
+.btn {
+  float: left;
+  margin: 5px;
+  padding: 0px;
+  cursor: pointer;}
+
+.btn img{
+  width: 40px;
+  height: 40px;}
+
+.float-container 
+{width:60em;
+margin:auto;}
+
+.column{float:left}
+
+#title {display:block;width:29em}
+#spreadsheet {display:block;width:26em;
+        height:20em;}
+.graph {width:30em;
+        background-color:white;}

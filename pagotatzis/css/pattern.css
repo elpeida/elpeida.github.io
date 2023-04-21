@@ -1,0 +1,145 @@
+body {
+	
+	/* Location of the image */
+background-image: url(../Images/BG.png);
+
+/* Background image is centered vertically and horizontally at all times */
+background-position: center center;
+
+/* Background image doesn't tile */
+background-repeat: no-repeat;
+
+/* Background image is fixed in the viewport so that it doesn't move when
+the content's height is greater than the image's height */
+background-attachment: fixed;
+
+/* This is what makes the background image rescale based
+on the container's size */
+background-size: cover;
+
+/* Set a background color that will be displayed
+while the background image is loading */
+/*background-color: #464646;*/
+}
+
+.existingIceCream{
+	fill:#a59595!important;
+}
+.pistachioBall{
+	fill: #8dc63f; 
+     stroke: #8dc63f; 
+     stroke-miterlimit: 10; 
+     stroke-width: 2px;
+}
+.bananaBall{
+	fill: #fee24a; 
+     stroke: #f9cf1c; 
+     stroke-miterlimit: 10; 
+     stroke-width: 2px;
+}
+
+.strawberryBall{
+	fill: #ca344c; 
+     stroke: #ca344c; 
+     stroke-miterlimit: 10; 
+     stroke-width: 2px;
+}
+
+
+.chocoBall{
+	fill:#a16f4c;
+     stroke: #a16f4c; 
+     stroke-miterlimit: 10; 
+     stroke-width: 2px;
+}
+
+.pricelistItem{
+	     fill: #fff; 
+     stroke: #7a4549; 
+     stroke-miterlimit: 10; 
+     stroke-width: 0.75px;
+}
+
+
+
+@media only screen and (max-width: 730px) {
+	
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:auto;
+		right: auto;
+		width: 85%;
+		
+	}
+	
+	.WinSize{
+		width:200px;
+	}
+	
+}
+@media only screen and (min-width: 730px) and (max-width: 1000px) {
+
+
+
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:auto;
+		right: auto;
+		width: 75%;
+		
+	}
+  .WinSize{
+		width:200px;
+	}
+}
+
+
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:2%;
+		
+		width: 95%;
+		
+	}
+	.WinSize{
+		width:200px;
+	}
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 3000px) {
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:10%;
+		
+		width: 75%;
+		
+	}
+
+	.WinSize{
+		width:400px;
+	}
+	
+  
+}
+
+
+@media  (max-aspect-ratio: 5/3) {
+	
+	.bottomRow {
+		position: absolute;
+		bottom: 0%;
+		left:0px;
+		right: auto;
+		width: 100%;
+		
+	}
+	.WinSize{
+		width:200px;
+	}
+}

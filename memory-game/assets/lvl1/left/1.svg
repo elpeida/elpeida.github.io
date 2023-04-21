@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="6.6623cm" height="9.0219cm"
+    viewBox="0 0 188.8539 255.7396">
+    <defs>
+        <style>
+            .cls-10 {
+                fill: #5c9c58;
+            }
+
+            .cls-22 {
+                fill: #fff;
+            }
+        </style>
+    </defs>
+    
+    <g id="lvl_1_-_back" data-name="lvl 1 - back">
+        <g id="kuklos">
+            <rect class="cls-22" x="-2.0181" y="-2.7328" width="192.8901" height="261.2053" />
+            <path class="cls-10"
+                d="M123.9276,80.2767C71.6028,52.46,19.0173,105.0459,46.8338,157.3705A43.8263,43.8263,0,0,0,64.9263,175.463C117.2509,203.28,169.8368,150.6939,142.02,98.3692A43.8263,43.8263,0,0,0,123.9276,80.2767Z" />
+        </g>
+    </g>
+</svg>

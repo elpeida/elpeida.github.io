@@ -1,0 +1,314 @@
+:root {
+    --box-dimension: 33%;
+}
+
+@media screen and (max-height: 935px), (max-width: 1300px) {
+    html {
+        font-size: 15px !important;
+    }
+}
+@media screen and (max-width: 1300px) {
+    #box-container {
+        max-height:650px;
+    }
+}
+
+@media screen and (max-height: 880px), (max-width: 1200px) {
+    html {
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (max-height: 830px), (max-width: 1024px) {
+    html {
+        font-size: 13px !important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    #box-container {
+        max-height:600px;
+    }
+}
+
+@media screen and (max-height: 775px) {
+    html {
+        font-size: 12px !important;
+    }
+}
+@media screen and (max-height: 715px) {
+    html {
+        font-size: 11px !important;
+    }
+}
+@media screen and (max-height: 650px) {
+    html {
+        font-size: 10px !important;
+    }
+}
+@media screen and (max-height: 600px) {
+    html {
+        font-size: 9px !important;
+    }
+}
+@media screen and (max-height: 550px) {
+    html {
+        font-size: 8px !important;
+    }
+}
+@media screen and (max-height: 490px) {
+    html {
+        font-size: 7px !important;
+    }
+}
+
+body {
+    background-image: url('assets/background.svg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#yard {
+    grid-area: yard;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 2rem;
+    z-index: 8;
+
+    /* perspective: 1000px;
+    perspective-origin: bottom; */
+}
+
+#box-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+#box-container > div {
+    width: 100%;
+    height: var(--box-dimension);            /* To adjust if there are less rows than 3 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#box-container .box {
+    height: 100%;
+    aspect-ratio: 1;
+    background-color: rgba(255,255,255,0.7);
+    border: solid #DE9D54 5px;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+#box-container .box:after {
+    content: " ";
+    width: calc(100% + 10px);
+    height: 100%;
+    background-image: url('assets/fence.svg');
+    background-size: contain;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    position: absolute;
+    left: -5px;
+    bottom: -5px;
+}
+
+#box-container .box button {
+    visibility: hidden;
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    margin-right: 5px;
+    margin-top: 5px;
+    scale: 0;
+}
+
+#box-container .box button:hover {
+    transform: scale(1.2);
+    transition: transform 600ms;
+}
+
+#box-container .box[data-animal-id] button {
+    visibility: visible;
+    scale: 1;
+    transition: scale 500ms;
+}
+
+#box-container .box button img {
+    width: 2rem;
+}
+
+
+
+#buttons {
+    grid-area: buttons;
+    padding: 2rem 2rem 5rem 2rem;
+}
+
+#nest {
+    grid-area: nest;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem 2rem 1rem;
+}
+
+#nest > div {
+    padding: 1rem 3rem;
+    border: solid 5px #7BC80F;
+    background-color: #FFFFFF;
+}
+
+#nest > div > div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 0px;
+    position: relative;
+}
+
+.animal-container {
+    position: relative;
+    height: 6.2rem;
+}
+
+.animal,
+.animal-gray {
+    /* width: 100%; */
+    height: 6.2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.animal {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    z-index: 12;
+    left: 100vw;
+    transition: left 1s, top 1s, transform 500ms;
+}
+
+/* This was the problem why transitions are not smooth while moving animals - Todo remove commented area */
+/* .animal:hover {
+    transform: scale(1.15);
+    transition: transform 500ms;
+} */
+
+.animal img:hover {
+    transform: scale(1.2);
+    transition: transform 600ms;
+}
+
+.animal > div {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.animal img {
+    width: 100%;
+}
+
+.animal.moved {
+    pointer-events: none;
+    /* transition: left 1s, top 1s, transform 500ms; */
+    /* width: var(--box-dimension);         FIND THE WAY TO CENTER ANIMAL IN BOX
+    height: var(--box-dimension);
+    display: flex;
+    align-items: center;
+    justify-content: center; */
+    /* margin-left: 5.5rem;
+    margin-right: 5.5rem;
+    transform: translate(-50%, 50%); */
+}
+
+
+.animal.selected {
+    filter: drop-shadow(0px 0px 7px rgba(0,0,0,0.8));
+}
+
+.animal-gray {
+    filter: opacity(0.4);
+    visibility: hidden;
+}
+
+#wolf-container,
+#wolf > div {
+    width: 10rem;
+}
+
+#fox-container,
+#fox > div {
+    width: 7.6rem;
+}
+
+#sheep-container,
+#sheep > div {
+    width: 6rem;
+}
+
+#chicken-container,
+#chicken > div {
+    width: 3.2rem;
+}
+
+#frog-container,
+#frog > div {
+    width: 2.85rem;
+}
+
+#worm-container,
+#worm > div {
+    width: 2.3rem;
+}
+
+
+
+body.loading .animal-container {
+    visibility: hidden;
+}
+
+body.difficulty1 #wolf-container,
+body.difficulty1 #wolf,
+body.difficulty1 #sheep-container,
+body.difficulty1 #sheep,
+body.difficulty1 #box1,
+/* body.difficulty1 #box2, */
+body.difficulty1 #circle3level2 {
+    display: none !important;
+}
+body.difficulty2 #circle3level1,
+body.difficulty1 #box3 {
+    display: none !important;
+}
+
+
+body.difficulty1 #box-container {
+    justify-content: center;
+}
+body.difficulty1 #box-container > div {
+    justify-content: start;
+}
+body.difficulty1 #box-container > div:first-child {
+    display: none;
+}
+
+#box-container .empty-box{
+    border: solid red 8px;
+    background-color: rgba(70, 70, 70, 0.5);
+}
+
+#box-container .danger-box{
+    border: solid red 8px;
+}
