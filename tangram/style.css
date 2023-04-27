@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+}
+
+#blockTray{
+    position: absolute;
+}
+
+#game-container {
+    position: absolute;
+    /* margin: 1vw; */
+    width: 100vw;
+    left: 0;
+    background-color: #efefef;
+}
+
+#win-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .5);
+    display: none;
+    z-index: 2;
+}
+
+#win {
+    position: absolute;
+    height: 50vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 1s ease-in-out;
+}
+
+svg {
+    height: auto;
+    width: auto;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: auto;
+    display: block;
+}
+
+#rotate,
+#flip_vertical,
+#flip_horizontical
+{
+    transition: .5s ease-in-out;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+/*blocks*/
+.block {
+    position: absolute;
+    width: 26.5vh;
+    height: 26.5vh;
+    z-index: 1;
+}
+
+.shape-container{
+    position: absolute;
+}
+
+#colors>rect{
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    transition: 1s ease-in-out;
+}
+
+#square {
+    /* clip-path: polygon(75% 25%, 50% 0%, 25% 25%, 50% 50%) !important; */
+    clip-path: polygon(73% 25%, 50% 2%, 27% 25%, 50% 48%) !important;
+    background-color: #f27825;
+    transform-box: fill-box;
+}
+
+.stroke{
+    position: absolute;
+    width: 26.5vh;
+    height: 26.5vh;
+    z-index: 1;
+}
+
+#square-stroke {
+    clip-path: polygon(75% 25%, 50% 0%, 25% 25%, 50% 50%);
+    background-color: #000;
+    transform-box: fill-box;
+}
+
+#triangle1 {
+    /* clip-path: polygon(50% 50%, 0% 100%, 100% 100%) !important; */
+    clip-path: polygon(50% 52%, 3% 99%, 97% 99%) !important;
+    background-color: #4ad868;
+    transform-box: fill-box;
+}
+
+#triangle1-stroke{
+    clip-path: polygon(50% 50%, 0% 100%, 100% 100%);
+    background-color: #000;
+    transform-box: fill-box;
+}
+
+#triangle2 {
+    /* clip-path: polygon(50% 50%, 0% 0%, 0% 100%) !important; */
+    clip-path: polygon(48% 50%, 2% 4%, 2% 96%) !important;
+    background-color: #d84ac7;
+    transform-box: fill-box;
+}
+
+#triangle2-stroke {
+    clip-path: polygon(50% 50%, 0% 0%, 0% 100%);
+    background-color: #000;
+    transform-box: fill-box;
+}
+
+#triangle3 {
+    /* clip-path: polygon(100% 50%, 100% 0%, 50% 0%) !important; */
+    clip-path: polygon(99% 47%, 99% 1%, 53% 1%) !important;
+    background-color: #e02d2d;
+    transform-box: fill-box;
+}
+
+#triangle3-stroke {
+    clip-path: polygon(100% 50%, 100% 0%, 50% 0%);
+    background-color: #000;
+    transform-box: fill-box;
+}
+
+#triangle4 {
+    /* clip-path: polygon(50% 0%, 25% 25%, 0% 0%) !important; */
+    clip-path: polygon(47% 1%, 25% 23%, 3% 1%) !important;
+    background-color: #e2d20c;
+    transform-box: fill-box;
+}
+
+#triangle4-stroke {
+    clip-path: polygon(50% 0%, 25% 25%, 0% 0%);
+    background-color: #000;
+    transform-box: fill-box;
+}
+
+#triangle5 {
+    /* clip-path: polygon(75% 75%, 75% 25%, 50% 50%) !important; */
+    clip-path: polygon(74% 72%, 74% 28%, 52% 50%) !important;
+    background-color: #d84ac7;
+    transform-box: fill-box;
+}
+
+#triangle5-stroke {
+    clip-path: polygon(75% 75%, 75% 25%, 50% 50%);
+    background-color: #000;
+    transform-box: fill-box;
+}
+
+#parallelogram {
+    /* clip-path: polygon(75% 75%, 75% 25%, 100% 50%, 100% 100%) !important; */
+    clip-path: polygon(76% 74%, 76% 28%, 99% 51%, 99% 97%) !important;
+    background-color: #4a5ed8;
+    transform-box: fill-box;
+}
+
+#parallelogram-stroke {
+    clip-path: polygon(75% 75%, 75% 25%, 100% 50%, 100% 100%);
+    background-color: #000;
+    transform-box: fill-box;
+}
+
+/* #lvl_1_-_shape_1
+{
+    display: none;
+}
+
+#lvl3_rabbit_hint{
+    display: block !important;
+} */
+#lvl1-shapes/*,
+#lvl1-stroke*/{
+    display: none !important;
+}
+
+#lvl_1_-_shape_1{
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+#lvl1-stroke,
+#lvl_2_-_hint,
+#lvl_2_-_shape_2_-_hint,
+#lvl_2_-_shape_3_-_hint,
+#lvl_2_-_shape_4_-_hint,
+#lvl_2_-_shape_5_-_hint,
+#lvl_2_-_shape_6_-_hint,
+#lvl3_fish_hint,
+#lvl3_bird_hint,
+#lvl3_rabbit_hint,
+#lvl3_cat_hint,
+#lvl3_crab_hint,
+#lvl3_duck_hint{
+    display: none;
+}
+
+#lvl_2_-_shape1,
+#lvl_2_-_shape_2-2,
+#lvl_2_-_shape_3-2,
+#lvl_2_-_shape_4-2,
+#lvl_2_-_shape_5-2,
+#lvl_2_-_shape_6-2,
+#lvl3_fish_shadow-2,
+#lvl3_bird_shadow-2,
+#lvl3_rabbit_shadow-2,
+#lvl3_cat_shadow-2,
+#lvl3_crab_shadow,
+#lvl3_duck_shadow-2
+{
+    display: none;
+}
+
+#lvl3_fish_shape,
+#lvl3-_bird_shape,
+#lvl3_rabbit_shape,
+#lvl3_cat_shape,
+#lvl3_crab_shape,
+#lvl3_duck_shape {
+    display: none;
+}
+
+#button_1,
+#button_2,
+#button_3,
+#button_4,
+#button_5,
+#button_6{
+    display: none;
+}
+
+#button_bird,
+#button_fish,
+#button_rabbit,
+#button_fox,
+#button_crab,
+#button_cat
+{
+    display: none;
+}
+
+#_2,
+#_3
+{
+    display: none;
+}
