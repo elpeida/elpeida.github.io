@@ -1,9 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.2138 83.2138">
-  <g id="photo_pop_up" data-name="photo pop up">
-    <g>
-      <circle cx="41.6069" cy="41.6069" r="23.0093" style="fill: #8f63bc;"/>
-      <circle cx="41.6069" cy="41.6069" r="39.1069" style="fill: none; stroke: #8f63bc; stroke-miterlimit: 10; stroke-width: 5px;"/>
-    </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_2"
+   data-name="Layer 2"
+   viewBox="0 0 83.2138 83.2138"
+   version="1.1"
+   sodipodi:docname="record.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs53" />
+  <sodipodi:namedview
+     id="namedview51"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="4.8910158"
+     inkscape:cx="56.429996"
+     inkscape:cy="32.610813"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_2" />
+  <g
+     id="mic"
+     transform="translate(-1233.2644,-808.81716)">
+    <path
+       d="m 1272.5438,835.8956 c -3.4969,-1.7066 -8.6658,2.3005 -9.0141,-3.6153 -0.5933,-10.0787 3.273,-15.8018 10.2586,-16.3386 5.6919,-0.4375 10.98,2.99 11.96,8.6231 a 70.8129,70.8129 0 0 1 -0.099,24.5023 c -0.88,4.98 -6.4843,8.6726 -11.576,8.3351 a 11.4456,11.4456 0 0 1 -10.2316,-9.4062 c -0.6027,-3.0969 0.1142,-6.1482 -0.3719,-9.2091 -0.2952,-1.8588 0.7048,-2.9155 2.6955,-2.8955 1.9056,0.0192 3.8118,0.004 6.3781,0.004 z"
+       style="fill:#8f63bc"
+       id="path617" />
+    <path
+       d="m 1274.8275,883.2752 c -3.2329,0 -6.466,0.0277 -9.6983,-0.0142 -1.2115,-0.0157 -2.6416,-0.119 -2.6013,-1.748 0.036,-1.4651 1.345,-1.7907 2.5894,-1.9517 0.2368,-0.0306 0.4811,-0.0109 0.716,-0.05 2.1679,-0.36 5.359,1.1188 6.331,-1.06 1.4333,-3.2127 0.7028,-7.01 0.3139,-10.5426 -0.1533,-1.3933 -1.63,-1.5249 -2.7759,-1.8773 A 18.9061,18.9061 0 0 1 1256.28,845.753 c 0.1384,-1.3118 0.2269,-2.8846 1.8922,-3.0106 1.73,-0.1309 1.9758,1.4565 2.1912,2.7435 a 28.2088,28.2088 0 0 1 0.2292,3.1983 c 0.4556,8.8162 5.7625,14.131 14.23,14.2448 8.0336,0.108 13.66,-5.2761 14.3953,-13.81 0.1222,-1.42 0.061,-2.8549 0.1886,-4.2737 0.1018,-1.1335 0.5569,-2.1717 1.9238,-2.1317 1.1593,0.0339 1.6007,0.952 1.7049,1.9633 0.8528,8.2751 -2.0378,17.9981 -12.1078,21.0223 -3.1011,0.9313 -4.0408,2.4946 -3.7491,5.3545 a 12.977,12.977 0 0 1 -0.01,1.4261 c -0.06,6.6056 -0.06,6.6036 6.5,7.0272 1.4358,0.0928 3.2408,0.0261 3.3269,1.9061 0.096,2.0869 -1.8171,1.8323 -3.1918,1.8611 -2.9922,0.0628 -5.9865,0.0194 -8.98,0.0194 z"
+       style="fill:#8f63bc"
+       id="path619" />
   </g>
+  <circle
+     cx="41.606899"
+     cy="41.606899"
+     r="39.106899"
+     style="fill:none;stroke:#8f63bc;stroke-width:5px;stroke-miterlimit:10"
+     id="circle45" />
 </svg>

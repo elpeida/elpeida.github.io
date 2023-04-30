@@ -102,9 +102,9 @@ function onCameraClose(event) {
     '50% { transform: scale(0.01); }',
     '100% { transform: scale(0.01); }'].join('\n'),
     '1s');
-  const videoTrack = act.stream.getVideoTracks()[0];
+  const videoTrack = act.videostream.getVideoTracks()[0];
   videoTrack.stop();
-  act.stream.removeTrack(videoTrack);
+  act.videostream.removeTrack(videoTrack);
   setTimeout(cameraClosed, 500);
 }
 
@@ -122,11 +122,11 @@ async function onCamera(event) {
 
   try {
     let newstream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-    if (!act.stream) {
-      act.stream = newstream;
+    if (!act.videostream) {
+      act.videostream = newstream;
     } else {
       const videoTrack = newstream.getVideoTracks()[0];
-      act.stream.addTrack(videoTrack);
+      act.videostream.addTrack(videoTrack);
     }
     renderVideo();
     ge('shadow').style.display = 'flex';
@@ -134,40 +134,38 @@ async function onCamera(event) {
     ge('helpdiv').style.display = 'none';
     ge('canvas').style.display = 'none';
     ge('video').style.display = 'block';
-    ge('retry').style.display = 'none';
+    ge('camera_retry').style.display = 'none';
     ge('shutter').style.display = '';
     ge('camera_save').style.display = 'none';
     setKeyframes(ge('cameradiv'), [
       '0% { transform: scale(0.01); }',
       '70% { transform: scale(1.1); }',
       '100% { transform: scale(1); }'].join('\n'), '1s');
-      
-    let stream_settings = act.stream.getVideoTracks()[0].getSettings();
+
+    let stream_settings = act.videostream.getVideoTracks()[0].getSettings();
 
     // actual width & height of the camera video
+    // TODO make canvas dimensions same as camera dimensions 
     let stream_width = stream_settings.width;
     let stream_height = stream_settings.height;
-
-    console.log('Width: ' + stream_width + 'px');
-    console.log('Height: ' + stream_height + 'px');
   } catch (err) {
-    alert('Θα πρέπει να επιτρέψετε την χρήση της κάμερας για να βγάλετε φωτογραφία!');
+    alert('Θα πρέπει να επιτρέψετε τη χρήση της κάμερας για να βγάλετε φωτογραφία!');
     console.log(err);
   }
 }
 
-function renderVideo() {  
+function renderVideo() {
   const video = ge('video');
-  video.srcObject = act.stream;
-  video.onloadedmetadata = function(e) {
+  video.srcObject = act.videostream;
+  video.onloadedmetadata = function (e) {
     video.play();
   };
 }
 
-function onRetry(event) {
+function onCameraRetry(event) {
   ge('video').style.display = 'block';
   ge('canvas').style.display = 'none';
-  ge('retry').style.display = 'none';
+  ge('camera_retry').style.display = 'none';
   ge('shutter').style.display = '';
   ge('camera_save').style.display = 'none';
   playAudio('resource/click.mp3');
@@ -175,12 +173,14 @@ function onRetry(event) {
 
 function onShutter(event) {
   let canvas = ge('canvas');
-  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+  canvas.getContext('2d').drawImage(ge('video'), 0, 0, canvas.width, canvas.height);
   ge('video').style.display = 'none';
   ge('canvas').style.display = 'block';
-  ge('retry').style.display = '';
+  ge('camera_retry').style.display = '';
   ge('shutter').style.display = 'none';
   ge('camera_save').style.display = '';
+  console.log(canvas)
+  console.log(video)
   playAudio('resource/camera.mp3');
 }
 
@@ -192,40 +192,110 @@ function onCameraSave(event) {
   link.delete;
   ge('video').style.display = '';
   ge('canvas').style.display = 'none';
-  ge('retry').style.display = 'none';
+  ge('camera_retry').style.display = 'none';
   ge('shutter').style.display = '';
   ge('camera_save').style.display = 'none';
   playAudio('resource/save.mp3');
 }
 
-function onMic(event) {
+async function onMic(event) {
   playAudio('resource/click.mp3');
-  ge('shadow').style.display = 'flex';
-  ge('helpdiv').style.display = 'none';
-  ge('audiodiv').style.display = 'block';
-  ge('play_stop').src = 'resource/record.svg';
-  ge('audio_close').style.display = '';
-  ge('audio_save').style.display = '';
-  ge('audio').style.display = 'block';
-  setKeyframes(ge('audiodiv'), [
-    '0% { transform: scale(0.01); }',
-    '70% { transform: scale(1.1); }',
-    '100% { transform: scale(1); }'].join('\n'), '1s');
+
+  // developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
+  act.mediaRecorder = null;
+  act.audiostream = null;
+  try {
+    act.audiostream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
+    act.mediaRecorder = new MediaRecorder(act.audiostream);
+    act.mediaRecorder.ondataavailable = mediaRecorderDataAvailable;
+    act.mediaRecorder.onstop = mediaRecorderStop;
+    ge('shadow').style.display = 'flex';
+    ge('helpdiv').style.display = 'none';
+    ge('audiodiv').style.display = 'block';
+    ge('play_stop').src = 'resource/record.svg';
+    ge('audio_close').style.display = '';
+    ge('audio_save').style.display = 'none';
+    ge('audio_retry').style.display = 'none';
+    ge('audio').style.display = 'none';
+    ge('play_stop').style.display = '';
+    ge('timer').style.display = '';
+    ge('timer').innerHTML = '&nbsp;';
+    setKeyframes(ge('audiodiv'), [
+      '0% { transform: scale(0.01); }',
+      '70% { transform: scale(1.1); }',
+      '100% { transform: scale(1); }'].join('\n'), '1s');
+  } catch (err) {
+    alert('Θα πρέπει να επιτρέψετε τη χρήση του μικροφώνου για να ηχογραφήσετε!');
+    console.log(err);
+  }
 }
 
+function mediaRecorderDataAvailable(event) {
+  act.audiochunks.push(event.data);
+};
+
+function mediaRecorderStop(event) {
+  act.audiochunks.push(event.data);
+  const blob = new Blob(act.audiochunks, { type: "audio/ogg; codecs=opus" });
+  act.audiochunks = [];
+  const audioURL = window.URL.createObjectURL(blob);
+  ge('audio').src = audioURL;
+};
+
 function onPlayStop(event) {
-  playAudio('resource/click.mp3');
+  if (event) {
+    playAudio('resource/click.mp3');
+  }
   if (ge('play_stop').src.endsWith('/stop.svg')) {
     ge('play_stop').src = 'resource/record.svg';
+    ge('audio_save').style.display = '';
+    ge('audio').style.display = 'block';
+    ge('play_stop').style.display = 'none';
+    ge('audio_retry').style.display = '';
+    ge('timer').style.display = 'none';
+    clearInterval(act.timerInterval);
+    act.mediaRecorder.stop();
   } else {
     ge('play_stop').src = 'resource/stop.svg';
+    ge('timer').style.display = '';
+    act.mediaRecorder.start();
+    act.timerStart = Date.now();
+    ge('timer').innerHTML = '00:00';
+    act.timerInterval = setInterval(onTimer, 200);
   }
-  ge('audio_save').style.filter = 'grayscale(0%)';
+}
+
+function onTimer(event) {
+  let secs = Math.floor((Date.now() - act.timerStart) / 1000);
+  let mins = Math.floor(secs / 60);
+  secs = secs % 60;
+  ge('timer').innerHTML = mins.toString().padStart(2, '0') + ':' + secs.toString().padStart(2, '0');
+}
+
+function onAudioRetry(event) {
+  ge('play_stop').src = 'resource/record.svg';
+  ge('audio_save').style.display = 'none';
+  ge('play_stop').style.display = '';
+  ge('audio').style.display = 'none';
+  ge('audio_retry').style.display = 'none';
+  ge('timer').style.display = '';
+  ge('timer').innerHTML = '&nbsp;';
+  playAudio('resource/click.mp3');
 }
 
 function onAudioSave(event) {
+  const link = document.createElement('a');
+  link.download = 'emotion.mp3';
+  link.href = ge('audio').src;
+  link.click();
+  link.delete;
   ge('play_stop').src = 'resource/record.svg';
-  ge('camera_save').style.display = 'none';
+  ge('audio_save').style.display = 'none';
+  ge('play_stop').style.display = '';
+  ge('audio').style.display = 'none';
+  ge('audio_retry').style.display = 'none';
+  ge('timer').style.display = '';
+  ge('timer').innerHTML = '&nbsp;';
   playAudio('resource/save.mp3');
 }
 
@@ -239,8 +309,13 @@ function onAudioClose(event) {
 }
 
 function audioClosed() {
+  // If we're recording, emulate a "stop button click" to stop the media player and clear the interval
+  if (ge('play_stop').src.endsWith('/stop.svg')) {
+    onPlayStop(null);
+  }
   ge('audiodiv').style.display = 'none';
   ge('shadow').style.display = 'none';
+  ge('timer').style.display = 'none';
 }
 
 function onHome(event) {
@@ -311,7 +386,11 @@ function initActivity() {
   act = {
     level: 0,
     sheet: null,
-    stream: null,
+    audiostream: null,
+    audiochunks: [],
+    timerStart: null,
+    timerInterval: null,
+    videostream: null,
     mouseX: 0,  // The ontouchend event doesn't contain any coords,
     mouseY: 0,  // so we keep the last ontouchmove ones.
   };
@@ -329,8 +408,9 @@ function initActivity() {
   ge('play_stop').onclick = onPlayStop;
   ge('speaker').onclick = onSpeaker;
   ge('mic').onclick = onMic;
+  ge('audio_retry').onclick = onAudioRetry;
   ge('camera').onclick = onCamera;
-  ge('retry').onclick = onRetry;
+  ge('camera_retry').onclick = onCameraRetry;
   ge('shutter').onclick = onShutter;
   ge('camera_save').onclick = onCameraSave;
   ge('audio_save').onclick = onAudioSave;
