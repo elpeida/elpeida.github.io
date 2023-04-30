@@ -1,10 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="64" height="64" version="1.1" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
- <defs>
-  <linearGradient id="linearGradient851" x1="1999.8" x2="1869.8" y1="163.62" y2="42.03" gradientTransform="matrix(.4898 0 0 .5214 -915.6 -21.553)" gradientUnits="userSpaceOnUse">
-   <stop stop-color="#fe8d00" offset="0"/>
-   <stop stop-color="#ffff07" offset="1"/>
-  </linearGradient>
- </defs>
- <path d="m60 4h-40l-16 28 16 28h40l-16-28.904z" fill="url(#linearGradient851)" fill-rule="evenodd" stroke="#fff" stroke-width="2"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="35.131153mm"
+   height="30.053249mm"
+   viewBox="0 0 35.131153 30.053249"
+   version="1.1"
+   id="svg1870"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="bar_previous.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1872"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.46235269"
+     inkscape:cx="-262.7864"
+     inkscape:cy="-434.73306"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1867" />
+  <g
+     inkscape:label="Στρώση 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-174.71188,-263.66124)">
+    <g
+       id="previous_lvl"
+       data-name="previous lvl"
+       transform="matrix(0.26458333,0,0,0.26458333,69.283573,20.934394)">
+      <path
+         d="m 526.778,985.2465 c 7.3995,-19.7822 8.5365,-51.4039 -19.8893,-62.6574 -28.4261,-11.2535 -92.0634,-6.3252 -107.1631,35.7752 -13.8044,38.4887 89.8998,126.2071 127.0524,26.8822 z"
+         style="fill:#ffffff"
+         id="path825" />
+      <path
+         d="m 432.3603,971.3625 36.001,-31.0367 v 18.4024 h 27.9656 c 1.7315,0 3.299,0.7018 4.4337,1.8365 1.1347,1.1347 1.8366,2.7023 1.8366,4.4338 v 12.728 c 0,3.463 -2.8073,6.2703 -6.2703,6.2703 h -27.9656 v 18.4023 z"
+         style="fill:#110b09"
+         id="path827" />
+    </g>
+  </g>
 </svg>

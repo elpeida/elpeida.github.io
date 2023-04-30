@@ -1,5 +1,5 @@
-/*
-Copyright (C) 2018 Alkis Georgopoulos <alkisg@gmail.com>.
+  /*
+Copyright (C) 2023 Dimitris Nikolos <dnikolos@gmail.com>.
 SPDX-License-Identifier: CC-BY-SA-4.0
 */
 var act = null;  // activity object, see initActivity()
@@ -43,14 +43,14 @@ function onResize(event) {
   var w = window.innerWidth;
   var h = window.innerHeight;
   if (w / h < 16 / 9) {
-    document.body.style.fontSize = sformat('{}px', w / (16*5));
+    document.body.style.fontSize = sformat('{}px', w / (16*4));
   } else {
-    document.body.style.fontSize = sformat('{}px', h / (9*5));
+    document.body.style.fontSize = sformat('{}px', h / (9*4));
   }
 }
 
 function doPreventDefault(event) {
-  event.preventDefault();
+//  event.preventDefault();
 }
 
 function onPrevious(event) {
@@ -93,7 +93,7 @@ function onFullScreen(event) {
 }
 
 function onColorChange(event) {
-  ge('combinedlight').style.fill = ryb2rgb(act.workingColor,act.colorStep[act.level]);
+  ge('path_colour_1').style.fill = ryb2rgb(act.workingColor,act.colorStep[act.level]);
 }
 
 function changeColor(event,color,add){
@@ -159,30 +159,26 @@ function onButtonOk(event){
     ge('help').style.display = 'flex';
   }
   else{
-    setTimeout(onNext,1000);
-//    setAnimation('targetcircle','disappear','1s');
-    setAnimation('combinedCircle','disappear','1s');
+    setTimeout(function(){ge('win').style.display = "block";},500)
+    setTimeout(function(){ge('win').style.display = "none";},3500);
+    setTimeout(onNext,3500);
   }
 }
 function initLevel(newLevel) {
   
-  setAnimation('cont','','0s');
-  setAnimation('combinedCircle','','0s');
 
   if (newLevel == 0){
     act.targetColors = [];
   }
   act.level = newLevel;//newLevel is from 0 to max
-  ge('level').innerHTML = act.level + 1;
+  ge('leveltext').innerHTML = act.level + 1;
   t = getRandomColor(act.colorNum[act.level],act.colorStep[act.level]);
   while (act.targetColors.indexOf(ryb2rgb(t,act.colorStep[act.level])) >= 0){
     t = getRandomColor(act.colorNum[act.level],act.colorStep[act.level]);
   }
   act.targetColor = t;
   act.targetColors.push(ryb2rgb(t,act.colorStep[act.level]));
-  console.log(act.targetColors);
-  document.body.style.backgroundColor = "#F6F9FD";//ryb2rgb(act.targetColor,act.colorStep[act.level]);
-  ge('targetlight').style.fill = ryb2rgb(act.targetColor,act.colorStep[act.level]);
+  ge('path_colour_2').style.fill = ryb2rgb(act.targetColor,act.colorStep[act.level]);
   act.workingColor = {'R':0,'Y':0,'B':0};
   onColorChange();
 }
@@ -195,16 +191,15 @@ function initActivity() {
   ge('bar_home').onclick = onHome;
   ge('bar_help').onclick = onHelp;
   ge('bar_previous').onclick = onPrevious;
-  ge('bar_next').onclick = onNext;  
+  ge('bar_next').onclick = onNext;
   ge('help').onclick = onHelpHide;
-  ge('bar_fullscreen').onclick = onFullScreen;
-  ge('plusR').onclick = onPlusRed;
-  ge('minusR').onclick = onMinusRed;
-  ge('plusY').onclick = onPlusYellow;
-  ge('minusY').onclick = onMinusYellow;
-  ge('plusB').onclick = onPlusBlue;
-  ge('minusB').onclick = onMinusBlue;
-  ge('buttonOk').onclick = onButtonOk;
+  ge('redplus').onclick = onPlusRed;
+  ge('redminus').onclick = onMinusRed;
+  ge('yellowplus').onclick = onPlusYellow;
+  ge('yellowminus').onclick = onMinusYellow;
+  ge('blueplus').onclick = onPlusBlue;
+  ge('blueminus').onclick = onMinusBlue;
+  ge('button_ok').onclick = onButtonOk;
   for (i = 0; i < document.images.length; i += 1) {
     document.images[i].ondragstart = doPreventDefault;
   }
@@ -232,7 +227,6 @@ if (document.readyState === 'loading') {
 } else {  // `DOMContentLoaded` already fired
   onResize();
 }
-
 
 
 
