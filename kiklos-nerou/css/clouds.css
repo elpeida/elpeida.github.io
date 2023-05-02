@@ -1,0 +1,68 @@
+.cloud-div {
+  position: relative;
+}
+
+.cloud-asset {
+  transform: scale(1.3);
+}
+
+/* LEVEL 2 */
+
+.cloud-div.rain.level2 {
+  right: -10%;
+  bottom: -10%;
+}
+
+.cloud-div.hail.level2 {
+  right: -33%;
+  bottom: 0%;
+}
+
+.cloud-div.sleet.level2 {
+  right: -55%;
+  bottom: 30%;
+}
+
+.cloud-div.snow.level2 {
+  right: -75%;
+  bottom: 55%;
+}
+
+/* LEVEL 3 */
+
+.wind-asset {
+  transform: scale(1.1);
+}
+
+.cloud-div.level3 {
+  right: -30%;
+  bottom: 30%;
+}
+
+#cloudRain.level3,
+#cloudHail.level3 {
+  right: -25%;
+  bottom: 20%;
+}
+
+/* LEVEL 4 */
+
+.cloud-div.rain.level4 {
+  right: -10%;
+  bottom: -25%;
+}
+
+.cloud-div.hail.level4 {
+  right: -33%;
+  bottom: -10%;
+}
+
+.cloud-div.sleet.level4 {
+  right: -53%;
+  bottom: 30%;
+}
+
+.cloud-div.snow.level4 {
+  right: -73%;
+  bottom: 54%;
+}

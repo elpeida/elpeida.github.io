@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="el">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ο Κύκλος του Νερού</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/clouds.css">
+  <link rel="stylesheet" href="bootstrap-5.3.0-alpha3-dist/css/bootstrap.min.css">
+</head>
+
+<body class="p-2">
+  <div class="modal fade" id="hotspot-modal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: max-content !important;">
+      <div class="modal-content">
+        <div class="modal-body" style="display: flex;">
+          <div id="hotspot-carousel" class="carousel">
+            <div id="hotspot-carousel-inner" class="carousel-inner"></div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#hotspot-carousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#hotspot-carousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row" id="main">
+      <div id="left-side-toolbar" class="col-2 d-flex justify-content-start flex-column gap-0">
+        <p id="level-title" class=""></p>
+        <div class="row top-content d-flex flex-column">
+          <img src="images/hotspot.svg" id="hotspot" class="col" />
+        </div>
+        <div id="phenomena-list" class="row d-flex flex-column text-center gap-3" style="text-align:center;"></div>
+      </div>
+      <div class="col-10 d-flex flex-column justify-content-center" id="main-content" style="position: relative;"></div>
+    </div>
+
+    <div id="bottom-bar" class="row d-flex align-items-center">
+      <div class="col-1">
+        <img src="images/pencil.svg" id="Pencil" />
+      </div>
+      <div class="col control-buttons">
+        <img src="images/home.svg" id="Restart">
+      </div>
+      <div class="col control-buttons">
+        <img src="images/arrowLeft.svg" id="PreviousLevel" />
+      </div>
+      <div class="col control-buttons" style="position: relative;">
+        <p id="level-number"></p>
+      </div>
+      <div class="col control-buttons">
+        <img src="images/arrowRight.svg" id="NextLevel" />
+      </div>
+      <div class="col-2"></div>
+      <div class="col control-buttons game_buttons">
+        <img src="images/check.svg" id="check" />
+      </div>
+      <div class="col control-buttons game_buttons">
+        <img src="images/delete.svg" id="delete" />
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
+
+  <script src="bootstrap-5.3.0-alpha3-dist/js/bootstrap.min.js"></script>
+  <script src="js/move.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/level_0_intro.js"></script>
+  <script src="js/level_1.js"></script>
+  <script src="js/level_2.js"></script>
+  <script src="js/level_3.js"></script>
+  <script src="js/level_4.js"></script>
+  <script src="js/level_5.js"></script>
+  <script src="js/level_6_info.js"></script>
+  <script>
+    document.getElementById("NextLevel").addEventListener('click', function () {
+      game.nextLevel();
+    });
+
+    document.getElementById("PreviousLevel").addEventListener('click', function () {
+      game.previousLevel();
+    });
+
+    document.getElementById("Restart").addEventListener('click', function () {
+      game.start();
+    });
+
+    let hotSpotModal = new bootstrap.Modal(document.getElementById('hotspot-modal'), {});
+    document.getElementById("hotspot").addEventListener('click', function () {
+      audio.src = game.currentLevel.hotSpotSound;
+      hotSpotModal.show();
+      audio.play();
+    });
+
+    document.getElementById("Pencil").addEventListener("click", function () {
+      audio.src = game.currentLevel.pencilSound;
+      audio.play();
+    });
+
+    // reset the whole game
+    document.getElementById("delete").addEventListener("click", function () {
+      game.currentLevel.reset();
+    });
+
+    // check the game
+    document.getElementById("check").addEventListener("click", function () {
+      game.currentLevel.check();
+    });
+
+    game.start();
+  </script>
+</body>
+
+</html>
