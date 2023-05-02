@@ -86,10 +86,15 @@ function getRandomColor(cn,cs){
   t['R'] = 0;
   t['Y'] = 0;
   t['B'] = 0;    
-  for (var i=0; i<cn; i++){
-    var ci = Math.floor(ryb.length*Math.random());//color index is 0,1 or 2
-    ryb = ryb.splice(ryb[ci]);
-    t[ryb[ci]] = Math.round(Math.random()*maxClicks);
-}
+  while (true){
+    for (var i=0; i<cn; i++){
+      var ci = Math.floor(ryb.length*Math.random());//color index is 0,1 or 2
+      ryb = ryb.splice(ryb[ci]);
+      t[ryb[ci]] = Math.round(Math.random()*maxClicks);
+    }
+    if (t['R']!=0 || t['Y']!=0 || t['B']!=0)
+      break;
+  }
+  console.log(t);
   return(t);
 }

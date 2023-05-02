@@ -133,13 +133,21 @@ filter: brightness(120%) contrast(1.2);
 -webkit-transform: scale(1.05);
 transform: scale(1.05);
 }
-
-#leveltext{
-  font-size:2.5em;
-  color:black;
+#lvltxtdiv {
   position:absolute;
   top: 11.2em;
   left:7.3em;
+  width:3em;
+  text-align:center;
+  top: 28em;
+  left:17.7em;
+}
+#leveltext{
+  font-size:2.5em;
+  color:black;
+  /*position:absolute;
+  top: 11.2em;
+  left:7.3em;*/
   
 }
 

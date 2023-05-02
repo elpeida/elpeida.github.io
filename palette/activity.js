@@ -50,11 +50,12 @@ function onResize(event) {
 }
 
 function doPreventDefault(event) {
-//  event.preventDefault();
+  event.preventDefault();
 }
 
 function onPrevious(event) {
-  initLevel((act.level - 1) % act.numLevels)
+  if (act.level!=0)
+    initLevel((act.level - 1) % act.numLevels)
 }
 
 function onNext(event) {
@@ -173,8 +174,10 @@ function initLevel(newLevel) {
   act.level = newLevel;//newLevel is from 0 to max
   ge('leveltext').innerHTML = act.level + 1;
   t = getRandomColor(act.colorNum[act.level],act.colorStep[act.level]);
-  while (act.targetColors.indexOf(ryb2rgb(t,act.colorStep[act.level])) >= 0){
+  var safety = 0;//safety mechanism, new color must be found in 10 tries
+  while (act.targetColors.indexOf(ryb2rgb(t,act.colorStep[act.level])) >= 0 && safety<10){
     t = getRandomColor(act.colorNum[act.level],act.colorStep[act.level]);
+    safety++;
   }
   act.targetColor = t;
   act.targetColors.push(ryb2rgb(t,act.colorStep[act.level]));
