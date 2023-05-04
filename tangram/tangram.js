@@ -4,8 +4,9 @@ var shape_cnt = 0;
 var wrong = "sounds/fail game lose level 20.wav";
 var lvlWin = "sounds/win game level 282.wav";
 
-var lvl1_info = "sounds/instructions/level_1.mp3"; //to be changed
-var lvl2_info = "sounds/instructions/level_2.mp3"; //to be changed
+var lvl1_info = "sounds/instructions/lvl1.mp3"; //to be changed
+var lvl2_info = "sounds/instructions/lvl2.mp3"; //to be changed
+var lvl3_info = "sounds/instructions/lvl3.mp3"; //to be changed
 
 var winContainer = document.getElementById("win-container");
 var win = document.getElementById("win");
@@ -268,17 +269,6 @@ function changeMiddleShape(button){
     initiateLevel();
 }
 
-function wheelSectionClicked(wheelSectionIndex) {
-    if (selectedBrushIndex != -1) {
-        document.getElementById(`troxos-${wheelsColorsNumber}`).querySelector("#" + wheelSectionIds[wheelsColorsNumber][wheelSectionIndex]).style.fill = originalColors[wheelsColorsNumber][selectedBrushIndex];
-        wheelColors[wheelsColorsNumber][wheelSectionIndex] = originalColors[wheelsColorsNumber][selectedBrushIndex];
-        wheelIndexes[wheelSectionIndex] = selectedBrushIndex;
-
-        document.getElementById(`troxos-${wheelsColorsNumber}-pinela`).querySelector("#" + pinelaIds[wheelsColorsNumber][selectedBrushIndex]).style.transform = "";
-        selectedBrushIndex = -1;
-    }
-}
-
 var selectedButton;
 
 var angle = -45;
@@ -362,6 +352,20 @@ for (var i = 0; i < colorButtons.length; i++) {
     colorButtons[i].addEventListener("click", function () { buttonClicked(this) });
 }
 
+document.getElementById("instructions").addEventListener("click", function () { instructionsClicked() });
+
+function instructionsClicked(){
+    if (level == 0){
+        playSound(lvl1_info);
+    }
+    else if (level == 1) {
+        playSound(lvl2_info);
+    }
+    else if (level == 2) {
+        playSound(lvl3_info);
+    }
+}
+
 var initShapesEdges = {};
 var initShapesCenters = {};
 var shapesEdges = {};
@@ -393,6 +397,9 @@ function initializeLevelsBlocktray(){
 initiateLevel();
 
 function initiateLevel(){
+    if (audio) {
+        audio.pause();
+    }
     if (selectedButton){
         selectedButton.style.transform = "";
         selectedButton = null;
