@@ -2,6 +2,8 @@ let leftSelected = null;
 let rightSelected = null;
 
 let selectedLevel = 0;
+const audioLevel1 = new Audio('assets/info1.mp3');
+const audioLevel2 = new Audio('assets/info2.mp3');
 
 const levels = [
     {
@@ -109,28 +111,36 @@ const turnSelectedCards = (turnWons) => {
 };
 
 const changeLevel = (levelIndex) => {
-    var audio = new Audio('assets/levelUp.mp3');
-    //audio.play();
+    audioLevel1.pause();
+    audioLevel1.currentTime = 0;
+
+    audioLevel2.pause();
+    audioLevel2.currentTime = 0;
+
+    if (levelIndex != null) {
+        var audio = new Audio('assets/levelUp.mp3');
+        audio.play();
+    }
     const selectedLevelBackup = selectedLevel;
-    selectedLevel = levelIndex;
-    const level = levels[levelIndex];
+    selectedLevel = levelIndex ?? 0;
+    const level = levels[selectedLevel];
     const wrapper = document.getElementById('wrapper');
-   
+
     wrapper.dataset.level = level.key;
-    
+
     rightMatches = 0;
 
     turnSelectedCards(true);
-    
+
     enableChecks(false);
-  
+
     wrapper.style.backgroundColor = level.backgroundColor;
-   
+
     const cardsBackground = document.querySelectorAll('.card-background');
     cardsBackground.forEach(cardBackground => {
         cardBackground.style.backgroundImage = level.cardBackgroundImage;
     });
- 
+
     if (levels[selectedLevelBackup]?.cardsClearExtraStyle != null) {
         levels[selectedLevelBackup].cardsClearExtraStyle();
     }
@@ -189,7 +199,10 @@ const check = (response) => {
         turnSelectedCards();
     }
     if (rightMatches == levels[selectedLevel].cardsLength) {
-        alert('Νίκησες! \nYou won!');
+        const body = document.getElementsByTagName('body');
+        body[0].classList.add('win');
+        var audio = new Audio('assets/winsound.wav');
+        audio.play();
     }
     else {
         enableChecks(false);
@@ -197,11 +210,20 @@ const check = (response) => {
     }
 };
 
-(function() {
-    changeLevel(0);
-})();
-
-
-function goToHome() {
-
+function closeSplash() {
+    const body = document.getElementsByTagName('body');
+    body[0].classList.remove('win');
+    body[0].classList.remove('lost');
 }
+
+function playInstructions() {
+    if (selectedLevel == 0) {
+        audioLevel1.play();
+    } else {
+        audioLevel2.play();
+    }
+}
+
+(function() {
+    changeLevel();
+})();
