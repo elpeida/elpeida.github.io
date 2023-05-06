@@ -14,13 +14,13 @@
     <div class="splash" id="win-splash">
         <img src="assets/winGame.png" alt="win">
         <div class="buttons-container">
-            <button type="button" class="circle-button" id="retry" onClick="closeSplash()"><img src="assets/arrowLeft.svg" alt="retry"></button>
+            <button type="button" class="circle-button" id="retry" onclick="closeSplash()"><img src="assets/arrowLeft.svg" alt="retry"></button>
         </div>
     </div>
     <div class="splash" id="lost-splash">
         <img src="assets/lostgame.png" alt="lost">
         <div class="buttons-container">
-            <button type="button" class="circle-button" id="retry" onClick="closeSplash()"><img src="assets/arrowLeft.svg" alt="retry"></button>
+            <button type="button" class="circle-button" id="retry" onclick="closeSplash()"><img src="assets/arrowLeft.svg" alt="retry"></button>
         </div>
     </div>
 
@@ -33,12 +33,12 @@
                 <img class="circle" src="assets/circle1.svg" id="circle1" alt="tooltip">
             </div>
             <div id="pencil">
-                <img src="assets/pencil.svg" alt="pencil">
+                <img src="assets/pencil.svg" alt="pencil" onclick="playInstructions()">
                 <div class="buttons-container">
-                    <button type="button" class="circle-button" id="home" onClick="goToHome()"><img src="assets/home.svg" alt="home"></button>
-                    <button type="button" class="circle-button arrow-difficulty" id="arrow-left" onClick="switchDifficulty(0)"><img src="assets/arrowLeft.svg" alt="previous"></button>
+                    <button type="button" class="circle-button" id="home" onclick="goToHome()"><img src="assets/home.svg" alt="home"></button>
+                    <button type="button" class="circle-button arrow-difficulty" id="arrow-left" onclick="switchDifficulty(0)"><img src="assets/arrowLeft.svg" alt="previous"></button>
                     <button type="button" class="circle-button" id="difficulty" disabled><img src="assets/arrowEmpty.svg" alt="difficulty"><p id="difficultyValue">2</p></button>
-                    <button type="button" class="circle-button arrow-difficulty" id="arrow-right" onClick="switchDifficulty(1)"><img src="assets/arrowRight.svg" alt="next"></button>
+                    <button type="button" class="circle-button arrow-difficulty" id="arrow-right" onclick="switchDifficulty(1)"><img src="assets/arrowRight.svg" alt="next"></button>
                 </div>
             </div>
         </section>
@@ -84,33 +84,33 @@
                     <div>
                         <div class="box" id="box1">
                             <div class="box-floor"></div>
-                            <button type="button" class="delete" onClick="event.stopPropagation(); moveAnimalFromBoxToNest('box1')"><img src="assets/delete.svg" alt="delete"></button>
+                            <button type="button" class="delete" onclick="event.stopPropagation(); moveAnimalFromBoxToNest('box1')"><img src="assets/delete.svg" alt="delete"></button>
                         </div>
                     </div>
                     <div>
                         <div class="box" id="box2">
-                            <button type="button" class="delete" onClick="event.stopPropagation(); moveAnimalFromBoxToNest('box2')"><img src="assets/delete.svg" alt="delete"></button>
+                            <button type="button" class="delete" onclick="event.stopPropagation(); moveAnimalFromBoxToNest('box2')"><img src="assets/delete.svg" alt="delete"></button>
                         </div>
                         <div class="box" id="box3">
-                            <button type="button" class="delete" onClick="event.stopPropagation(); moveAnimalFromBoxToNest('box3')"><img src="assets/delete.svg" alt="delete"></button>
+                            <button type="button" class="delete" onclick="event.stopPropagation(); moveAnimalFromBoxToNest('box3')"><img src="assets/delete.svg" alt="delete"></button>
                         </div>
                     </div>
                     <div>
                         <div class="box" id="box4">
-                            <button type="button" class="delete" onClick="event.stopPropagation(); moveAnimalFromBoxToNest('box4')"><img src="assets/delete.svg" alt="delete"></button>
+                            <button type="button" class="delete" onclick="event.stopPropagation(); moveAnimalFromBoxToNest('box4')"><img src="assets/delete.svg" alt="delete"></button>
                         </div>
                         <div class="box" id="box5">
-                            <button type="button" class="delete" onClick="event.stopPropagation(); moveAnimalFromBoxToNest('box5')"><img src="assets/delete.svg" alt="delete"></button>
+                            <button type="button" class="delete" onclick="event.stopPropagation(); moveAnimalFromBoxToNest('box5')"><img src="assets/delete.svg" alt="delete"></button>
                         </div>
                         <div class="box" id="box6">
-                            <button type="button" class="delete" onClick="event.stopPropagation(); moveAnimalFromBoxToNest('box6')"><img src="assets/delete.svg" alt="delete"></button>
+                            <button type="button" class="delete" onclick="event.stopPropagation(); moveAnimalFromBoxToNest('box6')"><img src="assets/delete.svg" alt="delete"></button>
                         </div>
                     </div>
                 </div>
             </section>
             <section id="buttons" class="buttons-container">
-                <button type="button" class="circle-button" id="check" onClick="check()"><img src="assets/check.svg" alt="check"></button>
-                <button type="button" class="circle-button" id="deleteAll" onClick="moveAllAnimalsFromBoxesToNest()"><img src="assets/delete.svg" alt="delete all"></button>
+                <button type="button" class="circle-button" id="check" onclick="check()"><img src="assets/check.svg" alt="check"></button>
+                <button type="button" class="circle-button" id="deleteAll" onclick="moveAllAnimalsFromBoxesToNest()"><img src="assets/delete.svg" alt="delete all"></button>
             </section>
         </section>
 

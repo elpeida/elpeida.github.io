@@ -5,6 +5,7 @@ let animals = null;
 let boxes = null;
 
 let selectedAnimal = null;
+const audioPencil = new Audio('assets/info.mp3');
 
 const foodChain = {
     wolf: [],
@@ -34,6 +35,9 @@ const neighboringYardsIndexLevel2 = {
 function switchDifficulty(value) {
     var audio = new Audio('assets/levelUp.mp3');
     audio.play();
+
+    audioPencil.pause();
+    audioPencil.currentTime = 0;
 
     difficultyIndex = value;
     setDifficulty();
@@ -284,3 +288,8 @@ function closeSplash() {
 
     body[0].classList.remove('loading');
  })();
+
+
+function playInstructions() {
+    audioPencil.play();  
+}
