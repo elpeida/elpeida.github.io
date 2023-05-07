@@ -1,4 +1,5 @@
-/*Copyright (C) 2023
+/*
+Copyright (C) 2023 
 Dimitris Nikolos <dnikolos@gmail.com>.
 SPDX-License-Identifier: CC-BY-SA-4.0*/
 
@@ -32,27 +33,26 @@ act = { program:[],
         curcommand:0, 
         timerId:[],
         numoftargets:4,
-        target:0,
-        targets: [[0,0,0,0,0,0,1,
-           0,0,0,0,0,0,1,
-           1,1,1,1,1,1,1,
-           1,0,0,0,0,0,0],//target0.svg
-          [0,0,1,1,1,1,1,
-           0,1,1,0,0,0,0,
-           1,1,0,0,0,0,0,
-           1,0,0,0,0,0,0],//target1.svg
-          [1,1,1,1,1,1,1,
-           1,0,0,0,0,0,0,
-           1,0,0,0,0,0,0,
-           1,0,0,0,0,0,0,],//target2.svg
-          [1,1,1,0,0,0,0,
-           1,0,1,0,0,0,0,
-           1,0,1,0,0,0,0,
-           1,0,1,1,1,1,1,],//target3.svg
-         ],
-        blacks: new Array(28).fill(0),
         wall: MAXCMDS,
-        selected: -1,
+        blacks: new Array(28).fill(0),
+        target: 0,
+        targets: [[0,0,0,0,0,0,1,
+                   0,0,0,0,0,0,1,
+                   1,1,1,1,1,1,1,
+                   1,0,0,0,0,0,0],//target0.svg
+                  [0,0,1,1,1,1,1,
+                   0,1,1,0,0,0,0,
+                   1,1,0,0,0,0,0,
+                   1,0,0,0,0,0,0],//target1.svg
+                  [1,1,1,1,1,1,1,
+                   1,0,0,0,0,0,0,
+                   1,0,0,0,0,0,0,
+                   1,0,0,0,0,0,0,],//target2.svg
+                  [1,1,1,0,0,0,0,
+                   1,0,1,0,0,0,0,
+                   1,0,1,0,0,0,0,
+                   1,0,1,1,1,1,1,],//target3.svg
+                 ],
         };
 
 
@@ -165,13 +165,11 @@ function initcanvas(){
   ctx.imageSmoothingEnabled = false;
   drawGrid(ctx);
   restart();
-  removeallborders();
   document.body.onkeyup = function(e) {
   if (e.key == " " ||
       e.code == "Space" ||      
       e.keyCode == 32      
   ) {
-
   }
 }
 }
@@ -188,9 +186,8 @@ function init(){
   //controls
   ge('playbtn').addEventListener('click',play);
   ge('pausebtn').addEventListener('click',pause);
-  ge('restartbtn').addEventListener('click',stop);
+  ge('restartbtn').addEventListener('click',restart);
   ge('clearbtn').addEventListener('click',clear);
-  ge('delete1').addEventListener('click',delete1);
   //target
   ge('targetimg').addEventListener('click',rotatetarget);
 }
@@ -221,21 +218,7 @@ function drawpcell(i){
     if (k==act.program[i]){
       ge(pcellcmdid).style.display="block";
       ge(pcellcmdid).onclick = function(){
-      if (i!=act.selected){
-        removeallborders();
-        //border only selected
-        for (k=0; k<4; k++){
-          pcellcmdid = "pcell"+i.toString()+ctos[k];
-          ge(pcellcmdid).classList.add("bordered");
-        }
-        act.selected = i;
-        showdelete1();
-        act.curcommand = i;//play goes from selected
         runFast(i+1);
-      }
-      else{
-        removeallborders();
-      }
       }
     }
     else{
@@ -254,16 +237,10 @@ function drawProgram(){
 
 
 function addCommand(cmd){
-  if (act.selected == -1){
-    if (act.program.length<MAXCMDS){
-      act.program.push(cmd);
-    }
+  if (act.program.length<MAXCMDS){
+    act.program.push(cmd);
+    drawProgram();//drawing the whole program is fast
   }
-  else{
-    act.program[act.selected]=cmd;
-    runFast(act.selected+1);
-  }
-  drawProgram();//drawing the whole program is fast
 
 }
 
@@ -359,14 +336,6 @@ function computeCommand(i){
   return([offsetX,offsetY,orientation]);
 }
 
-function checkforprize(){
-    //check for prize
-    //needs toString for comparison ¯\_(ツ)_/¯
-    if (act.blacks.toString() == act.targets[act.target].toString()){
-      setTimeout(function(){ge('win').style.display = "block";},500)
-      setTimeout(function(){ge('win').style.display = "none";},3500);
-    }
-}
 
 
 function runCommand(i){
@@ -428,8 +397,18 @@ function runCommand(i){
 
   //set current command for next command
   act.curcommand = i+1;
+
 }
 
+
+function checkforprize(){
+    //check for prize
+    //needs toString for comparison ¯\_(ツ)_/¯
+    if (act.blacks.toString() == act.targets[act.target].toString()){
+      setTimeout(function(){ge('win').style.display = "block";},500)
+      setTimeout(function(){ge('win').style.display = "none";},3500);
+    }
+}
 
 function runFast(end){
   restart();
@@ -439,32 +418,31 @@ function runFast(end){
   var canvas = ge("mycanvas");
   var ctx = canvas.getContext("2d");
   drawCell(ctx,act.row,act.col,true);
+  //always check for prize 
   checkforprize();
 }
 
 function runProgram(start){
   var timerId;
-
   act.plays = true;
-  act.playfinished = false;
   for (let i = start; i < act.program.length && i< act.wall; i++) {
     act.timerId.push(setTimeout(function timer() {
         runCommand(i);
+        //check for prize in the end of the program
         if (i==act.wall)
           checkforprize();
-
         //finish program
         if (i==act.program.length-1){
-          act.plays = false;
           //after transition make last cell squid is in black
           setTimeout(function(){
             var canvas = ge("mycanvas");
             var ctx = canvas.getContext("2d");
             drawCell(ctx,act.row,act.col,true);
             checkforprize();
+            act.plays = false;
           },act.delay * 500);
         }
-
+          
       }, (i-start) * act.delay * 500));
   }
 }
@@ -477,7 +455,6 @@ function play(){
 
 function clear(){
   act.program = [];
-  removeallborders();
   restart();
 }
 
@@ -489,7 +466,9 @@ function pause(){
 }
 
 function restart(){
+  //squidimg goes back without transition
   ge('squidimg').classList.add('notransition');
+
   //stop the programmed runs of the next commands
   for (i=0; i<act.timerId.length; i++)
     clearTimeout(act.timerId[i])
@@ -497,6 +476,8 @@ function restart(){
   drawGrid();
   act.blacks = new Array(28).fill(0);
   squidonCell(4,1);
+  //make first cell black
+  drawCell(ge('mycanvas').getContext('2d'),4,1,true);
   act.orientation = UP;
   act.curcommand = 0;
   drawProgram();
@@ -504,36 +485,7 @@ function restart(){
   act.wall = MAXCMDS;
 }
 
-function hidedelete1(){
-  ge('delete1').src = "./imgs/x1gray.svg"
-}
-
-function showdelete1(){
-  ge('delete1').src = "./imgs/x1.svg"
-}
-
-function delete1(){
-  act.program.splice(act.selected,1);
-  drawProgram();
-  removeallborders();
-}
-
 function rotatetarget(){
   act.target = (act.target+1)%act.numoftargets
   ge('targetimg').src = './imgs/target'+act.target.toString()+'.png'
-}
-
-function removeallborders(){
-  act.selected = -1;
-  for (i=0; i<MAXCMDS; i++)
-    for (k=0; k<4; k++){
-      pcellcmdid = "pcell"+i.toString()+ctos[k];//ctos transforms 0,1,2,3, to f,l,r,b
-      ge(pcellcmdid).classList.remove("bordered");
-    }
-  hidedelete1();
-}
-
-function stop(){
-  removeallborders();
-  restart();
 }

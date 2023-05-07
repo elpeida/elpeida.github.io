@@ -57,7 +57,10 @@ body {
   -moz-box-shadow: 0 0 0.2em #111;
   -webkit-box-shadow: 0 0 0.2em #111;
   box-shadow: 0 0 0.2em #111;
+}
 
+#mycanvas img{
+  width:100%;
 }
 
 #stage{
@@ -147,8 +150,6 @@ body {
   z-index:1;
 }
 
-
-
 .pcell{
   position:relative;
   display:inline-block;
@@ -160,7 +161,6 @@ body {
   display:inline-block;
   height:3em;
   width:3em;
-  border: 0.2em solid transparent;
 }
 
 #squidimg{
@@ -181,9 +181,9 @@ body {
 #controls{
   position:absolute;
   margin-top:25em;
-  margin-left:48.1em;
+  margin-left:50.5em;
   height:10em;
-  width:16em;
+  width:12em;
 }
 
 .controlbtn{
@@ -191,9 +191,6 @@ body {
   cursor: pointer;
 }
 
-#clearbtn{
-  margin-left:2.5em;
-}
 
 .controlbtn:hover {
   -webkit-filter: brightness(120%) contrast(1.2);
@@ -207,7 +204,7 @@ body {
 }
 
 #target{
-  background-color:transparent;/*rgba(20,20,130,0.9);*/
+  background-color:transparent;/*rgba(233,233,253,1);*/
   position:absolute;
   margin-top:5em;
   margin-left:47.5em;
@@ -221,17 +218,15 @@ body {
   -moz-box-shadow: 0 0 0.2em #111;
   -webkit-box-shadow: 0 0 0.2em #111;
   box-shadow: 0 0 0.2em #111;
+  
 }
 
-#target img{
+#targetimg{
   position:relative;
   width:80%;
   margin-top:2.3em;
   cursor:pointer;
-}
-
-.bordered {
-    border: 0.2em solid darkred;
+  transition: margin-top 0.9s ease-in-out, margin-left 0.9s ease-in-out, transform 0.9s ease-in-out;
 }
 
 #win{
