@@ -1,6 +1,4 @@
-/*
-Copyright (C) 2019 
-Alkis Georgopoulos <alkisg@gmail.com>,
+/*Copyright (C) 2023
 Dimitris Nikolos <dnikolos@gmail.com>.
 SPDX-License-Identifier: CC-BY-SA-4.0*/
 
@@ -8,9 +6,9 @@ let pxofem = 16;
 const numRows = 4;
 const numCols = 7;
 const emsofcell = 6.5;
-const blueish = '#DAF7FE';
+const blueish = '#7EA5F2';/*'#DAF7FE';*/
 const blackish = '#333';
-const bordercolor = '#808aeb';
+const bordercolor = '#7777ff';/*#808aeb';*/
 const MAXCMDS = 25;
 
 const UP = 0;
@@ -26,7 +24,6 @@ const BACKWARD = 3;
 const ctos = ['f','l','r','b'];//command to string
 //the main object
 act = { program:[], 
-        paused:false, 
         plays:false, 
         orientation: UP, 
         row: 0, 
@@ -35,7 +32,25 @@ act = { program:[],
         curcommand:0, 
         timerId:[],
         numoftargets:4,
-        target:1,
+        target:0,
+        targets: [[0,0,0,0,0,0,1,
+           0,0,0,0,0,0,1,
+           1,1,1,1,1,1,1,
+           1,0,0,0,0,0,0],//target0.svg
+          [0,0,1,1,1,1,1,
+           0,1,1,0,0,0,0,
+           1,1,0,0,0,0,0,
+           1,0,0,0,0,0,0],//target1.svg
+          [1,1,1,1,1,1,1,
+           1,0,0,0,0,0,0,
+           1,0,0,0,0,0,0,
+           1,0,0,0,0,0,0,],//target2.svg
+          [1,1,1,0,0,0,0,
+           1,0,1,0,0,0,0,
+           1,0,1,0,0,0,0,
+           1,0,1,1,1,1,1,],//target3.svg
+         ],
+        blacks: new Array(28).fill(0),
         wall: MAXCMDS,
         selected: -1,
         };
@@ -113,6 +128,7 @@ function drawCell(ctx,row,col,makeblack){
   // Draw the square
   if (makeblack){
     ctx.fillStyle = blackish;
+    act.blacks[7*(row-1)+col-1] = 1;
   }
   else{
     ctx.fillStyle = blueish;
@@ -121,7 +137,7 @@ function drawCell(ctx,row,col,makeblack){
   
   // Add a border around the square
   ctx.strokeStyle = bordercolor;
-  ctx.lineWidth = 1;
+  ctx.lineWidth = 2;
   ctx.strokeRect(x, y, cellWidth, cellHeight);
 }
 
@@ -131,14 +147,12 @@ function drawGrid(){
 
   var canvas = ge("mycanvas");
   var ctx = canvas.getContext("2d");
-  canvasbkg = ge('canvasbkg')
-  ctx.drawImage(canvasbkg,0,0,ctx.canvas.width,ctx.canvas.height);
-  /* Loop through each row and column, drawing a square at each cell
+  // Loop through each row and column, drawing a square at each cell
   for (let row = 1; row <= numRows; row++) {
     for (let col = 1; col <= numCols; col++) {
         drawCell(ctx,row,col,false);
     }
-  }*/
+  }
 }
 
 
@@ -151,12 +165,13 @@ function initcanvas(){
   ctx.imageSmoothingEnabled = false;
   drawGrid(ctx);
   restart();
+  removeallborders();
   document.body.onkeyup = function(e) {
   if (e.key == " " ||
       e.code == "Space" ||      
       e.keyCode == 32      
   ) {
-    ge('squidimg').style.display = "none";
+
   }
 }
 }
@@ -206,20 +221,21 @@ function drawpcell(i){
     if (k==act.program[i]){
       ge(pcellcmdid).style.display="block";
       ge(pcellcmdid).onclick = function(){
-        if (i!=act.selected){
-          removeallborders();
-          //border only selected
-          for (k=0; k<4; k++){
-            pcellcmdid = "pcell"+i.toString()+ctos[k];
-            ge(pcellcmdid).classList.add("bordered");
-          }
-          act.selected = i;
-          act.curcommand = i;//play goes from selected
-          runFast(i+1);
+      if (i!=act.selected){
+        removeallborders();
+        //border only selected
+        for (k=0; k<4; k++){
+          pcellcmdid = "pcell"+i.toString()+ctos[k];
+          ge(pcellcmdid).classList.add("bordered");
         }
-        else{
-          removeallborders();
-        }
+        act.selected = i;
+        showdelete1();
+        act.curcommand = i;//play goes from selected
+        runFast(i+1);
+      }
+      else{
+        removeallborders();
+      }
       }
     }
     else{
@@ -343,6 +359,14 @@ function computeCommand(i){
   return([offsetX,offsetY,orientation]);
 }
 
+function checkforprize(){
+    //check for prize
+    //needs toString for comparison ¯\_(ツ)_/¯
+    if (act.blacks.toString() == act.targets[act.target].toString()){
+      setTimeout(function(){ge('win').style.display = "block";},500)
+      setTimeout(function(){ge('win').style.display = "none";},3500);
+    }
+}
 
 
 function runCommand(i){
@@ -415,23 +439,20 @@ function runFast(end){
   var canvas = ge("mycanvas");
   var ctx = canvas.getContext("2d");
   drawCell(ctx,act.row,act.col,true);
-
+  checkforprize();
 }
 
 function runProgram(start){
   var timerId;
 
-  console.log(start,act.program.length);
-  act.paused = false;
-  if (start == act.program.length){
-    restart();
-  }
   act.plays = true;
   act.playfinished = false;
   for (let i = start; i < act.program.length && i< act.wall; i++) {
-    console.log(i,act.program.length,act.wall);
     act.timerId.push(setTimeout(function timer() {
         runCommand(i);
+        if (i==act.wall)
+          checkforprize();
+
         //finish program
         if (i==act.program.length-1){
           act.plays = false;
@@ -440,6 +461,7 @@ function runProgram(start){
             var canvas = ge("mycanvas");
             var ctx = canvas.getContext("2d");
             drawCell(ctx,act.row,act.col,true);
+            checkforprize();
           },act.delay * 500);
         }
 
@@ -449,7 +471,6 @@ function runProgram(start){
 
 function play(){
   ge('squidimg').classList.remove('notransition');
-  act.paused = false;
   if (!act.plays)//if act.plays play btn does nothing
     runProgram(act.curcommand);
 }
@@ -461,7 +482,6 @@ function clear(){
 }
 
 function pause(){
-  act.paused = true;
   act.plays = false;
   //stop the programmed runs of the next commands
   for (i=0; i<act.timerId.length; i++)
@@ -470,20 +490,26 @@ function pause(){
 
 function restart(){
   ge('squidimg').classList.add('notransition');
-  console.log(ge('squidimg').classList);
   //stop the programmed runs of the next commands
   for (i=0; i<act.timerId.length; i++)
     clearTimeout(act.timerId[i])
 
   drawGrid();
+  act.blacks = new Array(28).fill(0);
   squidonCell(4,1);
   act.orientation = UP;
   act.curcommand = 0;
   drawProgram();
   act.plays = false;
-  act.paused = true;
   act.wall = MAXCMDS;
-  //removeallborders();
+}
+
+function hidedelete1(){
+  ge('delete1').src = "./imgs/x1gray.svg"
+}
+
+function showdelete1(){
+  ge('delete1').src = "./imgs/x1.svg"
 }
 
 function delete1(){
@@ -504,7 +530,7 @@ function removeallborders(){
       pcellcmdid = "pcell"+i.toString()+ctos[k];//ctos transforms 0,1,2,3, to f,l,r,b
       ge(pcellcmdid).classList.remove("bordered");
     }
-
+  hidedelete1();
 }
 
 function stop(){

@@ -17,8 +17,8 @@ SPDX-License-Identifier: CC-BY-SA-4.0
   Παρακαλώ περιμένετε
 </div>
 <div id="main" style="display:none">
+  <img id="win" src="./imgs/win.png" style="display:none;">
   <img src="./imgs/background.svg" style="display:none;">
-  <img src="./imgs/canvasbkg.svg" id="canvasbkg" style="display:none;">
   <canvas id="mycanvas">
   </canvas>
   <div id="stage">
@@ -28,16 +28,16 @@ SPDX-License-Identifier: CC-BY-SA-4.0
   <div id="programbuttons">
     <div id="top">
       <!--preload-->
-      <img src="./imgs/f.svg" class="progbtn" id="forwardbtn">
+      <img src="./imgs/f.svg" class="progbtn" id="forwardbtn" title="Μπροστά" alt="Μπροστά">
     </div>
     <div id="middle">
       <!--preload-->
-      <img src="./imgs/l.svg" class="progbtn" id="leftbtn">
-      <img src="./imgs/r.svg" class="progbtn" id="rightbtn">
+      <img src="./imgs/l.svg" class="progbtn" id="leftbtn" title="Αριστερά" alt="Αριστερά">
+      <img src="./imgs/r.svg" class="progbtn" id="rightbtn" title="Δεξιά" alt="Δεξιά">
     </div>
     <div id="bottom">
       <!--preload-->
-      <img src="./imgs/b.svg" class="progbtn" id="backbtn">
+      <img src="./imgs/b.svg" class="progbtn" id="backbtn"  title="Πίσω" alt="Πίσω">
     </div>
   </div>
   <div id="programarea1">
@@ -195,14 +195,17 @@ SPDX-License-Identifier: CC-BY-SA-4.0
     </div>
   </div>
   <div id="controls">
-    <img class="controlbtn" id="playbtn" src="./imgs/play.svg"/>
-    <img class="controlbtn" id="pausebtn" src="./imgs/pause.svg"/>
-    <img class="controlbtn" id="restartbtn" src="./imgs/restart.svg"/>
-    <img class="controlbtn" id="clearbtn" src="./imgs/clear.svg"/>
-    <img class="controlbtn" id="delete1" src="./imgs/x1.svg"/>
+    <img class="controlbtn" id="playbtn" src="./imgs/play.svg"  title="Εκτέλεση" alt="Εκτέλεση">
+    <img class="controlbtn" id="pausebtn" src="./imgs/pause.svg"  title="Παύση" alt="Παύση">
+    <img class="controlbtn" id="restartbtn" src="./imgs/restart.svg"  title="Στοπ" alt="Στοπ">
+    <img class="controlbtn" id="clearbtn" src="./imgs/clear.svg"  title="Διαγραφή εντολών" alt="Διαγραφή εντολών">
+    <img class="controlbtn" id="delete1" src="./imgs/x1.svg"/ title="Διαγραφή επιλεγμένης" alt="Διαγραφή επιλεγμένης">
   </div>
   <div id="target">
-    <img id="targetimg" src="./imgs/target0.png">
+    <img id="targetimg" src="./imgs/target0.png" title="Επίλεξε διαδρομή" alt="Επίλεξε διαδρομή">
+    <img id="targetimg" src="./imgs/target1.png" title="Επίλεξε διαδρομή" alt="Επίλεξε διαδρομή" style="display:none;">
+    <img id="targetimg" src="./imgs/target2.png" title="Επίλεξε διαδρομή" alt="Επίλεξε διαδρομή" style="display:none;">
+    <img id="targetimg" src="./imgs/target3.png" title="Επίλεξε διαδρομή" alt="Επίλεξε διαδρομή" style="display:none;">
   </div>
 </div>
 </body>
