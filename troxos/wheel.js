@@ -62,6 +62,7 @@ var wheelSpiningTimeout;
 var gameOver = false;
 
 var currentBrush;
+var instructions = "instructions.mp3";
 
 //var wheel = document.getElementById("wheel");
 // wheelParts = document.getElementsByTagName("li");
@@ -69,6 +70,24 @@ var currentBrush;
 //     wheelParts[i].style.transform = `rotate(${i*360/wheelsColorsNumber}deg) skewY(-${90 - 360/wheelsColorsNumber}deg)`;
 //     wheelParts[i].style.backgroundColor = colors[i];
 // }
+
+var audio;
+audioToggle = false;
+
+function playInstructions() {
+    if (audio) {
+        audio.pause();
+    }
+    if (audioToggle == false){
+        audio = new Audio(instructions);
+        audio.play();
+        audioToggle = true;
+    }
+    else{
+        audio.pause();
+        audioToggle = false;
+    }
+}
 
 initializeData();
 
@@ -185,6 +204,10 @@ function increaseCircleColorsNumber(){
         wheelsColorsNumber += 2;
         colorsNumberElement.innerHTML = wheelsColorsNumber;
         initializeData(true);
+        if (audio) {
+            audio.pause();
+            audioToggle = false;
+        }
     }
 }
 
@@ -194,6 +217,10 @@ function decreaseCircleColorsNumber() {
         wheelsColorsNumber -= 2;
         colorsNumberElement.innerHTML = wheelsColorsNumber;
         initializeData(false);
+        if (audio) {
+            audio.pause();
+            audioToggle = false;
+        }
     }
 }
 
