@@ -8,7 +8,7 @@ const originalColors = {
     4: ["url(#troxos-4-mple_2_)", "url(#troxos-4-kitrino_2_)", "url(#troxos-4-kokkino_2_)", "url(#troxos-4-mov_2_)"],
     6: ["url(#troxos-6-kitrino_2_)", "url(#troxos-6-portokali_2_)", "url(#troxos-6-kokkino_2_)", "url(#troxos-6-mov_2_)", "url(#troxos-6-mple_2_)", "url(#troxos-6-prasino_2_)"],
     8: ["url(#troxos-8-kitrino_2_)", "url(#troxos-8-portokali_2_)", "url(#troxos-8-kokkino_2_)", "url(#troxos-8-mov_2_)", "url(#troxos-8-mple_2_)", "url(#troxos-8-prasino_2_)", "url(#troxos-8-kokkino-2_1_)", "url(#troxos-8-prasino-2_2_)"]
-};
+}; 
 
 
 var wheelColors = {
