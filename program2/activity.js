@@ -193,6 +193,11 @@ function init(){
   ge('delete1').addEventListener('click',delete1);
   //target
   ge('targetimg').addEventListener('click',rotatetarget);
+  //help
+  ge('bar_help').addEventListener('click',onHelp);
+  ge('help').addEventListener('click',onHelpHide);
+  ge('dialog').addEventListener('click',onHelpHide);
+  
 }
 
 
@@ -513,7 +518,8 @@ function showdelete1(){
 }
 
 function delete1(){
-  act.program.splice(act.selected,1);
+  if (act.selected!=-1)
+    act.program.splice(act.selected,1);
   drawProgram();
   removeallborders();
 }
@@ -537,3 +543,15 @@ function stop(){
   removeallborders();
   restart();
 }
+
+
+function onHelp(event) {
+  ge('dialog').style.display = 'flex';
+  ge('help').style.display = 'flex';
+}
+
+function onHelpHide(event) {
+  ge('help').style.display = '';
+}
+
+

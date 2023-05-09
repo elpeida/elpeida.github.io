@@ -190,6 +190,10 @@ function init(){
   ge('clearbtn').addEventListener('click',clear);
   //target
   ge('targetimg').addEventListener('click',rotatetarget);
+  //help
+  ge('bar_help').addEventListener('click',onHelp);
+  ge('help').addEventListener('click',onHelpHide);
+  ge('dialog').addEventListener('click',onHelpHide);
 }
 
 
@@ -489,3 +493,14 @@ function rotatetarget(){
   act.target = (act.target+1)%act.numoftargets
   ge('targetimg').src = './imgs/target'+act.target.toString()+'.png'
 }
+
+function onHelp(event) {
+  ge('dialog').style.display = 'flex';
+  ge('help').style.display = 'flex';
+}
+
+function onHelpHide(event) {
+  ge('help').style.display = '';
+}
+
+
