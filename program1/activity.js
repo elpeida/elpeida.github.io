@@ -23,8 +23,14 @@ const FORWARD = 0;
 const BACKWARD = 3;
 
 const ctos = ['f','l','r','b'];//command to string
+const chars = ["./imgs/squidsmall-01.svg",
+               "./imgs/squidsmall-02.svg",
+               "./imgs/squidsmall-03.svg",
+               "./imgs/squidsmall-04.svg",]
+
 //the main object
 act = { program:[], 
+        curchar:0,
         plays:false, 
         orientation: UP, 
         row: 0, 
@@ -112,6 +118,10 @@ if (document.readyState === 'loading') {
 }
 
 
+function changeChar(){
+  act.curchar = (act.curchar+1)%chars.length;
+  ge('squidimg').src= chars[act.curchar];
+}
 
 function drawCell(ctx,row,col,makeblack){
 //makeblack is true or false
@@ -194,6 +204,7 @@ function init(){
   ge('bar_help').addEventListener('click',onHelp);
   ge('help').addEventListener('click',onHelpHide);
   ge('dialog').addEventListener('click',onHelpHide);
+  ge('squidimg').addEventListener('click',changeChar);
 }
 
 
@@ -497,10 +508,13 @@ function rotatetarget(){
 function onHelp(event) {
   ge('dialog').style.display = 'flex';
   ge('help').style.display = 'flex';
+  ge('helpaudio').play();
 }
 
 function onHelpHide(event) {
   ge('help').style.display = '';
+  ge('helpaudio').pause();
+  ge('helpaudio').currentTime = 0;
 }
 
 
