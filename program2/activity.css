@@ -167,6 +167,7 @@ body {
   width: 5.5em;
   height: 5.5em;
   transition: margin-top 0.9s ease-in-out, margin-left 0.9s ease-in-out, transform 0.9s ease-in-out;
+  cursor:pointer;
 }
 
 

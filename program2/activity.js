@@ -21,9 +21,14 @@ const FORWARD = 0;
 //const RIGHT = 2;//see above 
 const BACKWARD = 3;
 
+const chars = ["./imgs/squidsmall-01.svg",
+               "./imgs/squidsmall-02.svg",
+               "./imgs/squidsmall-03.svg",
+               "./imgs/squidsmall-04.svg",]
 const ctos = ['f','l','r','b'];//command to string
 //the main object
 act = { program:[], 
+        curchar:0,
         plays:false, 
         orientation: UP, 
         row: 0, 
@@ -112,6 +117,10 @@ if (document.readyState === 'loading') {
 }
 
 
+function changeChar(){
+  act.curchar = (act.curchar+1)%chars.length;
+  ge('squidimg').src= chars[act.curchar];
+}
 
 function drawCell(ctx,row,col,makeblack){
 //makeblack is true or false
@@ -197,7 +206,7 @@ function init(){
   ge('bar_help').addEventListener('click',onHelp);
   ge('help').addEventListener('click',onHelpHide);
   ge('dialog').addEventListener('click',onHelpHide);
-  
+  ge('squidimg').addEventListener('click',changeChar);
 }
 
 
@@ -502,6 +511,8 @@ function restart(){
   drawGrid();
   act.blacks = new Array(28).fill(0);
   squidonCell(4,1);
+  //make first cell black
+  drawCell(ge('mycanvas').getContext('2d'),4,1,true);
   act.orientation = UP;
   act.curcommand = 0;
   drawProgram();
@@ -548,10 +559,13 @@ function stop(){
 function onHelp(event) {
   ge('dialog').style.display = 'flex';
   ge('help').style.display = 'flex';
+  ge('helpaudio').play();
 }
 
 function onHelpHide(event) {
   ge('help').style.display = '';
+  ge('helpaudio').pause();
+  ge('helpaudio').currentTime = 0;
 }
 
 
