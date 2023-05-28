@@ -1,4 +1,4 @@
-  /*
+/*
 Copyright (C) 2023 Dimitris Nikolos <dnikolos@gmail.com>.
 SPDX-License-Identifier: CC-BY-SA-4.0
 */
@@ -70,10 +70,14 @@ function onHelp(event) {
   ge('dialog').style.display = 'flex';
   ge('feedback').style.display = 'none';
   ge('help').style.display = 'flex';
+  ge('helpaudio').play();
 }
 
 function onHelpHide(event) {
   ge('help').style.display = '';
+  ge('helpaudio').pause();
+  ge('helpaudio').currentTime = 0;
+  resetplaylist();//onhelphide hide feedback too
 }
 
 
@@ -90,6 +94,37 @@ function onFullScreen(event) {
     requestFullScreen.call(docEl);
   } else {
     cancelFullScreen.call(doc);
+  }
+}
+
+function resetplaylist(){
+  ge('plusR').removeEventListener('ended',playlistplay);
+  ge('plusY').removeEventListener('ended',playlistplay);
+  ge('plusB').removeEventListener('ended',playlistplay);
+  ge('minusR').removeEventListener('ended',playlistplay);
+  ge('minusY').removeEventListener('ended',playlistplay);
+  ge('minusB').removeEventListener('ended',playlistplay);
+
+  ge('plusR').pause();
+  ge('plusY').pause();
+  ge('plusB').pause();
+  ge('minusR').pause();
+  ge('minusY').pause();
+  ge('minusB').pause();
+
+  ge('plusR').currentTime = 0;
+  ge('plusY').currentTime = 0;
+  ge('plusB').currentTime = 0;
+  ge('minusR').currentTime = 0;
+  ge('minusY').currentTime = 0;
+  ge('minusB').currentTime = 0;
+}
+
+function playlistplay(){
+  if (act.tracknum < act.idsplaylist.length) {
+    const currentAudio = act.idsplaylist[act.tracknum];
+    currentAudio.play();
+    act.tracknum++;
   }
 }
 
@@ -141,14 +176,17 @@ function onButtonOk(event){
   var msg = "Χρειάζεται:<br/>";
   var cnames = {'R':'κόκκινο','Y':'κίτρινο','B':'μπλε'};
   var enCnames = {'R':'red','Y':'yellow','B':'blue'};
+  act.idsplaylist = [];
   for (i = 0; i<Object.keys(cnames).length; i++){
     var item = Object.keys(cnames)[i];
     if (act.workingColor[item]<act.targetColor[item]){
       msg += "<div style='color:" + enCnames[item] + ";text-shadow:1px 1px gray'> + " + cnames[item] + "</div><br/>";
+      act.idsplaylist.push(ge('plus'+item)); //plusR,plusY or plusB since we have <audio id="plusR"> in the html
     }
     else{
       if (act.workingColor[item]>act.targetColor[item]){
         msg += "<div style='color:" + enCnames[item] + ";text-shadow:1px 1px gray'> - " + cnames[item] + "</div><br/>";
+        act.idsplaylist.push(ge('minus'+item)); //minusR,minusY or minusB since we have <audio id="minusR"> in the html
       }
     }
     
@@ -158,6 +196,11 @@ function onButtonOk(event){
     ge('feedback').innerHTML = msg;
     ge('feedback').style.display = '';
     ge('help').style.display = 'flex';
+    act.idsplaylist.forEach(audio => {
+      audio.addEventListener('ended', playlistplay);
+    });
+    act.tracknum = 0;
+    playlistplay();
   }
   else{
     setTimeout(function(){ge('win').style.display = "block";},500)
@@ -215,7 +258,13 @@ function initActivity() {
     targetColor: {'R':0,'Y':0,'B':0},
     targetColors : [],
     sheet:  null,
+    idsplaylist: [],
+    tracknum: 0,
   };
+
+
+
+
   onColorChange();
   onResize();
   act.sheet = document.styleSheets[0];

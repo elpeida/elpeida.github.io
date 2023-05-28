@@ -95,6 +95,5 @@ function getRandomColor(cn,cs){
     if (t['R']!=0 || t['Y']!=0 || t['B']!=0)
       break;
   }
-  console.log(t);
   return(t);
 }
