@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+    <title>Κατασκευές</title>
+</head>
+
+<body class="loading">
+    <main>
+        <div class="wrapper" id="wrapper">
+
+            <img class="pencil" src="assets/pencil.svg"/>
+
+            <button class="home" type="button">
+                <img src="assets/home.svg" />
+            </button>
+
+
+            <div id="menu-container">
+                <div class="menu-item" onclick="loadGame('mpasketa')">
+                    <img src="assets/mpasketa/img.svg" loading="eager" alt="i apithani mpasketa" />
+                </div>
+                <div class="menu-item" onclick="loadGame('feggari')">
+                    <img src="assets/feggari/img.svg" loading="eager" alt="apostoli sto feggari" />
+                </div>
+                <div class="menu-item" onclick="loadGame('mpilies')">
+                    <img src="assets/mpilies/img.svg" loading="eager" alt="vrexei mpilies"/>
+                </div>
+                <div class="menu-item" onclick="loadGame('podosfairo')">
+                    <img src="assets/podosfairo/img.svg" loading="eager" alt="podosfairaki"/>
+                </div>
+                <div class="menu-item" onclick="loadGame('robot')">
+                    <img src="assets/robot/img.svg" loading="eager" alt="robot xoreutis" />
+                </div>
+                <div class="menu-item" onclick="loadGame('keraunoi')">
+                    <img src="assets/keraunoi/img.svg" loading="eager" alt="vrontes kai keraunoi" />
+                </div>
+            </div>
+
+
+            <div id="game-container" class="hide">
+
+                <div class="overlapping" id="materials-overlapping">
+                    <img id="materials-bg" src="assets/mpasketa/slides/3.jpg" alt="ulika">
+                    
+                    <a id="materials-link" class="materials_download" href="assets/mpasketa/ulika.pdf" target="_blank" download>  
+                        <img src="assets/download.svg" />
+                    </a> 
+                    
+                    <button type="button" id="close" onclick="closeSplash()">
+                        <img src="assets/delete.svg" alt="close">
+                    </button>
+                </div>
+
+
+                <div id="video-container">
+                    <div id="video-content" onclick="playVideo()">
+                        <video>
+                            <source id="video-source" src="assets/mpasketa/video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="video-controls">
+                        <button id="play" type="button" onclick="playVideo()">
+                            <img src="assets/play.svg" />
+                        </button>
+                        <button class="pause" type="button" onclick="pauseVideo()">
+                            <img src="assets/pause.svg" />
+                        </button>
+                        <button class="expand" type="button" onclick="expandVideo()">
+                            <img src="assets/expand.svg" />
+                        </button>
+                        <button id="compress" class="compress hide" type="button" onclick="compressVideo()">
+                            <img src="assets/compress.svg" />
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="slides-container">
+                    <img id="slides-img" src="assets/mpasketa/slides/1.jpg"/>
+                       
+                    <div id="select-slide-container" class="hide">
+                        <img class="select-item" src="assets/numbers/1.svg" onclick="goToSlide(1)"/>
+                        <img class="select-item" src="assets/numbers/2.svg" onclick="goToSlide(2)"/>
+                        <img class="select-item" src="assets/numbers/3.svg" onclick="goToSlide(3)"/>
+                        <img class="select-item" src="assets/numbers/4.svg" onclick="goToSlide(4)"/>
+                        <img class="select-item" src="assets/numbers/5.svg" onclick="goToSlide(5)"/>
+                        <img class="select-item" src="assets/numbers/6.svg" onclick="goToSlide(6)"/>
+                        <img class="select-item" src="assets/numbers/7.svg" onclick="goToSlide(7)"/>
+                        <img class="select-item" src="assets/numbers/8.svg" onclick="goToSlide(8)"/>
+                        <img class="select-item" src="assets/numbers/9.svg" onclick="goToSlide(9)"/>
+                        <img class="select-item" src="assets/numbers/10.svg" onclick="goToSlide(10)"/>
+                        <img class="select-item" src="assets/numbers/11.svg" onclick="goToSlide(11)"/>
+                        <img class="select-item" src="assets/numbers/12.svg" onclick="goToSlide(12)"/>
+                        <img class="select-item" src="assets/numbers/13.svg" onclick="goToSlide(13)"/>
+                        <img class="select-item" src="assets/numbers/14.svg" onclick="goToSlide(14)"/>
+                        <img class="select-item" src="assets/numbers/15.svg" onclick="goToSlide(15)"/>
+                        <img class="select-item" src="assets/numbers/16.svg" onclick="goToSlide(16)"/>
+                        <img class="select-item" src="assets/numbers/17.svg" onclick="goToSlide(17)"/>
+                        <img class="select-item" src="assets/numbers/18.svg" onclick="goToSlide(18)"/>
+                        <img class="select-item" src="assets/numbers/19.svg" onclick="goToSlide(19)"/>
+                        <img class="select-item" src="assets/numbers/20.svg" onclick="goToSlide(20)"/>
+                        <img class="select-item" src="assets/numbers/21.svg" onclick="goToSlide(21)"/>
+                        <img class="select-item" src="assets/numbers/22.svg" onclick="goToSlide(22)"/>
+                        <img class="select-item" src="assets/numbers/23.svg" onclick="goToSlide(23)"/>
+                        <img class="select-item" src="assets/numbers/24.svg" onclick="goToSlide(24)"/>
+                        <img class="select-item" src="assets/numbers/25.svg" onclick="goToSlide(25)"/>
+                        <img class="select-item" src="assets/numbers/26.svg" onclick="goToSlide(26)"/>
+                        <img class="select-item" src="assets/numbers/27.svg" onclick="goToSlide(27)"/>
+                        <img class="select-item" src="assets/numbers/28.svg" onclick="goToSlide(28)"/>
+                        <img class="select-item" src="assets/numbers/29.svg" onclick="goToSlide(29)"/>
+                    </div>
+                    
+                    <button class="slides-previous" type="button" onclick="loadPreviousSlide()">
+                        <img src="assets/slidesprevious.svg" />
+                    </button>
+
+                    <div id="current-slide-container" onclick="openSelectSlide()">
+                        <img id="current-slide-img" src="assets/numbers/29.svg" />
+                        <img id="down-arrow" src="assets/downarrow.svg" />
+                        <img id="up-arrow" class="hide" src="assets/uparrow.svg" />
+                    </div>
+
+                    <button class="slides-next" type="button" onclick="loadNextSlide()">
+                        <img src="assets/slidesnext.svg" />
+                    </button>
+
+                    <a id="instructions-download" class="instructions-download" href="assets/mpasketa/odigies.pdf" target="_blank" download onclick="closeSelectSlide()">  
+                        <img src="assets/download.svg" />
+                    </a> 
+                </div>
+                
+    
+                <button class="previous" type="button" onclick="backToMenu()">
+                    <img src="assets/previous.svg" />
+                </button>
+
+                <button class="materials" type="button" onclick="showMaterials()">
+                    <img src="assets/ulika.svg" />
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
