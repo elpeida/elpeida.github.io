@@ -1,0 +1,275 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+}
+
+body main {
+    width: 100%;
+    max-width: calc((100vh / 9) * 16);
+    height: 100%;
+    max-height: calc((100vw / 16) * 9);
+    position: relative;
+    display: flex;
+}
+
+body main .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    background-image: url('assets/bg.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+a > img,
+button > img {
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+}
+
+body main .wrapper .pencil {
+    width: auto;
+    height: 30.8%;
+    position: absolute;
+    bottom: 4%;
+    left: 4.8%;
+    cursor: pointer;
+}
+
+body main .wrapper .level1,
+body main .wrapper .level2,
+body main .wrapper .level3 {
+    width: auto;
+    height: 6.8%;
+    position: absolute;
+    bottom: 6.5%;
+    left: 31.9%;
+}
+
+body main .wrapper .level4 {
+    width: auto;
+    height: 6.8%;
+    position: absolute;
+    bottom: 6.5%;
+    left: 31.2%;
+}
+
+#wrapper[data-level="lvl1"] .level2,
+#wrapper[data-level="lvl1"] .level3,
+#wrapper[data-level="lvl1"] .level4 {
+    display: none;
+}
+
+#wrapper[data-level="lvl2"] .level1,
+#wrapper[data-level="lvl2"] .level3,
+#wrapper[data-level="lvl2"] .level4 {
+    display: none;
+}
+
+#wrapper[data-level="lvl3"] .level1,
+#wrapper[data-level="lvl3"] .level2,
+#wrapper[data-level="lvl3"] .level4 {
+    display: none;
+}
+
+#wrapper[data-level="lvl4"] .level1,
+#wrapper[data-level="lvl4"] .level2,
+#wrapper[data-level="lvl4"] .level3 {
+    display: none;
+}
+
+.home {
+    height: 10.5%;
+    position: absolute;
+    bottom: 4.5%;
+    left: 15.2%;
+}
+
+.arrow-left {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    width: auto;
+    height: 10.5%;
+    position: absolute;
+    bottom: 4.5%;
+    left: 23.2%;
+}
+
+.arrow-right {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    width: auto;
+    height: 10.5%;
+    position: absolute;
+    bottom: 4.5%;
+    left: 36.2%;
+}
+
+.delete {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    width: auto;
+    height: 7.4%;
+    position: absolute;
+    top: 80.2%;
+    left: 77.8%;
+}
+
+#wrapper[data-level="lvl1"] .delete {
+    left: 58.8%;
+}
+
+.check {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    width: auto;
+    height: 7.4%;
+    position: absolute;
+    top: 80.2%;
+    left: 83.6%;
+}
+
+#wrapper[data-level="lvl1"] .check {
+    left: 64.6%;
+}
+
+#wrapper[data-level="lvl4"] .check {
+    display: none;
+}
+
+#edit, 
+#no-edit {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    width: auto;
+    height: 7.4%;
+    position: absolute;
+    top: 80.2%;
+    left: 83.6%;
+}
+
+.hide {
+    display: none;
+}
+
+#wrapper[data-level="lvl1"] #edit,
+#wrapper[data-level="lvl2"] #edit,
+#wrapper[data-level="lvl3"] #edit,
+#wrapper[data-level="lvl1"] #no-edit,
+#wrapper[data-level="lvl2"] #no-edit,
+#wrapper[data-level="lvl3"] #no-edit {
+    display: none;
+}
+
+#wrapper[data-level="lvl1"] .board__container {
+    width: 39.6%;
+    height: 71%;
+    position: absolute;
+    top: 7.5%;
+    left: 29.5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 1%;
+}
+
+#wrapper[data-level="lvl2"] .board__container,
+#wrapper[data-level="lvl3"] .board__container,
+#wrapper[data-level="lvl4"] .board__container {
+    width: 70%;
+    height: 70.8%;
+    position: absolute;
+    top: 7.1%;
+    left: 18.3%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 1%;
+}
+
+#wrapper[data-level="lvl1"] .board__container .box[data-hide="lvl1"] {
+    display: none;
+}
+
+.board__container .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.board__container .box > div {
+    width: 100%;
+    height: 100%;
+}
+
+.board__container .box .box-background {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('assets/grasidi.svg'); 
+}
+
+.splash {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    display: none;
+    flex-direction: column;
+    gap: 4rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background-color: rgba(0,0,0,0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+.splash > img {
+    height: 65%;
+    max-width: 80%;
+    max-height: 80%;
+    pointer-events: none;
+    scale: 0;
+}
+
+.splash button {
+    height: 10.9%;
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+}
+
+body.win #win-splash,
+body.lost #lost-splash {
+    display: flex;
+}
+
+body.lost #lost-splash {
+    display: flex;
+}
+
+body.win #win-splash img,
+body.lost #lost-splash img {
+    scale: 1;
+    transition: scale 1500ms linear;
+}

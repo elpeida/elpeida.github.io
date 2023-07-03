@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 186.3565 186.3565">
+  <g id="routes">
+    <g>
+      <rect width="186.3565" height="186.3565" transform="translate(186.3565 186.3565) rotate(180)" style="fill: #9fce62;"/>
+      <g>
+        <rect x="45.2823" width="11.4038" height="186.3565" style="fill: #e8e8e8;"/>
+        <polygon points="129.6701 186.3565 141.0742 186.3565 141.0742 97.8971 141.0742 0 129.6701 0 129.6701 186.3565" style="fill: #e8e8e8;"/>
+        <path d="m129.6701,0h-34.2109v2.1536h-4.5619V0h-34.2112v186.3565h72.984V0Zm-34.2109,176.8818h-4.5619v-12.5128h4.5619v12.5128Zm0-25.0261h-4.5619v-12.5132h4.5619v12.5132Zm0-25.0259h-4.5619v-12.513h4.5619v12.513Zm0-25.0218h-4.5619v-12.5126h4.5619v12.5126Zm0-37.4263v12.5126h-4.5619v-12.6252h4.5619v.1126Zm0-24.9135v12.5126h-4.5619v-12.6254h4.5619v.1128Zm0-24.9137v12.5126h-4.5619v-12.6254h4.5619v.1128Z" style="fill: #283543;"/>
+        <rect x="90.8973" y="114.3169" width="4.5619" height="12.513" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="89.2955" width="4.5619" height="12.5126" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="64.2692" width="4.5619" height=".1126" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="76.7822" width="4.5619" height=".1122" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="64.3818" width="4.5619" height="12.4004" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="39.3555" width="4.5619" height=".1128" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="51.8685" width="4.5619" height=".1124" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="39.4683" width="4.5619" height="12.4002" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="14.4418" width="4.5619" height=".1128" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="26.9551" width="4.5619" height=".1122" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="14.5546" width="4.5619" height="12.4004" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="2.0414" width="4.5619" height=".1122" style="fill: #283543;"/>
+        <rect x="90.8973" width="4.5619" height="2.0414" style="fill: #283543;"/>
+        <rect x="90.8973" y="139.3425" width="4.5619" height="12.5132" style="fill: #e8e8e8;"/>
+        <rect x="90.8973" y="164.369" width="4.5619" height="12.5128" style="fill: #e8e8e8;"/>
+      </g>
+    </g>
+  </g>
+</svg>

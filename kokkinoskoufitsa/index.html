@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+    <title>Κοκκινοσκουφίτσα</title>
+</head>
+
+<body class="loading">
+    <main>
+        <div class="wrapper" id="wrapper" data-level="lvl1">
+
+            <div class="splash" id="win-splash">
+                <img src="assets/wingame.png" alt="win">
+                <button type="button" class="circle-button" id="retry" onclick="closeSplash()"><img src="assets/previous.svg" alt="retry"></button>
+            </div>
+
+
+            <div class="splash" id="lost-splash">
+                <img src="assets/lostgame.png" alt="lost">
+                <button type="button" class="circle-button" id="retry" onclick="closeSplash()"><img src="assets/previous.svg" alt="retry"></button>
+            </div>
+
+            <img class="pencil" src="assets/molivis.svg"/>
+
+            <a class="home" href="#">
+                <img src="assets/home.svg" />
+            </a>
+
+            <img class="level1" src="assets/1.svg" />
+            <img class="level2" src="assets/2.svg" />
+            <img class="level3" src="assets/3.svg" />
+            <img class="level4" src="assets/4.svg" />
+
+            <button class="arrow-left" type="button" onclick="changeLevel('prev')" alt="previous">
+                <img src="assets/previous.svg" />
+            </button>
+
+            <button class="arrow-right" type="button" onclick="changeLevel('next')" alt="next">
+                <img src="assets/next.svg" />
+            </button>
+
+            <button class="delete" type="button" onclick="clearBoard()">
+                <img src="assets/delete.svg" />
+            </button>
+
+            <button class="check" type="button" onclick="checkBoard()">
+                <img src="assets/check.svg" />
+            </button>
+
+            <button id="edit" type="button" onclick="editBoard()">
+                <img src="assets/edit.svg" />
+            </button>
+
+            <button id="no-edit" class="hide" type="button" onclick="stopEditBoard()">
+                <img src="assets/noedit.svg" />
+            </button>
+
+            <div class="board__container">
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box">
+                    <div class="box-background"></div>
+                </div>
+            
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+                <div class="box" data-hide="lvl1">
+                    <div class="box-background"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
