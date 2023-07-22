@@ -1,0 +1,254 @@
+<!doctype html>
+<!--
+Copyright (C) 2023 Dimitris Nikolos dnikolos@gmail.com
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Προγραμματισμός με δάπεδα</title>
+  <link rel="stylesheet" type="text/css" href="activity.css">
+  <script src="activity.js"></script>
+</head>
+<body>
+<div id="loading">
+  Παρακαλώ περιμένετε
+</div>
+<div id="main" style="display:none">
+  <img id="win" src="./imgs/win.png" style="display:none;">
+  <img src="./imgs/background.svg" style="display:none;">
+  <canvas id="mycanvas">
+  </canvas>
+  <div id="stage">
+  <!--preload-->
+  <img id="gridimg" src="./imgs/grid.svg" style="display:none;">
+  <img src="./imgs/body_boy.svg" style="display:none;">
+  <img src="./imgs/body_girl.svg" style="display:none;">
+  <img src="./imgs/colors.svg" style="display:none;">
+  <img src="./imgs/colors_text.svg" style="display:none;">
+  <img src="./imgs/dice.svg" style="display:none;">
+  <img src="./imgs/disabilities.svg" style="display:none;">
+  <img src="./imgs/flags.svg" style="display:none;">
+  <img src="./imgs/flowers.svg" style="display:none;">
+  <img src="./imgs/fruits.svg" style="display:none;">
+  <img src="./imgs/fruits_text.svg" style="display:none;">
+  <img src="./imgs/kids_nationality.svg" style="display:none;">
+  <img src="./imgs/play.svg" style="display:none;">
+  <img src="./imgs/playground.svg" style="display:none;">
+  <img src="./imgs/recycling.svg" style="display:none;">
+  <img src="./imgs/shapes.svg" style="display:none;">
+  <img src="./imgs/shapes_text.svg" style="display:none;">
+  
+  <img src="./imgs/akrida.svg" style="display:none;">
+  <img src="./imgs/butterfly.svg" style="display:none;">
+  <img src="./imgs/ladybug.svg" style="display:none;">
+  <img src="./imgs/student.svg" id="mainimg">
+
+  
+  </div>
+  <div id="programbuttons">
+    <div id="top">
+      <!--preload-->
+      <img src="./imgs/f.svg" class="progbtn" id="forwardbtn" title="Μπροστά" alt="Μπροστά">
+    </div>
+    <div id="middle">
+      <!--preload-->
+      <img src="./imgs/l.svg" class="progbtn" id="leftbtn" title="Αριστερά" alt="Αριστερά">
+      <img src="./imgs/r.svg" class="progbtn" id="rightbtn" title="Δεξιά" alt="Δεξιά">
+    </div>
+    <div id="bottom">
+      <!--preload-->
+      <img src="./imgs/b.svg" class="progbtn" id="backbtn"  title="Πίσω" alt="Πίσω">
+    </div>
+  </div>
+  <div id="programarea1">
+    <div class="pcell" id="pcell0">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell0f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell0l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell0r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell0b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell1">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell1f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell1l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell1r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell1b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell2">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell2f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell2l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell2r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell2b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell3">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell3f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell3l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell3r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell3b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell4">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell4f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell4l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell4r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell4b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell5">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell5f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell5l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell5r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell5b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell6">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell6f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell6l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell6r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell6b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell7">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell7f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell7l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell7r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell7b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell8">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell8f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell8l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell8r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell8b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell9">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell9f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell9l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell9r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell9b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell10">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell10f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell10l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell10r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell10b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell11">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell11f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell11l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell11r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell11b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell12">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell12f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell12l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell12r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell12b" style="display:none;">
+    </div>
+  </div>
+  <div id="programarea2">
+    <div class="pcell" id="pcell13">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell13f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell13l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell13r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell13b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell14">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell14f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell14l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell14r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell14b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell15">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell15f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell15l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell15r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell15b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell16">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell16f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell16l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell16r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell16b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell17">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell17f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell17l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell17r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell17b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell18">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell18f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell18l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell18r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell18b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell19">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell19f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell19l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell19r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell19b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell20">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell20f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell20l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell20r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell20b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell21">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell21f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell21l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell21r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell21b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell22">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell22f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell22l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell22r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell22b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell23">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell23f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell23l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell23r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell23b" style="display:none;">
+    </div>
+    <div class="pcell" id="pcell24">
+      <img src="./imgs/f.svg" class="pcellcmd" id="pcell24f" style="display:none;">
+      <img src="./imgs/l.svg" class="pcellcmd" id="pcell24l" style="display:none;">
+      <img src="./imgs/r.svg" class="pcellcmd" id="pcell24r" style="display:none;">
+      <img src="./imgs/b.svg" class="pcellcmd" id="pcell24b" style="display:none;">
+    </div>
+  </div>
+  <div id="controls">
+    <img class="controlbtn" id="playbtn" src="./imgs/play.svg"  title="Εκτέλεση" alt="Εκτέλεση">
+    <img class="controlbtn" id="pausebtn" src="./imgs/pause.svg"  title="Παύση" alt="Παύση">
+    <img class="controlbtn" id="restartbtn" src="./imgs/restart.svg"  title="Στοπ" alt="Στοπ">
+    <img class="controlbtn" id="clearbtn" src="./imgs/clear.svg"  title="Διαγραφή εντολών" alt="Διαγραφή εντολών">
+  </div>
+  <div id="bar">
+    <img id="bar_help" src="./imgs/bar_help.svg" title="Βοήθεια" alt="Βοήθεια"/>
+  </div>
+  <div id="target">
+     <img class="stagepreview" id="grid_sel" src="./imgs/grid_sel.svg">
+     <img class="stagepreview" id="playstage_sel" src="./imgs/playstage_sel.svg">
+     <img class="stagepreview" id="body_boy_sel" src="./imgs/body_boy_sel.svg">
+     <img class="stagepreview" id="body_girl_sel" src="./imgs/body_girl_sel.svg">
+     <img class="stagepreview" id="colors_sel" src="./imgs/colors_sel.svg">
+     <img class="stagepreview" id="dice_sel" src="./imgs/dice_sel.svg">
+     <img class="stagepreview" id="disabilities_sel" src="./imgs/disabilities_sel.svg">
+     <img class="stagepreview" id="flags_sel" src="./imgs/flags_sel.svg">
+     <img class="stagepreview" id="flower_sel" src="./imgs/flower_sel.svg">
+     <img class="stagepreview" id="fruits_sel" src="./imgs/fruits_sel.svg">
+     <img class="stagepreview" id="kids_nationality_sel" src="./imgs/kids_nationality_sel.svg">
+     <img class="stagepreview" id="playground_sel" src="./imgs/playground_sel.svg">
+     <img class="stagepreview" id="recycling_sel" src="./imgs/recycling_sel.svg">
+     <img class="stagepreview" id="shapes_sel" src="./imgs/shapes_sel.svg">
+  </div>
+  <div id="help" style="display:none;">
+    <div id="dialog">Σχεδίασε το πρόγραμμα με τα τέσσερα βελάκια και εκτέλεσε το
+      με το πλήκτρο εκτέλεσης.</div>
+  <div id="feedback"></div></div>
+
+  <audio id="helpaudio">
+    <source src="./imgs/xtapodi1.mp3">
+  </audio>
+</div>
+</body>
+</html>
