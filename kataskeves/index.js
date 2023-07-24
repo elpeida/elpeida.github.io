@@ -20,6 +20,7 @@ const currentSlideImg = document.getElementById("current-slide-img");
 const optionsSlides = document.getElementsByClassName("select-item");
 const downArrow = document.getElementById("down-arrow");
 const upArrow = document.getElementById("up-arrow");
+const audio = new Audio("assets/instructions.mp3");
 
 const slidesInfo = {
     feggari: {
@@ -44,6 +45,7 @@ const slidesInfo = {
 
 
 function loadGame(game) {
+    stopAudioInstructions();
     selectedGame = game;
     currentSlideNum = 1;
 
@@ -81,6 +83,7 @@ function displayGame() {
 
 
 function backToMenu() {
+    stopAudioInstructions();
     menuElements.classList.remove("hide");
     gameContainer.classList.add("hide");
 
@@ -171,12 +174,24 @@ function closeSelectSlide() {
 }
 
 
+function playAudioInstructions() {
+    audio.play();
+}
+
+
+function stopAudioInstructions() {
+    audio.pause();
+    audio.currentTime = 0;
+}
+
+
 function closeSplash() {
     gameContainer.classList.remove("materials-screen");
 }
 
 
 function showMaterials() {
+    stopAudioInstructions();
     pauseVideo();
     closeSelectSlide();
 
@@ -185,6 +200,7 @@ function showMaterials() {
 
 
 function playVideo() {
+    stopAudioInstructions();
     closeSelectSlide();
 
     video[0].play();
@@ -205,6 +221,7 @@ function pauseVideo() {
 
 
 function expandVideo() {
+    stopAudioInstructions();
     closeSelectSlide();
 
     videoContainer.classList.add("overlapping-video");
