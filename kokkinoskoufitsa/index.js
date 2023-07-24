@@ -7,6 +7,7 @@ let selectedMoveableIndex = null;
 let editMode = false;
 let randomdWolfPath = 0;
 let boxes = document.getElementsByClassName('box-background');
+let audioInstructions = new Audio('assets/instructions1.mp3');
 const body = document.getElementsByTagName('body');
 const edit = document.getElementById('edit');
 const noEdit = document.getElementById('no-edit');
@@ -314,6 +315,7 @@ function changeLevel(arg) {
         if (selectedLevel == 0) {
             return;
         } else {
+            stopAudioInstructions();
             audio.play();
             clearClickableBoxes();
             removeStyleFromEditBoard();
@@ -324,11 +326,13 @@ function changeLevel(arg) {
             }
             wrapper.dataset.level = levels[selectedLevel].key;
             initBoard();
+            audioInstructions = new Audio("assets/instructions" + (selectedLevel + 1) + ".mp3");
         }
     } else {
         if (selectedLevel == 3) {
             return;
         } else {
+            stopAudioInstructions();
             audio.play();
             clearClickableBoxes();
             selectedLevel = selectedLevel + 1;
@@ -337,6 +341,7 @@ function changeLevel(arg) {
             }
             wrapper.dataset.level = levels[selectedLevel].key;
             initBoard();
+            audioInstructions = new Audio("assets/instructions" + (selectedLevel + 1) + ".mp3");
         }
     }
 }
@@ -577,6 +582,17 @@ function stopEditBoard() {
     }
 
     initClickableBoxes();
+}
+
+
+function playAudioInstructions() {
+    audioInstructions.play();
+}
+
+
+function stopAudioInstructions() {
+    audioInstructions.pause();
+    audioInstructions.currentTime = 0;
 }
 
 
