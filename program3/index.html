@@ -20,13 +20,12 @@ SPDX-License-Identifier: CC-BY-SA-4.0
   <img src="./imgs/background.svg" style="display:none;">
   <canvas id="mycanvas">
   </canvas>
-  <div id="stage">
+  <div id="stage" class="print-me">
   <!--preload-->
   <img id="gridimg" src="./imgs/grid.svg" style="display:none;">
   <img src="./imgs/body_boy.svg" style="display:none;">
   <img src="./imgs/body_girl.svg" style="display:none;">
   <img src="./imgs/colors.svg" style="display:none;">
-  <img src="./imgs/colors_text.svg" style="display:none;">
   <img src="./imgs/dice.svg" style="display:none;">
   <img src="./imgs/disabilities.svg" style="display:none;">
   <img src="./imgs/flags.svg" style="display:none;">
@@ -36,6 +35,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
   <img src="./imgs/kids_nationality.svg" style="display:none;">
   <img src="./imgs/play.svg" style="display:none;">
   <img src="./imgs/playground.svg" style="display:none;">
+  <img src="./imgs/playstage.svg" style="display:none;">
   <img src="./imgs/recycling.svg" style="display:none;">
   <img src="./imgs/shapes.svg" style="display:none;">
   <img src="./imgs/shapes_text.svg" style="display:none;">
@@ -62,7 +62,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
       <img src="./imgs/b.svg" class="progbtn" id="backbtn"  title="Πίσω" alt="Πίσω">
     </div>
   </div>
-  <div id="programarea1">
+  <div id="programarea1" class="print-me">
     <div class="pcell" id="pcell0">
       <img src="./imgs/f.svg" class="pcellcmd" id="pcell0f" style="display:none;">
       <img src="./imgs/l.svg" class="pcellcmd" id="pcell0l" style="display:none;">
@@ -142,7 +142,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
       <img src="./imgs/b.svg" class="pcellcmd" id="pcell12b" style="display:none;">
     </div>
   </div>
-  <div id="programarea2">
+  <div id="programarea2" class="print-me">
     <div class="pcell" id="pcell13">
       <img src="./imgs/f.svg" class="pcellcmd" id="pcell13f" style="display:none;">
       <img src="./imgs/l.svg" class="pcellcmd" id="pcell13l" style="display:none;">
@@ -224,8 +224,38 @@ SPDX-License-Identifier: CC-BY-SA-4.0
   </div>
   <div id="bar">
     <img id="bar_help" src="./imgs/bar_help.svg" title="Βοήθεια" alt="Βοήθεια"/>
+    <img id="print" src="./imgs/print.svg" title="Εκτύπωση" alt="Εκτύπωση" onclick="winprint();">
   </div>
   <div id="target">
+    <div id = "ui">
+      <div id = "mats">
+        Επιλογή δαπέδου:
+        <select id ="selmat" onchange="changeGrid();">
+          <option value="grid">Κενό</option>
+          <option value="disabilities">ΑμεΑ</option>
+          <option value="recycling">Ανακύκλωση</option>
+          <option value="kids_nationality">Εθνικότητες</option>
+          <option value="dice">Ζάρι</option>
+          <option value="flowers">Λουλούδια</option>
+          <option value="body_boy">Μέρη του σώματος (αγόρι)</option>
+          <option value="body_girl">Μέρη του σώματος (κορίτσι)</option>
+          <option value="playground">Παιδική χαρά</option>
+          <option value="playstage">Παιχνίδια</option>
+          <option value="flags">Σημαίες</option>
+          <option value="shapes">Σχήματα</option>
+          <option value="fruits">Φρούτα</option>
+          <option value="colors">Χρώματα</option>
+        </select>
+      </div>
+      <div id = "chars">
+        Επιλογή χαρακτήρα:<br/>
+        <select id ="selchar" onchange="changeChar();">
+          <option value="student">Μαθητής</option>
+          <option value="ladybug">Πασχαλίτσα</option>
+        </select>
+      </div>
+  
+    <!--
      <img class="stagepreview" id="grid_sel" src="./imgs/grid_sel.svg">
      <img class="stagepreview" id="playstage_sel" src="./imgs/playstage_sel.svg">
      <img class="stagepreview" id="body_boy_sel" src="./imgs/body_boy_sel.svg">
@@ -240,6 +270,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
      <img class="stagepreview" id="playground_sel" src="./imgs/playground_sel.svg">
      <img class="stagepreview" id="recycling_sel" src="./imgs/recycling_sel.svg">
      <img class="stagepreview" id="shapes_sel" src="./imgs/shapes_sel.svg">
+    -->
   </div>
   <div id="help" style="display:none;">
     <div id="dialog">Σχεδίασε το πρόγραμμα με τα τέσσερα βελάκια και εκτέλεσε το

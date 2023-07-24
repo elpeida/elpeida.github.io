@@ -3,6 +3,7 @@ Copyright (C) 2023
 Dimitris Nikolos <dnikolos@gmail.com>.
 SPDX-License-Identifier: CC-BY-SA-4.0*/
 
+
 let pxofem = 16;
 const numRows = 4;
 const numCols = 7;
@@ -100,8 +101,11 @@ if (document.readyState === 'loading') {
 
 
 function changeChar(){
-  act.curchar = (act.curchar+1)%chars.length;
-  ge('mainimg').src= chars[act.curchar];
+  var s = ge('selchar');
+  var i = s.selectedIndex;
+  var sv = s.options[i].value;
+  var imurl = "./imgs/" + sv + ".svg";
+  ge('mainimg').src = imurl;
 }
 
 /*function drawCell(ctx,row,col,makeblack){
@@ -183,22 +187,6 @@ function init(){
   ge('bar_help').addEventListener('click',onHelp);
   ge('help').addEventListener('click',onHelpHide);
   ge('dialog').addEventListener('click',onHelpHide);
-  /*ge('mainimg').addEventListener('click',changeChar);*/
-  //stage selection
-  ge('grid_sel').addEventListener('click',function(){setStage('grid')});
-  ge('body_boy_sel').addEventListener('click',function(){setStage('body_boy')});
-  ge('body_girl_sel').addEventListener('click',function(){setStage('body_girl')})
-  ge('colors_sel').addEventListener('click',function(){setStage('colors')});
-  ge('dice_sel').addEventListener('click',function(){setStage('dice')});
-  ge('disabilities_sel').addEventListener('click',function(){setStage('disabilities')});
-  ge('flags_sel').addEventListener('click',function(){setStage('flags')});
-  ge('flower_sel').addEventListener('click',function(){setStage('flowers')});
-  ge('fruits_sel').addEventListener('click',function(){setStage('fruits')});
-  ge('kids_nationality_sel').addEventListener('click',function(){setStage('kids_nationality')});
-  ge('playground_sel').addEventListener('click',function(){setStage('playground')});
-  ge('playstage_sel').addEventListener('click',function(){setStage('playstage')});
-  ge('recycling_sel').addEventListener('click',function(){setStage('recycling')});
-  ge('shapes_sel').addEventListener('click',function(){setStage('shapes')});
 }
 
 
@@ -503,3 +491,15 @@ function onHelpHide(event) {
   ge('helpaudio').currentTime = 0;*/
 }
 
+function changeGrid(){
+  var s = ge('selmat');
+  var i = s.selectedIndex;
+  var sv = s.options[i].value;
+  var imurl = "url('./imgs/" + sv + ".svg')";
+  ge('stage').style.backgroundImage = imurl;
+}
+
+function winprint(){
+  document.body.style.backgroundColor="white";
+  window.print();
+}
