@@ -1,0 +1,270 @@
+/*
+Copyright (C) 2023 Myrto Georgopoulou <github.com/eltoukos>
+SPDX-License-Identifier: CC-BY-SA-4.0
+*/
+* {
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html,
+body {
+  /* flexbox needs this to center the main div */
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 10px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  /* vertically center main div */
+  justify-content: center;
+  /* horizontally center main div */
+  overflow: hidden;
+  /* avoid scrollbars when dragging outside */
+}
+
+#main {
+  /* SVG backgrounds need preserveAspectRatio="none" in many browsers. */
+  background: rgb(255, 255, 255) url('resource/background.svg');
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  height: 36em;
+  width: 64em;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+/* IE doesn't support @supports, so declare its style in the initial rule.
+ Edge claims to support space-evenly but it doesn't, use space-around:
+ https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/15947692/
+ Finally, old android webviews don't support space-evenly at all.
+*/
+@supports (align-content: space-evenly) and (not (-ms-ime-align: auto)) {
+  #main {
+    align-content: space-evenly !important;
+    justify-content: space-evenly !important;
+  }
+}
+
+#chest {
+  width: 23em;
+  cursor: pointer;
+}
+
+#photodiv {
+  background-color: white;
+  padding: 0.5em;
+  display: none;
+  position: absolute;
+  top: 4.5em;
+}
+
+#canvas,
+#video {
+  width: 32em;
+  height: 24em;
+  flex-basis: 100%;
+}
+
+#video {
+  display: block;
+}
+
+#canvas {
+  display: none;
+}
+
+#photodiv_close,
+#camera_close {
+  width: 2.5em;
+  position: absolute;
+  top: 1.5em;
+  right: 1.5em;
+  cursor: pointer;
+}
+
+#audio_close {
+  width: 2.5em;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  cursor: pointer;
+}
+
+#audio {
+  width: 100%;
+  margin-top: 3em;
+  display: none;
+}
+
+#camera_retry,
+#camera_save,
+#shutter,
+#audio_retry {
+  cursor: pointer;
+  height: 2em;
+  margin: 1em 1em 0em 1em;
+}
+
+#play_stop {
+  cursor: pointer;
+  height: 3em;
+  margin-top: 2em;
+}
+
+#timer {
+  color: rgb(143, 99, 188);
+  font-size: 1.5em;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  }
+
+#audio_save {
+  height: 2em;
+  margin: 1em 1em 0em 1em;
+}
+
+#clickable {
+  display: flex;
+  justify-content: space-between;
+  margin: 0em 1em 0em 1em;
+}
+
+#mic {
+  width: 1.3em;
+  cursor: pointer;
+}
+
+#camera {
+  width: 2.5em;
+  cursor: pointer;
+}
+
+#speaker {
+  width: 2.5em;
+  position: absolute;
+  right: 1.5em;
+  bottom: 4.2em;
+  cursor: pointer;
+}
+
+#photo {
+  width: 32em;
+  margin: 0.5em;
+}
+
+#molivis {
+  position: absolute;
+  right: 4em;
+  bottom: 2em;
+}
+
+#molivis > img {
+  height: 10em;
+  cursor: pointer;
+}
+
+@-webkit-keyframes menubar_animation {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes menubar_animation {
+  from {
+    opacity: 0;
+  }
+}
+
+#menubar {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0em;
+  bottom: 0.5em;
+  padding: 0 0.5em 0 0.5em;
+  border-radius: 0 1em 1em 0;
+  -webkit-animation: 4s menubar_animation;
+  animation: 4s menubar_animation;
+}
+
+#menubar img {
+  width: 3.5em;
+  height: 3.5em;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
+#menubar img:hover {
+  -webkit-filter: brightness(120%) contrast(1.2);
+  filter: brightness(120%) contrast(1.2);
+  transform: scale(1.1);
+}
+
+#menubar img:active {
+  -webkit-filter: brightness(80%) contrast(1.2) !important;
+  filter: brightness(80%) contrast(1.2) !important;
+  transform: scale(1);
+}
+
+#menubar p {
+  display: inline;
+  font-size: 3em;
+  margin: 0;
+}
+
+#shadow {
+  display: none;
+  /* javascript toggles that to flex */
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(63, 63, 63, 0.5);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  /* IE and old webview ignore "fixed" for flex childs */
+  left: 0;
+}
+
+#shadow .dialog {
+  text-align: center;
+  background-color: rgb(226, 204, 241);
+  color: rgb(0, 0, 0);
+  padding: 1em;
+  border: 0.2em solid rgb(80, 80, 80);
+  border-radius: 0.5em;
+  -webkit-filter: drop-shadow(0.5em 0.5em 0.5em rgb(80, 80, 80));
+  filter: drop-shadow(0.5em 0.5em 0.5em rgb(80, 80, 80));
+}
+
+#shadow #cameradiv {
+  display: none;
+}
+
+#shadow #audiodiv {
+  display: none;
+  width: 24em;
+}
+
+#shadow #helpdiv {
+  width: 32em;
+  font-size: 1.5em;
+}
