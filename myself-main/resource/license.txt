@@ -1,0 +1,15 @@
+Copyright: 2023 Myrto Georgopoulou, Frinta Kritikou
+License: CC BY-NC-SA 4.0
+Files:
+background.svg
+bar_about.svg
+bar_fullscreen.svg
+molivis.svg
+bar_home.svg
+bar_next.svg
+bar_previous.svg
+print.svg
+save.svg
+speaker.svg
+graph.svg
+close.svg

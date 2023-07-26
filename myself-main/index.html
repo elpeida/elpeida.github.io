@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2023 Myrto Georgopoulou <github.com/eltoukos>
+SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+<html lang="el">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Μαθαίνω τον εαυτό μου...</title>
+  <style>
+    /* Dummy style for animations */
+  </style>
+  <link rel="stylesheet" type="text/css" href="activity.css">
+  <script src="activity.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <div id="molivis"><img src="resource/help.svg" alt="Βοήθεια" title="Βοήθεια"></div>     
+    <div id="thumbnails">
+      <img id="t0" src="resource/photo0.jpg" alt="">
+      <img id="t1" src="resource/photo1.jpg" alt="">
+      <img id="t2" src="resource/photo2.jpg" alt="">
+      <img id="t3" src="resource/photo3.jpg" alt="">
+      <img id="t4" src="resource/photo4.jpg" alt="">
+      <img id="t5" src="resource/photo5.jpg" alt="">
+      <img id="t6" src="resource/photo6.jpg" alt="">
+      <img id="t7" src="resource/photo7.jpg" alt="">
+      <img id="t8" src="resource/photo8.jpg" alt="">
+      <img id="t9" src="resource/photo9.jpg" alt="">
+      <img id="t10" src="resource/photo10.jpg" alt="">
+      <img id="t11" src="resource/photo11.jpg" alt="">
+      <img id="t12" src="resource/photo12.jpg" alt="">
+      <img id="t13" src="resource/photo13.jpg" alt="">
+      <img id="t14" src="resource/photo14.jpg" alt="">
+    </div>
+    <div id="photodiv">
+      <img id="photo" src="resource/photo0.jpg" alt="">
+      <div id="clickable">
+        <img id="close" src="resource/close.svg" alt="">
+        <img id="speaker" src="resource/speaker.svg" alt="">
+        <img id="save" src="resource/save.svg" alt="">
+        <div id="vote">
+          <img id="v1" src="resource/v1-off.svg" alt="">
+          <img id="v2" src="resource/v2-off.svg" alt="">
+          <img id="v3" src="resource/v3-off.svg" alt="">
+          <img id="v4" src="resource/v4-off.svg" alt="">
+          <img id="v5" src="resource/v5-off.svg" alt="">
+        </div>
+        <img id="print" src="resource/print.svg" alt="">
+      </div>
+    </div>
+    <div id="menubar">
+      <img id="bar_home" src="resource/bar_home.svg" alt="Αρχική" title="Επιστροφή στην αρχική σελίδα">
+      <img id="bar_fullscreen" src="resource/bar_fullscreen.svg" alt="Πλήρης οθόνη" title="Πλήρης οθόνη">
+      <img id="bar_previous" src="resource/bar_previous.svg" alt="Προηγούμενο" title="Προηγούμενο επίπεδο">
+      <p id="level">1</p>
+      <img id="bar_next" src="resource/bar_next.svg" alt="Επόμενο" title="Επόμενο επίπεδο">
+    </div>
+  </div>
+  <div id="help">
+    <div class="dialog">Γειά σου! Σε αυτό το παιχνίδι υπάρχουνε 15 κάρτες-εικόνες που θα σε βοηθήσουνε <b>να μάθεις περισσότερο και καλύτερα τον εαυτό σου και τα ταλέντα σου!</b> Κάνε κλικ σε όποια μικρή εικόνα θες και αυτή θα μεγαλώσει! Μετά, πάτα το μεγάφωνο να ακούσεις τι δείχνει η κάρτα. Μπορείς να το ακούσεις και στα ελληνικά και στα αγγλικά. Αφού ακούσεις τι δείχνει η κάρτα, σκέψου προσεκτικά πόσο σου ταιριάζει αυτό που λέει και δείχνει η κάρτα; Πόσο είναι σαν εσένα; Μπορείς να επιλέξεις πόσο σου ταιριάζει κάθε κάρτα <b>πατώντας πάνω στις μπάρες-τους κυλίνδρους που βρίσκονται ακριβώς από κάτω</b>. Η μικρή <b>κόκκινη μπάρα</b> σημαίνει ότι η κάρτα κι αυτό που δείχνει, δεν σου ταιριάζει καθόλου! Δεν είναι σαν κι εσένα ή σου ταιριάζει πάρα πολύ λίγο. Η <b>πορτοκαλί μπάρα</b> σημαίνει ότι η κάρτα σου ταιριάζει λίγο. Η <b>κίτρινη μπάρα</b> σημαίνει ότι η κάρτα σου ταιριάζει αρκετά. Η <b>πράσινη μπάρα</b> σημαίνει ότι η κάρτα σου ταιριάζει πολύ. Και η τελευταία μεγάλη <b>μπλε μπάρα</b> σημαίνει ότι η κάρτα και αυτό που δείχνει, σου ταιριάζει πάρα πολύ! Μπορείς επίσης να <b>αποθηκεύσεις</b> τις κάρτες πατώντας το εικονίδιο με την καφέ δισκέτα. Ή μπορείς να την <b>εκτυπώσεις</b> πατώντας το εικονίδιο του εκτυπωτή. Μπορείς να αλλάξεις τις κάρτες πατώντας τα βελάκια που βρίσκονται από κάτω. Καλή διασκέδαση!</div>
+    <audio id="helpaudio" src="resource/help.mp3"></audio>
+  </div>
+</body>
+
+</html>
