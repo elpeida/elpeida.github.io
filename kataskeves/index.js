@@ -235,3 +235,8 @@ function compressVideo() {
     videoContent.classList.remove("video-expanded");
     compressButton.classList.add("hide");
 }
+
+
+function goToHome() {
+    window.history.back();
+}
