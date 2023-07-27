@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+    <title>Ψηφιακή βιβλιοθήκη πολυτροπικών λογοτεχνικών κειμένων</title>
+</head>
+
+<body>
+    <main>
+        <div class="wrapper" id="wrapper">
+            
+            <img id="pencil" src="assets/pencil.svg" />
+
+            <img id="not-found-img" class="hide" src="assets/notfound.png" alt="not-found" />
+
+            <button id="home" type="button">
+                <img src="assets/home.svg" />
+            </button>
+            
+            <div id="table-container">
+                <img class="search-icon" src="assets/search.png" alt="search-icon" />
+
+                <input type="text" id="search-input" onkeyup="searchTitles()" placeholder="Αναζήτηση...">
+
+                <div class="header">Ευρετήριο πολυτροπικών λογοτεχνικών κειμένων</div>
+               
+                <div id="list-container" class="custom_scrollbar">
+                    <div class="list-item" onclick="loadFrame('1')">
+                        <div class="cover-container">
+                            <img class="cover-img" src="assets/covers/springloaded.jpg" alt="cover image" />
+                        </div>
+                        <span class="title">1. Springloaded - Το κορίτσι με τα παπούτσια ελατήριο</span>
+                    </div>
+                    <div class="list-item" onclick="loadFrame('2')">
+                        <div class="cover-container">
+                            <img class="cover-img" src="assets/covers/tokitrinopoulaki.png" alt="cover image" />
+                        </div>
+                        <span class="title">2. Το κίτρινο πουλάκι - Olga de Dios</span>
+                    </div>
+                    <div class="list-item" onclick="loadFrame('3')">
+                        <div class="cover-container">
+                            <img class="cover-img" src="assets/covers/roza.jpg" alt="cover image" />
+                        </div>
+                        <span class="title">3. Ρόζα το τερατάκι - Olga de Dios</span>
+                    </div>
+                    <div class="list-item" onclick="loadFrame('4')">
+                        <div class="cover-container">
+                            <img class="cover-img" src="assets/covers/opareksigimenoslikos.jpg" alt="cover image" />
+                        </div>
+                        <span class="title">4. Ο παρεξηγημένος λύκος</span>
+                    </div>
+                    <div class="list-item" onclick="loadFrame('5')">
+                        <div class="cover-container">
+                            <img class="cover-img" src="assets/covers/tokainourgiopaidi.jpg" alt="cover image" />
+                        </div>
+                        <span class="title">5. Το καινούργιο παιδί</span>
+                    </div>
+                </div>
+
+                <div id="empty-list-text" class="hide">Δεν βρέθηκαν αποτελέσματα</div>
+            </div>
+
+            <div id="frame-container" class="hide"></div>
+
+            <button id="previous" class="hide" type="button" onclick="backToTable()">
+                <img src="assets/previous.svg" />
+            </button>
+
+            <img id="loader" class="hide" src="assets/loading.gif" alt="search-icon" />
+
+        </div>
+    </main>
+
+    <script src="https://app.Lumi.education/api/v1/h5p/core/js/h5p-resizer.js" charset="UTF-8" /></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
