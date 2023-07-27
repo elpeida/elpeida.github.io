@@ -106,3 +106,8 @@ function searchTitles() {
 function normalizeGreek(text) {
     return text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 }
+
+
+function goToHome() {
+    window.history.back();
+}
