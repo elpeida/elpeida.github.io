@@ -602,4 +602,9 @@ function closeSplash() {
 }
 
 
+function goToHome() {
+    window.history.back();
+}
+
+
 initBoard();
