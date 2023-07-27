@@ -140,22 +140,32 @@ body {
 #barchart {
   display: inline-block;
   margin-left: 2em;
-  margin-top: -2em;
-  height: 24em;
-  width: 21em;
-
+  margin-top: -3em;
+  height: 26em;
+  width: 24em;
+  -background-color: red;
 }
 
 #answered {
   display: block;
   color: black;
   font-family: Calibri, sans-serif;
+  margin-bottom: 1em;
 }
 
-#bc {
-  float: left;
-  height: 22em;
-  width: 21em;
+#div_pie {
+  height: 12em;
+  -background-color: yellow;
+}
+
+#pie {
+  display:block;
+  margin:0 auto;
+}
+
+#div_bar {
+  height:12em;
+  -background-color: lime;
 }
 
 @-webkit-keyframes menubar_animation {
@@ -259,7 +269,7 @@ body {
 #help .dialog {
   text-align: center;
   width: 19em;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(219, 225, 250);
   color: rgb(0, 0, 0);
   padding: 1em;
   border: 0.2em solid rgb(80, 80, 80);

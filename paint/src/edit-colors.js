@@ -250,9 +250,9 @@
 		const $left_right_split = $(`<div class="left-right-split">`).appendTo($w.$main);
 		const $left = $(`<div class="left-side">`).appendTo($left_right_split);
 		const $right = $(`<div class="right-side">`).appendTo($left_right_split).hide();
-		$left.append(`<label for="basic-colors">${display_hotkey("&Basic colors:")}</label>`);
+		$left.append(`<label for="basic-colors">${display_hotkey(localize("&Basic colors:"))}</label>`);
 		const $basic_colors_grid = make_color_grid(basic_colors, "basic-colors").appendTo($left);
-		$left.append(`<label for="custom-colors">${display_hotkey("&Custom colors:")}</label>`);
+		$left.append(`<label for="custom-colors">${display_hotkey(localize("&Custom colors:"))}</label>`);
 		const custom_colors_dom_order = []; // (wanting) horizontal top to bottom
 		for (let list_index = 0; list_index < custom_colors.length; list_index++) {
 			const row = list_index % 2;
@@ -272,7 +272,7 @@
 		}
 
 		const $define_custom_colors_button = $(`<button class="define-custom-colors-button" type="button">`)
-			.html(display_hotkey("&Define Custom Colors >>"))
+			.html(display_hotkey(localize("&Define Custom Colors >>")))
 			.appendTo($left)
 			.on("click", (e) => {
 				// prevent the form from submitting

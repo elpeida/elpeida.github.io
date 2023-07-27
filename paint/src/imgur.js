@@ -6,7 +6,7 @@
 		if ($imgur_window) {
 			$imgur_window.close();
 		}
-		$imgur_window = $DialogWindow().title("Upload To Imgur").addClass("horizontal-buttons");
+		$imgur_window = $DialogWindow().title(localize("Upload to Imgur")).addClass("horizontal-buttons");
 
 		const $preview_image_area = $(E("div")).appendTo($imgur_window.$main).addClass("inset-deep");
 		const $imgur_url_area = $(E("div")).appendTo($imgur_window.$main);
@@ -35,7 +35,7 @@
 			URL.revokeObjectURL(blob_url);
 		});
 
-		const $upload_button = $imgur_window.$Button("Upload", () => {
+		const $upload_button = $imgur_window.$Button(localize("Upload"), () => {
 
 			URL.revokeObjectURL(blob_url);
 			$preview_image_area.remove();

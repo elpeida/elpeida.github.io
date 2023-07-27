@@ -75,14 +75,14 @@ function doPreventDefault(event) {
 function onChest(event) {
   ge('chest').src = 'resource/chest-open.svg';
   ge('photodiv').style.display = 'block';
-  playAudio('resource/chest.mp3');
+  playSound('resource/chest.mp3');
   setKeyframes(ge('photodiv'), [
     '0% { transform: translateX(-2em) scale(0.01); }',
     '40% { transform: translateX(-7em) translateY(-9em) scale(0.5); }'].join('\n'), '2s');
 }
 
 function onClose(event) {
-  playAudio('resource/click.mp3');
+  playSound('resource/click.mp3');
   setKeyframes(ge('photodiv'), [
     '50% { transform: scale(0.01); }',
     '100% { transform: scale(0.01); }'].join('\n'),
@@ -91,16 +91,17 @@ function onClose(event) {
 }
 
 function closed() {
+  playSound('resource/chest-close.mp3');
   ge('photodiv').style.display = 'none';
   ge('chest').src = 'resource/chest-closed.svg';
 }
 
 function onSpeaker(event) {
-playAudio(sformat('resource/situation-{}.mp3', act.level + 1));
+playSound(sformat('resource/situation-{}.mp3', act.level + 1));
 }
 
 function onFace(event) {
-  playAudio('resource/faceclick.mp3');
+  playSound('resource/faceclick.mp3');
   f = event.target;
   if (f.src.endsWith('off.svg')) {
     f.src = f.src.replace('off.svg', 'on.svg');
@@ -115,26 +116,31 @@ function onFace(event) {
 
 function onHome(event) {
   window.history.back();
-  playAudio('resource/click.mp3');
+  playSound('resource/click.mp3');
 }
 
 function onHelp(event) {
   ge('help').style.display = 'flex';
   ge('helpaudio').play();
-  playAudio('resource/click.mp3');
+  playSound('resource/click.mp3');
 }
 
 function onHelpHide(event) {
-  ge('help').style.display = '';
+  if (['help'].includes(event.srcElement.id)
+  && ge('help').style.display == 'flex') {
+  ge('help').style.display = 'none';
+  ge('helpaudio').pause();
+  ge('helpaudio').currentTime = 0;
+}
 }
 
 function onAbout(event) {
   //window.open('credits/index_DS_II.html');
-  playAudio('resource/click.mp3');
+  playSound('resource/click.mp3');
 }
 
 function onFullScreen(event) {
-  playAudio('resource/click.mp3');
+  playSound('resource/click.mp3');
   var doc = window.document;
   var docEl = doc.documentElement;
   var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen
@@ -152,17 +158,21 @@ function onFullScreen(event) {
 
 function onPrevious(event) {
   initLevel(act.level - 1);
-  playAudio('resource/click.mp3');
+  playSound('resource/click.mp3');
 }
 
 function onNext(event) {
   initLevel(act.level + 1);
-  playAudio('resource/click.mp3');
+  playSound('resource/click.mp3');
 }
 
-function playAudio(audioFile) {
-  var audio = new Audio(audioFile);
-  audio.play();
+function playSound(soundFile) {
+  if (!act.sound) {
+    act.sound = new Audio(soundFile);
+  } else {
+    act.sound.src = soundFile;
+  }
+  act.sound.play();
 }
 
 function initLevel(newLevel) {
@@ -185,7 +195,6 @@ function initActivity() {
   onResize();
   // Create a <style> element for animations, to avoid CORS issues on Chrome
   act.sheet = document.styleSheets[0];
-  // TODO: dynamically? document.head.appendChild(document.createElement('style'));
   // Install event handlers
   document.body.onresize = onResize;
   document.body.oncontextmenu = doPreventDefault;
@@ -196,9 +205,8 @@ function initActivity() {
   ge('close').onclick = onClose;
   ge('speaker').onclick = onSpeaker;
   ge('bar_home').onclick = onHome;
-  ge('bar_help').onclick = onHelp;
+  ge('molivis').onclick = onHelp;
   ge('help').onclick = onHelpHide;
-  ge('bar_about').onclick = onAbout;
   ge('bar_fullscreen').onclick = onFullScreen;
   ge('bar_previous').onclick = onPrevious;
   ge('bar_next').onclick = onNext;

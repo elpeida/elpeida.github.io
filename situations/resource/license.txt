@@ -26,3 +26,6 @@ f6-on.svg
 f6-off.svg
 f7-on.svg
 f7-off.svg
+speaker.svg
+help.svg
+close.svg

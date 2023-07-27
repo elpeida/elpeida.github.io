@@ -1,6 +1,7 @@
 /*
-Copyright (C) 2018 Alkis Georgopoulos <alkisg@gmail.com>.
-SPDX-License-Identifier: CC-BY-SA-4.0*/
+Copyright (C) 2023 Myrto Georgopoulou <myrto.georgopoulou@gmail.com>.
+SPDX-License-Identifier: CC-BY-SA-4.0
+*/
 
 var act = null;
 function onError(message, source, lineno, colno, error) {
@@ -98,93 +99,21 @@ function onFullScreen(event) {
   }
 }
 
-function reset(event) {
-  act.page = 0;
-  ge('pagenum').innerHTML = sformat('{}/4', act.page + 1);
-  var pnames = document.getElementsByClassName('pname');
-  for (var i = 0; i < pnames.length; i++) {
-    pnames[i].value = "";
-  }
-
+function onReset(event) {
   for (var i = 0; i < 7; i++) {
-    for (var j = 0; j < 4; j++) {
+    for (var j = 0; j < 5; j++) {
       act.cells[i][j].innerHTML = "";
-    }
-  }
-  for (var i = 0; i < 28; i++) {
-    for (var j = 0; j < 4; j++) {
       act.weather[i][j] = 0;
     }
   }
-  act.answered = 0;
-  ge('answered').innerHTML = sformat("Μαθητές που απάντησαν: {}", act.answered);
-  graph();
 }
 
-function nextPage() {
-  act.page = (act.page + 1) % 4;
 
-  ge('pagenum').innerHTML = sformat('{}/4', act.page + 1);
-  for (var i = 0; i < 4; i++) {
-    ge(sformat('page{}', i)).style.display = "none";
-  }
-  ge(sformat('page{}', act.page)).style.display = "inline";
-
-
-  for (var i = 0; i < 7; i++) {
-    for (var j = 0; j < 4; j++) {
-      if (act.weather[act.page * 7 + i][j] == 1) {
-        if (j == 0) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/not_like.svg'/>", i, j);
-        } else if (j == 1) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/not_like_2.svg'/>", i, j);
-        } else if (j == 2) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/like.svg'/>", i, j);
-        } else if (j == 3) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/superlike.svg'/>", i, j);
-        }
-      }
-      else {
-        act.cells[i][j].innerHTML = "";
-      }
-    }
-  }
-}
-
-function previousPage() {
-  act.page = (act.page + 3) % 4;
-
-  ge('pagenum').innerHTML = sformat('{}/4', act.page + 1);
-  for (var i = 0; i < 4; i++) {
-    ge(sformat('page{}', i)).style.display = "none";
-  }
-  ge(sformat('page{}', act.page)).style.display = "inline";
-
-  for (var i = 0; i < 7; i++) {
-    for (var j = 0; j < 4; j++) {
-      if (act.weather[act.page * 7 + i][j] == 1) {
-        if (j == 0) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/not_like.svg'/>", i, j);
-        } else if (j == 1) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/not_like_2.svg'/>", i, j);
-        } else if (j == 2) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/like.svg'/>", i, j);
-        } else if (j == 3) {
-          act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/superlike.svg'/>", i, j);
-        }
-      }
-      else {
-        act.cells[i][j].innerHTML = "";
-      }
-    }
-  }
-}
-
-function graph() {
+function onGraph() {
   daysOfWeather = [];
-  for (var j = 0; j < 4; j++) {
+  for (var j = 0; j < 5; j++) {
     daysOfWeather.push(0);
-    for (i = 0; i < 28; i++) {
+    for (i = 0; i < 7; i++) {
       daysOfWeather[j] += act.weather[i][j];
     }
   }
@@ -198,15 +127,16 @@ function graph() {
     act.pie = new Chart(ge('pie'), {
       type: 'pie',
       data: {
-        labels: ['Δεν μου αρέσει καθόλου', 'Μου αρέσει λίγο...', 'Μου αρέσει!', 'Μου αρέσει πολύ!'],
+        labels: ['Ήλιος', 'Συννεφιά', 'Βροχή', 'Καταιγίδα', 'Χιόνι'],
         datasets: [{
-          label: 'ψήφοι',
+          label: 'καιρός',
           data: daysOfWeather,
           backgroundColor: [
-            'rgba(255, 32, 32, 0.8)',
-            'rgba(255, 159, 64, 0.8)',
-            'rgba(75, 192, 64, 0.8)',
-            'rgba(255, 205, 86, 0.8)'
+            'rgba(242, 192, 65)',
+            'rgba(158, 222, 219)',
+            'rgba(11, 111, 174)',
+            'rgba(38, 53, 139)',
+            'rgba(208, 186, 179)'
           ],
           borderWidth: 1
         }]
@@ -243,15 +173,16 @@ function graph() {
     act.bar = new Chart(ge('bar'), {
       type: 'bar',
       data: {
-        labels: ['Δεν μου αρέσει καθόλου', 'Μου αρέσει λίγο...', 'Μου αρέσει!', 'Μου αρέσει πολύ!'],
+        labels: ['Ήλιος', 'Συννεφιά', 'Βροχή', 'Καταιγίδα', 'Χιόνι'],
         datasets: [{
-          label: 'ψήφοι',
+          label: 'καιρός',
           data: daysOfWeather,
           backgroundColor: [
-            'rgba(255, 32, 32, 0.8)',
-            'rgba(255, 128, 64, 0.8)',
-            'rgba(75, 192, 64, 0.8)',
-            'rgba(255, 205, 64, 0.8)'
+            'rgba(242, 192, 65)',
+            'rgba(158, 222, 219)',
+            'rgba(11, 111, 174)',
+            'rgba(38, 53, 139)',
+            'rgba(208, 186, 179)'
           ],
           borderWidth: 1
         }]
@@ -304,76 +235,39 @@ function cellClick(event) {
 
   var i = cellij[0];
   var j = cellij[1];
-  if (act.weather[act.page * 7 + i][j] == 1) {
+  if (act.weather[i][j] == 1) {
     act.cells[i][j].innerHTML = "";
-    act.weather[act.page * 7 + i][j] = 0;
-    act.answered -= 1;
+    act.weather[i][j] = 0;
   }
   else {//remember to erase the other 1 if it's there
-    for (var k = 0; k < 4; k++) {
-      if ((act.weather[act.page * 7 + i][k] == 1) && k != j) {
-        act.weather[act.page * 7 + i][k] = 0;
+    for (var k = 0; k < 5; k++) {
+      if ((act.weather[i][k] == 1) && k != j) {
+        act.weather[i][k] = 0;
         act.cells[i][k].innerHTML = "";
-        act.answered -= 1;
       }
     }
-    if (j == 0) {
-      act.cells[i][j].innerHTML = sformat("<img id='im{}{}' class='fadein' src='resource/not_like.svg'/>", i, j);
-    } else if (j == 1) {
-      act.cells[i][j].innerHTML = sformat("<img id='im{}{}' class='fadein' src='resource/not_like_2.svg'/>", i, j);
-    } else if (j == 2) {
-      act.cells[i][j].innerHTML = sformat("<img id='im{}{}' class='fadein' src='resource/like.svg'/>", i, j);
-    } else if (j == 3) {
-      act.cells[i][j].innerHTML = sformat("<img id='im{}{}' class='fadein' src='resource/superlike.svg'/>", i, j);
-    }
-    new Audio('resource/faceclick.mp3').play()
-    act.weather[act.page * 7 + i][j] = 1;
-    act.answered += 1;
+    act.cells[i][j].innerHTML = sformat("<img id='im{}{}' src='resource/checkmark.svg'/>", i, j);
+    act.weather[i][j] = 1;
   }
-  ge('answered').innerHTML = sformat("Μαθητές που απάντησαν: {}", act.answered);
-  graph();
+  new Audio('resource/click.mp3').play()
 }
-
 function init() {
   var i, j;
   act = {
-    answered: 0,
-    weather: [[0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0],
-    [0, 0, 0, 0]],
+    weather: [[0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0]],
     cells: [],
-    page: 0,
     pie: null,
     bar: null,
   }
   for (i = 0; i < 7; i++) {
     act.cells.push([])
-    for (j = 0; j < 4; j++) {
+    for (j = 0; j < 5; j++) {
       act.cells[i].push(ge(sformat('i{}{}', i, j)));
       act.cells[i][j].onclick = cellClick;
       act.cells[i][j].innerHTML = "";
@@ -390,10 +284,8 @@ function init() {
   ge('bar_help').onclick = onHelp;
   ge('help').onclick = onHelpHide;
   ge('bar_fullscreen').onclick = onFullScreen;
-  ge('bar_reset').onclick = reset;
-  ge('pagenum').innerHTML = sformat("{}/4", act.page + 1);
-  ge('npButton').onclick = nextPage;
-  ge('ppButton').onclick = previousPage;
+  ge('bar_reset').onclick = onReset;
+  ge('bar_graph').onclick = onGraph;
   for (i = 0; i < document.images.length; i += 1) {
     document.images[i].ondragstart = doPreventDefault;
   }

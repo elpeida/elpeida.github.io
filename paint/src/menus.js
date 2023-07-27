@@ -62,7 +62,7 @@
 			},
 			MENU_DIVIDER,
 			{
-				item: localize("&Load From URL"),
+				item: localize("&Load from URL"),
 				// shortcut: "", // no shortcut: Ctrl+L is taken, and you can paste a URL with Ctrl+V, so it's not really needed
 				speech_recognition: [
 					"load from url",
@@ -102,7 +102,7 @@
 				description: localize("Opens an image from the web."),
 			},
 			{
-				item: localize("&Upload To Imgur"),
+				item: localize("&Upload to Imgur"),
 				speech_recognition: [
 					"upload to imgur", "upload image to imgur", "upload picture to imgur",
 				],

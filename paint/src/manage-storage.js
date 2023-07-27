@@ -39,13 +39,13 @@
 		if ($storage_manager) {
 			$storage_manager.close();
 		}
-		$storage_manager = $DialogWindow().title("Manage Storage").addClass("storage-manager squish");
+		$storage_manager = $DialogWindow().title(localize("Manage Storage")).addClass("storage-manager squish");
 		// @TODO: way to remove all (with confirmation)
 		const $table = $(E("table")).appendTo($storage_manager.$main);
 		const $message = $(E("p")).appendTo($storage_manager.$main).html(
-			"Any images you've saved to your computer with <b>File > Save</b> will not be affected."
+			localize("Any images you've saved to your computer with <b>File > Save</b> will not be affected.")
 		);
-		const $close = $storage_manager.$Button("Close", () => {
+		const $close = $storage_manager.$Button(localize("Close"), () => {
 			$storage_manager.close();
 		});
 
@@ -53,7 +53,7 @@
 			const $tr = $(E("tr")).appendTo($table);
 
 			const $img = $(E("img")).attr({ src: imgSrc }).addClass("thumbnail-img");
-			const $remove = $(E("button")).text("Remove").addClass("remove-button").attr("type", "button");
+			const $remove = $(E("button")).text(localize("Remove")).addClass("remove-button").attr("type", "button");
 			const href = `#${k.replace("image#", "local:")}`;
 			const $open_link = $(E("a")).attr({ href, target: "_blank" }).text(localize("Open"));
 			const $thumbnail_open_link = $(E("a")).attr({ href, target: "_blank" }).addClass("thumbnail-container");

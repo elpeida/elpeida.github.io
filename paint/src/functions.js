@@ -712,7 +712,7 @@ async function load_image_from_uri(uri) {
 	// - already a proxy URI, e.g. "https://cors.bridged.cc/https://example.com/image.png"
 	// - file already downloaded
 	//   --> maybe should cache downloads? maybe HTTP caching is good enough? maybe uncommon enough that it doesn't matter.
-	// - Pasting (Edit > Paste or Ctrl+V) vs Opening (drag & drop, File > Open, Ctrl+O, or File > Load From URL)
+	// - Pasting (Edit > Paste or Ctrl+V) vs Opening (drag & drop, File > Open, Ctrl+O, or File > Load from URL)
 	//   --> make wording generic or specific to the context
 
 	const is_blob_uri = uri.match(/^blob:/i);
@@ -984,11 +984,13 @@ function file_load_from_url() {
 	}
 	const $w = new $DialogWindow().addClass("horizontal-buttons");
 	$file_load_from_url_window = $w;
-	$w.title("Load from URL");
+	$w.title(localize("Load from URL"));
 	// @TODO: URL validation (input has to be in a form (and we don't want the form to submit))
 	$w.$main.html(`
 		<div style='padding: 10px;'>
-			<label style="display: block; margin-bottom: 5px;" for="url-input">Paste or type the web address of an image:</label>
+			<label style="display: block; margin-bottom: 5px;" for="url-input">	
+				` + localize("Paste or type the web address of an image") + `:
+			</label>
 			<input type="url" required value="" id="url-input" class="inset-deep" style="width: 300px;"/></label>
 		</div>
 	`);
@@ -1754,7 +1756,7 @@ function render_history_as_gif() {
 
 	} catch (err) {
 		$win.close();
-		show_error_message("Failed to render GIF.", err);
+		show_error_message(localize("Failed to render GIF."), err);
 	}
 }
 
@@ -1961,8 +1963,8 @@ function redo() {
 		}
 		if (!$document_history_window || $document_history_window.closed) {
 			$document_history_prompt_window = showMessageBox({
-				title: "Redo",
-				messageHTML: `To view all branches of the history tree, click <b>Edit > History</b>.`,
+				title: localize("Redo"),
+				messageHTML: localize(`To view all branches of the history tree, click <b>Edit > History</b>.`),
 				iconID: "info",
 			}).$window;
 		}
@@ -2000,7 +2002,7 @@ function show_document_history() {
 		$document_history_window.close();
 	}
 	const $w = $document_history_window = new $Window({
-		title: "Document History",
+		title: localize("Document History"),
 		resizable: false,
 		maximizeButton: false,
 		minimizeButton: false,
@@ -2010,8 +2012,8 @@ function show_document_history() {
 	$w.$content.html(`
 		<label>
 			<select id="history-view-mode" class="inset-deep">
-				<option value="linear">Linear timeline</option>
-				<option value="tree">Tree</option>
+				<option value="linear">		` + localize("Linear timeline") + `</option>
+				<option value="tree">` + localize("Tree") + `</option>
 			</select>
 		</label>
 		<div class="history-view" tabIndex="0"></div>
@@ -2043,7 +2045,7 @@ function show_document_history() {
 			</div>
 		`);
 		// $entry.find(".history-entry-name").text((node.name || "Unknown") + (node.soft ? " (soft)" : ""));
-		$entry.find(".history-entry-name").text((node.name || "Unknown") + (node === root_history_node ? " (Start of History)" : ""));
+		$entry.find(".history-entry-name").text((node.name || "Unknown") + (node === root_history_node ? " (" + localize("Start of History") + ")" : ""));
 		$entry.find(".history-entry-icon-area").append(node.icon);
 		if (mode === "tree") {
 			let dist_to_root = 0;
@@ -2566,6 +2568,9 @@ function select_tools(tools) {
 }
 
 function select_tool(tool, toggle) {
+	let sound = new Audio('audio/' + tool.id + '.mp3');
+	sound.play();
+	//console.log(tool.id + ".mp3");
 	deselect();
 
 	if (!(selected_tools.length === 1 && selected_tool.deselect)) {
@@ -3329,14 +3334,14 @@ function save_as_prompt({
 		if (promptForName) {
 			$w.$main.append(`
 				<label>
-					File name:
+				` + localize("File name") + `:
 					<input type="text" class="file-name inset-deep"/>
 				</label>
 			`);
 		}
 		$w.$main.append(`
 			<label>
-				Save as type:
+				` + localize("Save as type") + `:
 				<select class="file-type-select inset-deep"></select>
 			</label>
 		`);
@@ -3752,7 +3757,7 @@ function sanity_check_blob(blob, okay_callback, magic_number_bytes, magic_wanted
 }
 
 function show_multi_user_setup_dialog(from_current_document) {
-	const $w = $DialogWindow().title("Multi-User Setup").addClass("horizontal-buttons");
+	const $w = $DialogWindow().title(localize("Multi-User Setup")).addClass("horizontal-buttons");
 	$w.$main.html(`
 		${from_current_document ? "<p>This will make the current document public.</p>" : ""}
 		<p>

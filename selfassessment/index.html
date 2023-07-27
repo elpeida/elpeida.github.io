@@ -11,18 +11,16 @@ SPDX-License-Identifier: CC-BY-SA-4.0
     /* Dummy style for animations */
   </style>
   <link rel="stylesheet" type="text/css" href="activity.css">
-  <script>
-
-  </script>
+  <script src="chart.js"></script>
   <script src="activity.js"></script>
 </head>
 <body>
 <div id="main">
   <div id = "pages">
     <div id="pageMenu">
-        <img id="ppButton" class="changepage" src="resource/prevpage.svg"/>
+        <img id="ppButton" class="changepage" src="resource/bar_previous.svg"/>
         <div id="pagenum">1/4</div>
-        <img id="npButton" class="changepage" src="resource/nextpage.svg"/>
+        <img id="npButton" class="changepage" src="resource/bar_next.svg"/>
     </div>
   </div>
   <div id = "persons">
@@ -99,19 +97,18 @@ SPDX-License-Identifier: CC-BY-SA-4.0
     <div id="answered">
       Μαθητές που απάντησαν: 0
     </div>
-  	<svg id="bc" viwebox="0 0 22 21">
-  	</svg>
+    <div id="div_pie"><canvas id="pie"></canvas></div>
+    <div id="div_bar"><canvas id="bar"></canvas></div>
   </div>
 
   <div id="menubar">
     <img id="bar_home" src="resource/bar_home.svg" alt="Αρχική" title="Επιστροφή στην αρχική σελίδα">
     <img id="bar_help" src="resource/bar_help.svg" alt="Βοήθεια" title="Βοήθεια">
-    <img id="bar_about" src="resource/bar_about.svg" alt="Περί" title="Περί">
     <img id="bar_fullscreen" src="resource/bar_fullscreen.svg" alt="Πλήρης οθόνη" title="Πλήρης οθόνη">
     <img id="bar_reset" src="resource/bar_reset.svg" alt="Επανεκκίνηση" title="Επανεκκίνηση">
-    <img id="bar_graph" src="resource/bar_graph.svg" alt="Ραβδόγραμμα" title="Ραβδόγραμμα">
   </div>
 </div>  
-<div id="help"><div class="dialog">Γράψτε τα ονόματα της τάξης σας και συμπληρώστε την επιλογή σας. Πατήστε το κουμπί για να δείτε το ραβδόγραμμα των επιλογών σας.</div>
+<div id="help"><div class="dialog">Γράψτε τα ονόματα της τάξης σας και συμπληρώστε την επιλογή σας.<audio
+  id="helpaudio" src="resource/help.mp3"></audio></div></div>
 </body>
 </html>

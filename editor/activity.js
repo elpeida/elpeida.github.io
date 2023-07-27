@@ -15,7 +15,16 @@ templates = [
         title: 'Χαρούμενη Γιορτή της Μητέρας 💐', description: 'Υπόδειγμα κάρτας για τη Γιορτή της Μητέρας', content: '<p style="text-align: center;"><span style="font-size: 42pt; font-family: comic sans ms, sans serif; color: rgb(105, 17, 80);"><br/>👩 💐 👩‍👧‍👧 😘 💗 🎉<br/><br/>Χαρούμενη Γιορτή της Μητέρας!</span><br/><br/><br/><img src="images/Κάρτες/ΓιορτήΤηςΜητέρας.jpg" alt="Κάρτες: ΓιορτήΤηςΜητέρας" width="725" height="475"><br/><br/><br/><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"></p>'
     },
     {
+        title: 'Χαρούμενη Γιορτή του Πατέρα 👨', description: 'Υπόδειγμα κάρτας για τη Γιορτή του Πατέρα', content: '<p style="text-align: center;"><span style="font-size: 42pt; font-family: comic sans ms, sans serif; color: rgb(137, 76, 7);"><br/>👨 💐 👨‍👦‍👦 😘 💗 🎉<br/><br/>Χαρούμενη Γιορτή του Πατέρα!</span><br/><br/><br/><img src="images/Κάρτες/ΓιορτήΤουΠατέρα.jpg" alt="Κάρτες: ΓιορτήΤουΠατέρα" width="725" height="475"><br/><br/><br/><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"></p>'
+    },
+    {
         title: 'Ζήτω Το Όχι 🇬🇷', description: 'Υπόδειγμα κάρτας Ζήτω Το Όχι', content: '<p style="text-align: center;"><span style="font-size: 42pt; font-family: comic sans ms, sans serif; color: rgb(15, 56, 92);"><br/>🇬🇷 🇬🇷 🇬🇷 🇬🇷 🇬🇷 🇬🇷<br/><br/>Ζήτω Το Όχι!</span><br/><br/><br/><img src="images/Κάρτες/ΖήτωΤοΌχι.jpg" alt="Κάρτες: ΖήτωΤοΌχι" width="725" height="475"><br/><br/><br/><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"></p>'
+    },
+    {
+        title: 'Ζήτω Η 25η Μαρτίου 🇬🇷', description: 'Υπόδειγμα κάρτας Ζήτω Η 25η Μαρτίου', content: '<p style="text-align: center;"><span style="font-size: 42pt; font-family: comic sans ms, sans serif; color: rgb(6, 0, 62);"><br/>🇬🇷 🇬🇷 🇬🇷 🇬🇷 🇬🇷 🇬🇷<br/><br/>Ζήτω Η 25η Μαρτίου!</span><br/><br/><br/><img src="images/Κάρτες/ΖήτωΗ25ηΜαρτίου.jpg" alt="Κάρτες: ΖήτωΗ25ηΜαρτίου" width="725" height="475"><br/><br/><br/><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"></p>'
+    },
+    {
+        title: 'Εδώ Πολυτεχνείο ✊', description: 'Υπόδειγμα κάρτας Εδώ Πολυτεχνείο', content: '<p style="text-align: center;"><span style="font-size: 42pt; font-family: comic sans ms, sans serif; color: rgb(0, 0, 0);"><br/>✊ ✊ ✊ ✊ ✊ ✊<br/><br/>Εδώ Πολυτεχνείο!</span><br/><br/><br/><img src="images/Κάρτες/ΕδώΠολυτεχνείο.jpg" alt="Κάρτες: ΕδώΠολυτεχνείο" width="725" height="475"><br/><br/><br/><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"></p>'
     },
     {
         title: 'Καλό Καλοκαίρι 🌊', description: 'Υπόδειγμα Καλοκαιρινής κάρτας', content: '<p style="text-align: center;"><span style="font-size: 42pt; font-family: comic sans ms, sans serif; color: rgb(20, 49, 92);"><br/>🐚 🌊 ⚓ 🏖️ ☀️ 🐬<br/><br/>Καλό Καλοκαίρι!</span><br/><br/><br/><img src="images/Κάρτες/ΚαλόΚαλοκαίρι.jpg" alt="Κάρτες: ΚαλόΚαλοκαίρι" width="899" height="591"><br/><br/><br/><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"><br/><hr style="border-top: 1px dashed black;"></p>'
@@ -162,6 +171,9 @@ image_list = [
     { "title": "Κάρτες: ΚαλόΚαλοκαίρι", "value": "Κάρτες/ΚαλόΚαλοκαίρι.jpg" },
     { "title": "Κάρτες: ΚαλόΠάσχα", "value": "Κάρτες/ΚαλόΠάσχα.jpg" },
     { "title": "Κάρτες: ΓιορτήΤηςΜητέρας", "value": "Κάρτες/ΓιορτήΤηςΜητέρας.jpg" },
+    { "title": "Κάρτες: ΓιορτήΤουΠατέρα", "value": "Κάρτες/ΓιορτήΤουΠατέρα.jpg" },
+    { "title": "Κάρτες: ΕδώΠολυτεχνείο", "value": "Κάρτες/ΕδώΠολυτεχνείο.jpg" },
+    { "title": "Κάρτες: ΖήτωΗ25ηΜαρτίου", "value": "Κάρτες/ΖήτωΗ25ηΜαρτίου.jpg" },
     { "title": "Κάρτες: ΧαρούμεναΓενέθλια", "value": "Κάρτες/ΧαρούμεναΓενέθλια.jpg" },
     { "title": "Μνημεία: ΑψίδατουΘριάμβου", "value": "Μνημεία/ΑψίδατουΘριάμβου.svg" },
     { "title": "Μνημεία: ΜπιγκΜπέν", "value": "Μνημεία/ΜπιγκΜπέν.svg" },
