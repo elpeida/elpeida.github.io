@@ -224,6 +224,10 @@ function playInstructions() {
     }
 }
 
+function goToHome() {
+    window.history.back();
+}
+
 (function() {
     changeLevel();
 })();
