@@ -76,7 +76,7 @@ function updatedDifficulty() {
 }
 
 function goToHome() {
-
+    window.history.back();
 }
 
 function resetCheck() {
