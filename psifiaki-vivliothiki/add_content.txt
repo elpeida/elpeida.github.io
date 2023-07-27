@@ -1,0 +1,87 @@
+Για να προσθέσουμε νέο περιεχόμενο: 
+
+
+1. Τοποθετούμε στον φάκελο covers την εικόνα του ψηφιακού πολυτροπικού κειμένου όπως 
+   θα φαίνεται στον πίνακα αναζήτησης και την ονομάζουμε οπως επιθυμούμε.
+
+
+2. Στο αρχείο index.html:
+    Αναζητούμε το τελευταιο στοιχείο που έχει δομή οπως τα παρακάτω:
+
+     <div class="list-item" onclick="loadFrame('5')">
+        <div class="cover-container">
+            <img class="cover-img" src="assets/covers/tokainourgiopaidi.jpg" alt="cover image" />
+        </div>
+        <span class="title">5. Το καινούργιο παιδί</span>
+     </div>
+
+     Αμεσως κατω απο την τελευταία γραμμή ( δηλαδή το </div> ) τοποθετούμε τα στοιχεία για την προσθήκη του νέου 
+     πολυτροπικού κειμένου ως εξης: 
+
+     <div class="list-item" onclick="loadFrame('6')">
+        <div class="cover-container">
+            <img class="cover-img" src="assets/covers/neobiblio.png" alt="cover image" />
+        </div>
+        <span class="title">5. Το καινούργιο παιδί</span>
+     </div>
+
+    Αλλαγές που έγιναν στη νέα προσθήκη:
+     1) Αυξάνουμε τον αριθμό κατα 1 στο loadFrame(). Για παράδειγμα, αν το τελευταιο στοιχείο είχε αριθμό 5, το επόμενο θα έχει το 6.
+        Τελευταίο στοιχείο: loadFrame('5') -> Νεο στοιχείο: loadFrame('6')
+     
+     2) Στη γραμμή: <img class="cover-img" src="assets/covers/tokainourgiopaidi.jpg" alt="cover image" />
+        στο src δηλώνουμε την εικόνα εξωφυλλου για το πολυτροπικό κείμενο. 
+        Για παράδειγμα αν στον φάκελο covers προσθέσαμε εικόνα με όνομα "neobiblio.png"
+        θα γίνει ως εξης: <img class="cover-img" src="assets/covers/neobiblio.png" alt="cover image" /> 
+        
+     3) Στη γραμμή: <span class="title">5. Το καινούργιο παιδί</span> δηλώνουμε τον αριθμό και τον τίτλο.
+        Για παράδειγμα: <span class="title">6. Τίτλος νέου βιβλίου</span>
+
+
+    Οπότε το τελικό αποτέλεσμα για το παράδειγμα μας θα είναι το ακόλουθο: 
+        
+                            . . . 
+       
+        <div class="list-item" onclick="loadFrame('5')">
+            <div class="cover-container">
+                <img class="cover-img" src="assets/covers/tokainourgiopaidi.jpg" alt="cover image" />
+            </div>
+            <span class="title">5. Το καινούργιο παιδί</span>
+        </div>
+        <div class="list-item" onclick="loadFrame('6')">
+            <div class="cover-container">
+                <img class="cover-img" src="assets/covers/neobiblio.png" alt="cover image" />
+            </div>
+            <span class="title">5. Το καινούργιο παιδί</span>
+        </div>
+
+    και θα ακολουθεί το : 
+        <div id="empty-list-text" class="hide">Δεν βρέθηκαν αποτελέσματα</div>
+    όπως ακριβώς είναι στο αρχέιο index.html.
+        
+
+
+3. Στο αρχέιο index.js:
+    Αναζητούμε το iFrameSources:
+
+    const iFrameSources = {
+        "1" : "https://app.Lumi.education/api/v1/run/2nTtWe/embed",
+        "2" : "https://app.Lumi.education/api/v1/run/x64CkP/embed",
+        "3" : "https://app.Lumi.education/api/v1/run/ClsCMn/embed",
+        "4" : "https://app.Lumi.education/api/v1/run/Aucgiy/embed",
+        "5" : "https://app.Lumi.education/api/v1/run/XKqv3U/embed"
+    }
+
+    Προσθέτουμε σε αυτη τη δομή τον σύνδεσμο απο το frame που θέλουμε να συμπεριλάβουμε, προσέχοντας να αυξήσουμε κατάλληλα τον αριθμό ώστε να 
+    είναι ο ίδιος με αυτον που δώσαμε στο βήμα 2.1 (Πχ loadFrame('6') ). Για παράδειγμα: 
+
+    const iFrameSources = {
+        "1" : "https://app.Lumi.education/api/v1/run/2nTtWe/embed",
+        "2" : "https://app.Lumi.education/api/v1/run/x64CkP/embed",
+        "3" : "https://app.Lumi.education/api/v1/run/ClsCMn/embed",
+        "4" : "https://app.Lumi.education/api/v1/run/Aucgiy/embed",
+        "5" : "https://app.Lumi.education/api/v1/run/XKqv3U/embed",
+        "6" : "https://app.Lumi.education/api/newLink",
+    }
+
+    Ο σύνδεσμος του νέου frame στο παραπάνω παράδειγμα είναι: https://app.Lumi.education/api/newLinκ 
