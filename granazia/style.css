@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+}
+
+#game-container {
+    position: absolute;
+    /* margin: 1vw; */
+    width: 100vw;
+    left: 0;
+    background-color: #efefef;
+}
+
+#win-container, #lose-container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    margin: auto;
+    background-color: rgba(0, 0, 0, .5);
+    display: none;
+    z-index: 2;
+}
+
+#win, #lose {
+    position: absolute;
+    height: 50vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 1s ease-in-out;
+}
+
+svg {
+    height: auto;
+    width: auto;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: auto;
+    display: block;
+}
+
+#granazi_1, #granazi_1-2 {
+    transition: .5s ease-in-out;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+#lvl1, #lvl2, #lvl3{
+    display: none;
+}
+
+#dots circle:hover{
+    filter: grayscale(.75);
+}
+
+@keyframes rotate360 {
+    to {
+        rotate: 360deg;
+    }
+}
+
+@keyframes rotateminus360 {
+    to {
+        rotate : -360deg;
+    }
+}
+
+#fan-1,#fan-2, #granazi_1, #granazi_1-2, #Layer_10{
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+#windmill-3 {
+    rotate: 30deg;
+}
+
+#windmill-1,#windmill-2 {
+    rotate: 10deg;
+}
+
+#windmill-1, #windmill-2, #windmill-3{
+    transform-box: fill-box;
+    animation: 1s rotate360 infinite linear;
+}

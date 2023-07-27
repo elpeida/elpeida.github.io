@@ -1,0 +1,184 @@
+:root{
+    --selectedColor: #fff;
+    --rowFontSize: 2.3vh;
+}
+
+body {
+    margin: 0;
+}
+
+#game-container {
+    position: absolute;
+    /* margin: 1vw; */
+    width: 100vw;
+    left: 0;
+    background-color: #efefef;
+}
+
+svg:not(#commands_container) {
+    height: auto;
+    width: auto;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: auto;
+    display: block;
+}
+
+#_2, #_3, #_4{
+    display: none;
+}
+
+#previous_lvl {
+    filter: brightness(0.75);
+}
+
+/* [id^=plegma]{
+    cursor: url(images/girl.gif), auto;        
+} */
+
+[id^=plegma] rect:hover {
+    filter: brightness(0.9) !important;
+}
+
+[id^=plegma] .selected-square{
+    filter: brightness(0.75) !important;
+}
+
+[id^=plegma] .hovered-square {
+    fill: var(--selectedColor) !important;
+}
+
+#make_rectangle_00000041253033728485605990000006623464735127943552_, #make_triangle, #repeat, #colors>g>g>rect, #colors>g>rect{
+    transition: .5s ease-in-out;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+#RECTANGLE_-_ORDER,
+#LVL1_ORDER,
+#triangle_order,
+#repeat_order,
+#command_bg {
+    display: none;
+}
+
+#_1-down-green,
+#_1-down-green_00000047023121661527631530000011712411114868917637_{
+    display: none;
+}
+
+#duck,
+#dog,
+#house,
+#flowers,
+#penguin{
+    display: none;
+}
+
+#commands{
+    overflow-y: scroll;
+    position: absolute;
+    display: block;
+    flex-direction: column-reverse;
+    scrollbar-color: #000 #e4e4e4;
+    scrollbar-width: thin;
+}
+
+#commands::-webkit-scrollbar {
+    width: 1vh;
+}
+
+#commands::-webkit-scrollbar-thumb {
+    background: #000;
+}
+
+#zoom1, #zoom2, #zoom3 {
+    display: none;
+}
+
+#plegma_20x20, #plegma_10x10, #plegma_5x5 {
+    display: none;
+}
+
+#zoom_window {
+    border: 1px solid #000;
+    position: absolute;
+    /*left: 8px;
+	top: 10px;*/
+    background-color: rgba(0, 0, 0, .2)
+}
+
+path#init_row_0,
+path#init_row_1,
+path#init_row_2,
+path#init_row_3,
+path#init_row_4,
+path#init_row_5,
+path#init_row_6,
+path#init_row_7,
+path#init_row_8,
+path#init_row_9,
+path#init_row_10,
+path#init_col_0,
+path#init_col_1,
+path#init_col_2,
+path#init_col_3,
+path#init_col_4,
+path#init_col_5,
+path#init_col_6,
+path#init_col_7,
+path#init_col_8,
+g#init_col_9{
+    opacity: 0.000001;
+}
+
+text#row_0,
+text#row_1,
+text#row_2,
+text#row_3,
+text#row_4,
+text#row_5,
+text#row_6,
+text#row_7,
+text#row_8,
+text#row_9,
+text#row_10,
+text#col_0,
+text#col_1,
+text#col_2,
+text#col_3,
+text#col_4,
+text#col_5,
+text#col_6,
+text#col_7,
+text#col_8,
+text#col_9{
+    font-family: Tahoma, "Trebuchet MS", sans-serif;
+    font-size: var(--rowFontSize);
+    font-weight: bold;
+    position: absolute;
+}
+
+#square_name_rect1, #square_name_rect2, #square_name_rect3{
+    fill: #F2F2F2;
+}
+
+#square_name_rects_container>div>text {
+    font-family: Tahoma, "Trebuchet MS", sans-serif;
+    font-size: 1.8vh;
+    position: absolute;
+}
+
+#square_name {
+    display: none;
+}
+
+#square_name_rects_container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#square_name_rects_container>div>text{
+    position: absolute;
+}

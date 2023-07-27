@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+}
+
+#game-container {
+    position: absolute;
+    /* margin: 1vw; */
+    width: 100vw;
+    left: 0;
+    background-color: #efefef;
+}
+
+svg {
+    height: auto;
+    width: auto;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: auto;
+    display: block;
+}
+
+#items-container{
+    position: absolute;
+}
+
+.items-row{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px 0;
+}
+
+.item{
+    height: min-content;
+    /* width: min-content; */
+    align-self: center;
+    z-index: 2;
+}
+
+.bg_item{
+    width: 10%;
+    height: 10%;
+    padding: 5px;
+}
+
+#change_floors > *{
+    display: none;
+}
+
+/* .katopsi{
+    display: none;
+} */
+#canvas, #canvas-container{
+    position: absolute;
+}
+
+#canvas-container .item{
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
+
+/* #canvas-container{
+    overflow: hidden;
+} */
+
+#rotate-2,
+#rotate,
+#expand,
+#flip_vertical,
+#flip_horizontical,
+#buttons-2,
+#erase,
+#bin,
+#save{
+    transition: .5s ease-in-out;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+}
