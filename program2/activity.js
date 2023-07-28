@@ -23,8 +23,7 @@ const BACKWARD = 3;
 
 const chars = ["./imgs/squidsmall-01.svg",
                "./imgs/squidsmall-02.svg",
-               "./imgs/squidsmall-03.svg",
-               "./imgs/squidsmall-04.svg",]
+               "./imgs/squidsmall-03.svg",]
 const ctos = ['f','l','r','b'];//command to string
 //the main object
 act = { program:[], 
@@ -151,11 +150,13 @@ function drawCell(ctx,row,col,makeblack){
 }
 
 function drawGrid(){
+
   // Set the fill color for the squares
   //ctx.fillStyle = blueish;
 
   var canvas = ge("mycanvas");
   var ctx = canvas.getContext("2d");
+  ctx.translate(0.5,0.5);
   // Loop through each row and column, drawing a square at each cell
   for (let row = 1; row <= numRows; row++) {
     for (let col = 1; col <= numCols; col++) {

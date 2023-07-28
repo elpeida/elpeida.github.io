@@ -26,7 +26,7 @@ const ctos = ['f','l','r','b'];//command to string
 const chars = ["./imgs/squidsmall-01.svg",
                "./imgs/squidsmall-02.svg",
                "./imgs/squidsmall-03.svg",
-               "./imgs/squidsmall-04.svg",]
+               ]
 
 //the main object
 act = { program:[], 
@@ -518,3 +518,15 @@ function onHelpHide(event) {
 }
 
 
+function winprint(){
+  document.body.style.backgroundColor="white";
+  window.print();
+}
+
+window.onbeforeprint = function(){
+  document.body.style.backgroundColor="white";
+}
+
+window.onafterprint = function(){
+  document.body.style.backgroundColor="black";
+}

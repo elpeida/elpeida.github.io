@@ -24,10 +24,11 @@ const FORWARD = 0;
 const BACKWARD = 3;
 
 const ctos = ['f','l','r','b'];//command to string
-const chars = ["./imgs/butterfly.svg",
-               "./imgs/akrida.svg",
+const chars = ["./imgs/student.svg",
+               "./imgs/studentgirl.svg",               
+               "./imgs/bicyclist.svg",
                "./imgs/ladybug.svg",
-               "./imgs/student.svg",]
+               "./imgs/recycletruck.svg",];
 
 //the main object
 act = { program:[], 
@@ -502,4 +503,8 @@ function changeGrid(){
 function winprint(){
   document.body.style.backgroundColor="white";
   window.print();
+}
+
+window.onafterprint = function(){
+  document.body.style.backgroundColor="black";
 }
