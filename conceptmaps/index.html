@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Επεξεργαστής εννοιολογικών χαρτών και οπτικοποίησης εννοιών</title>
+</head>
+
+<body>
+
+	<div id="HiddenPrintArea" style="display:none;">
+		<div style="width: 100%;margin: auto;">
+			<div id="PrintArea">
+				<img src="#" style="width:100%;margin:auto">
+				<img id="canvasImg" src="#" style="width:100%;position: absolute;top:0px;left:0px">
+			</div>
+		</div>
+	</div>
+
+	<input type='text' id="printBgCavasHelper" value="" style="display:none" />
+    <input class="ImageInput" accept="image" type='file' id="ImageInputID" style="display:none" />
+    <div id="imageUserHelper" style="display:none;">
+        <img  src="">
+    </div>
+
+    <main>
+        <div class="wrapper" id="wrapper">
+
+            <img class="pencil" src="assets/pencil.svg" onclick="playAudioInstructions()" />
+
+            <div id="menu-content" class="menu-content">
+                <a class="home">
+                    <img src="assets/home.svg" onclick="goToHome()" />
+                </a>
+
+                <div id="menu-buttons-container">
+                    <img class="menu-item" src="assets/menubutton1.png" onclick="showMainContent('omadopoiish')" alt="omadopoiish" />
+                    <img class="menu-item" src="assets/menubutton2.png" onclick="showMainContent('routinesskepsis')" alt="routines skepsis" />
+                    <img class="menu-item" src="assets/menubutton3.png" onclick="showMainContent('afigisi')" alt="afigisi" />
+                    <img class="menu-item" src="assets/menubutton4.png" onclick="showMainContent('diadoxigegonotwn')" alt="diadoxi gegonown-fasewn" />
+                    <img class="menu-item" src="assets/menubutton5.png" onclick="showMainContent('lipsiapofasis')" alt="lipsi apofasis" />
+                    <img class="menu-item" src="assets/menubutton6.png" onclick="showMainContent('aitiaapotelesma')" alt="aitia-apotelesma" />
+                    <img class="menu-item centered-item" src="assets/menubutton7.png" onclick="showMainContent('diafora')" alt="diafora" />
+                </div>
+            </div>
+
+            <div id="main-content" class="hidden"> 
+                <img class="menu-btn" src="assets/menu.svg" alt="back to menu" onclick="goToMenu()" />
+
+                <img id="level1" class="level1" src="assets/1.svg" />
+                <img id="level2" class="level2 removed" src="assets/2.svg" />
+                <img id="level3" class="level3 removed" src="assets/3.svg" />
+                <img id="level4" class="level4 removed" src="assets/4.svg" />
+
+                <img class="previous-level" src="assets/previous.svg" alt="previous" onclick="changeDiagram('prev')" />
+                <img class="next-level" src="assets/next.svg" alt="next" onclick="changeDiagram('next')" />
+
+                <div class="tabs-container">
+                    <div id="tab1" class="tab" onclick="loadTabItems(1)">
+                        <img src="assets/tab1/icon.png" alt="trofima">
+                    </div>
+                    <div id="tab2" class="tab" onclick="loadTabItems(2)">
+                        <img src="assets/tab2/icon.png" alt="anthrwpos">
+                    </div>
+                    <div id="tab3" class="tab" onclick="loadTabItems(3)">
+                        <img src="assets/tab3/icon.png" alt="metaforika">
+                    </div>
+                    <div id="tab4" class="tab" onclick="loadTabItems(4)">
+                        <img src="assets/tab4/icon.png" alt="zwa">
+                    </div>
+                    <div id="tab5" class="tab" onclick="loadTabItems(5)">
+                        <img src="assets/tab5/icon.png" alt="epoxes">
+                    </div>
+                    <div id="tab6" class="tab" onclick="loadTabItems(6)">
+                        <img src="assets/tab6/icon.png" alt="kiklos zwis">
+                    </div>
+                    <div id="tab7" class="tab" onclick="loadTabItems(7)">
+                        <img src="assets/tab7/icon.png" alt="sximata">
+                    </div>
+                </div>
+
+                <div id="items-container"></div>
+
+                <div class="canvas-container">
+                    <canvas id="canvas"></canvas>
+                </div>
+
+                <div id="canvas-buttons-container">
+                    <img id="upload-btn" class="canvas-button upload" src="assets/upload.png" alt="uploadImage" onclick="uploadImage()" />
+                    <img id="draw-btn" class="canvas-button draw" src="assets/draw.png" alt="draw" onclick="draw()" />
+                    <div id="colors-container" class="colors-container removed">
+                        <div id="red-color" class="color" onclick="setDrawColor('red', '#ff0000')"></div>
+                        <div id="blue-color" class="color" onclick="setDrawColor('blue', '#0000ff')"></div>
+                        <div id="green-color" class="color" onclick="setDrawColor('green', '#008000')"></div>
+                        <div id="orange-color" class="color" onclick="setDrawColor('orange', '#ffa500')"></div>
+                        <div id="yellow-color" class="color" onclick="setDrawColor('yellow', '#ffff00')"></div>
+                        <div id="purple-color" class="color" onclick="setDrawColor('purple', '#800080')"></div>
+                        <div id="black-color" class="color" onclick="setDrawColor('black', '#000000')"></div>
+                        <div id="white-color" class="color" onclick="setDrawColor('white', '#ffffff')"></div>
+                        <div id="cyan-color" class="color" onclick="setDrawColor('cyan', '#00ffff')"></div>
+                    </div>
+                    <img id="erase-btn" class="canvas-button erase" src="assets/erase.png" alt="erase" onclick="erase()" />
+                    <img id="delete-btn" class="canvas-button delete" src="assets/delete.png" alt="delete" onclick="deleteItem()" />
+                    <img id="download-btn" class="canvas-button download" src="assets/download.png" alt="download" onclick="download()" />
+                    <img id="text-btn" class="canvas-button textButton" src="assets/text.png" alt="addText" onclick="addText()" />
+                    <img id="resize-bigger-btn" class="canvas-button resize-bigger" src="assets/resizebigger.png" alt="resizeBigger" onclick="resizeBigger()" />
+                    <img id="resize-smaller-btn" class="canvas-button resize-smaller" src="assets/resizesmaller.png" alt="resizeSmaller" onclick="resizeSmaller()" />
+                    <img id="delete-item-btn" class="canvas-button delete-item" src="assets/deleteitem.png" alt="deleteItem" onclick="deleteAllItems()" />
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="modal fade" id="TextModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 id="TextModalTitle" class="modal-title">Προσθήκη Κειμένου</h5>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<textarea class="form-control" id="message-text"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="HideText()">Άκυρο</button>
+					<button type="button" class="btn btn-primary" onclick="SubmitText()">ΟΚ</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+	<!-- Jquery  -->
+	<!--<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>-->
+	<script type="text/javascript" src="jquery-3.7.0.min.js"></script>
+	<!--<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>-->
+	<script type="text/javascript" src="jquery-ui.min.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>-->
+	<script type="text/javascript" src="jquery.ui.touch-punch.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="bootstrap-5.0.2/js/bootstrap.min.js"></script>
+
+    <!-- print -->
+    <script type="text/javascript" src="print/printThis.js"></script>
+    <script type="text/javascript" src="print.min.js"></script>
+
+	<script src="canvas.js"></script>
+	<script src="canvas.modules.js"></script>
+    <script src="canvas.modules.userImage.js"></script>
+    <script src="canvas.modules.userText.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
