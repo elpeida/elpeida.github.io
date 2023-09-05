@@ -159,6 +159,24 @@ function InitLevelButtons(){
 
 	});
 	
+	
+	$("#molivis").bind('click', function (){
+		$.stopSound();
+		
+		if(level == 1){
+			$.playSound('./sounds/1.mp3');
+		}
+		else if(level == 2){
+			$.playSound('./sounds/2.mp3');
+		}
+		else if (level == 3) {
+			$.playSound('./sounds/3.mp3');
+		}
+		else if (level == 4) {
+			$.playSound('./sounds/4.mp3');
+		}
+		
+	});
 }
 
 function ShowModal(id, el) {
