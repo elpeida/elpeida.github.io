@@ -120,7 +120,7 @@ $(function () {
                     $ui_clone.css("top", (ui.helper)[0].getBoundingClientRect().y - canvas.getBoundingClientRect().y);
                     setDraggble($ui_clone, true);
 
-                    document.getElementById($(ui.draggable).attr('id') + '_clone').addEventListener("click", function () { canvasItemClicked(this); });
+                    ($ui_clone)[0].addEventListener("click", function () { canvasItemClicked(this); });
                 
                 }
             }
