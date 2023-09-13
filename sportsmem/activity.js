@@ -1,5 +1,5 @@
 /*
-Copyright (C) 2018 Alkis Georgopoulos <alkisg@gmail.com>.
+Copyright (C) 2023 Dimitris Nikolos <dnikolos@gmail.com>
 SPDX-License-Identifier: CC-BY-SA-4.0
 */
 var act = null;
@@ -95,12 +95,12 @@ function onHome(event) {
 function onHelp(event) {
   ge('help').style.display = 'flex';
   ge('audiohelp').currentTime = 0;
-  ge('audiohelp').play();
+  //ge('audiohelp').play();
 }
 
 function onHelpHide(event) {
   ge('help').style.display = '';
-  ge('audiohelp').pause();
+  //ge('audiohelp').pause();
 }
 
 function onAbout(event) {
@@ -123,9 +123,20 @@ function onFullScreen(event) {
   }
 }
 
+function onSame(){
+  act.same = true;
+  initLevel(0);
+}
+
+function onDifferent(){
+  act.same = false;
+  initLevel(0);
+}
+
 function onPrevious(event) {
   initLevel(act.level - 1);
 }
+
 
 function onNext(event) {
   initLevel(act.level + 1);
@@ -144,15 +155,46 @@ function pickCards(n){
   return(shuffledArray(cards.concat(cards)));
 }
 
+function getfilenames(){
+  act.filenames = [];
+  if (act.same){
+    for (let i=0; i<act.cards.length; i++){
+      act.filenames.push('balls_');
+    }
+    return;
+  }
+  else{
+    act.filenames.push(Math.random() < 0.5 ? 'balls_' : 'courts_');
+    for (let i=1; i<act.cards.length; i++){
+      let found = false;
+      for (let j=0; j<i; j++){
+        if (act.cards[j]==act.cards[i]){
+          found = true;
+          if (act.filenames[j]=='balls_'){
+            act.filenames.push('courts_');
+          }
+          else{
+            act.filenames.push('balls_');
+          }
+        }
+      }
+      if (!found)
+        act.filenames.push(Math.random() < 0.5 ? 'balls_' : 'courts_');
+    }
+    return;
+  }
+}
+
+
 function hideCard(id){
     ge(id).style.display = 'none';
     ge(id).src = 'resource/backcard.svg';
-    var aid = 'a' + id;
+    var aid = 'a' +  id;
     ge(aid).style.display = 'none';
 }
 
 function hideAllCards(){
-  for (var i = 0; i<6; i++){
+  for (var i = 0; i<5; i++){
     for (var j = 0; j<3; j++){
         var id = 'r' + j.toString() + 'c' + i.toString();
         hideCard(id);
@@ -167,7 +209,7 @@ function openAnimation(animalId,cardId){
         ge(cardId).src = "resource/emptycard.svg";
         ge(animalId).style.display = "";
         setAnimation(cardId,'flipitshow','0.5s');
-      },500);
+      },450);
     }
 
 function onAnimalClick(event){
@@ -178,7 +220,7 @@ function onAnimalClick(event){
 
 function onCardClick(event){
   var cardId = event.target.id;
-  var animalId = 'a' + event.target.id;
+  var animalId = 'a' +  event.target.id;
   openCard(animalId,cardId);
 }
 
@@ -186,7 +228,6 @@ function openCard(animalId,cardId){
     var animalIndex = ge(animalId).animalIndex;
     if (act.cardsOpen.indexOf(cardId)>=0 || act.lock)
         return;
-    ge('a'+animalIndex+'audio').play();
     act.cardsOpen.push(cardId);
     openAnimation(animalId,cardId);
     if (act.cardToCheck == -1){
@@ -221,7 +262,7 @@ function success(){
 }
 
 function closeCard(cardId){
-    var animalId = 'a' + cardId;
+    var animalId = 'a' +  cardId;
     act.cardsOpen.splice(act.cardsOpen.indexOf(cardId));
     setAnimation(cardId,'flipithide','0.5s');
     setAnimation(animalId,'flipithide','0.5s');
@@ -230,12 +271,12 @@ function closeCard(cardId){
       ge(cardId).src = "resource/backcard.svg";
       ge(animalId).style.display = "none";
       setAnimation(cardId,'flipitshow','0.5s');
-    },500);
+    },450);
     setTimeout(function(){
       ge(cardId).src = "resource/backcard.svg";
       ge(animalId).style.display = "none";  
       act.canClick = true;
-    },1000);
+    },950);
 }
 
 function initLevel(newLevel){
@@ -244,6 +285,10 @@ function initLevel(newLevel){
   act.level = (newLevel + act.gridXArr.length) % act.gridXArr.length;
   ge('level').innerHTML = act.level + 1;
   act.cards = pickCards(act.tilesNumArr[act.level]);
+
+  getfilenames();
+
+
   act.cardsOpen = [];
   act.cardToCheck = -1;
   hideAllCards();
@@ -259,18 +304,16 @@ function initLevel(newLevel){
         ge(id).col = i;
         ge(id).style.display = '';
         ge(id).style.padding = sformat('{}em',1/(3*rows));
-        ge(id).style.height = sformat('{}em',30 / rows);
+        ge(id).style.height = sformat('{}em', act.heightinems[act.level]);
         ge(id).onclick = onCardClick;
         var aid = 'a' + id;
         var animalIndex = act.cards[i*rows+j];
         act.cardsOpen = [];
-        var audioId = 'audio' + animalIndex;
-        ge(aid).audioId = audioId;//attach audio to aid element
-        ge(aid).src = ge('a' + animalIndex.toString()).src;
+        ge(aid).src = ge(act.filenames[i*rows+j] +  animalIndex.toString()).src;
         ge(aid).animalIndex = animalIndex;
-        ge(aid).style.width = sformat('{}em',(30 / rows) * 0.5);
-        ge(aid).style.top = sformat('{}em',(30 / rows) * 0.1);
-        ge(aid).style.left = sformat('{}em',(30 / rows) * 0.1);
+        ge(aid).style.height = sformat('{}em', act.heightinems[act.level]);
+        //ge(aid).style.top = sformat('{}em',(25 / rows) * 0.1);
+        //ge(aid).style.left = sformat('{}em',(25 / rows) * 0.1);
         ge(aid).style.display = 'none';
         ge(aid).onclick = onAnimalClick;
     }
@@ -285,25 +328,30 @@ function initActivity(event){
       // Tiles number: 6   8   10   12   18  
       // Cards needed: 3   4    5    6    9  
       level: 0,
-      numOfAnimals: 18,
+      numOfAnimals: 7,
       cards: [],
       openCards: [],
+      filenames: [],
       cardToCheck: -1,
-      tilesNumArr: [ 4,  6,  8,  10, 12, 18],
-      gridXArr: [ 2,  3,  4,   5,  4,  6],
-      gridYArr: [ 2,  2,  2,   2,  3,  3],
+      tilesNumArr: [ 4,  6,  8,  10, 12],
+      gridXArr: [ 2,  3,  4,   5,  4],
+      gridYArr: [ 2,  2,  2,   2,  3],
+      heightinems: [25/2,25/2,44/4,35/4,34/4],
       canClick: true,
+      same: true,
   };
   ge('balloongood').style.display = 'none';
   ge('bar_home').onclick = onHome;
   ge('bar_help').onclick = onHelp;
   ge('help').onclick = onHelpHide;
-  ge('bar_about').onclick = onAbout;
+  //ge('bar_about').onclick = onAbout;
+  ge('bar_same').onclick = onSame;
+  ge('bar_different').onclick = onDifferent;
   ge('bar_fullscreen').onclick = onFullScreen;
   ge('bar_previous').onclick = onPrevious;
   ge('bar_next').onclick = onNext;
   //hide everything
-  for (var i = 0; i<6; i++){
+  for (var i = 0; i<5; i++){
     for (var j = 0; j<3; j++){
         var id = 'r' + j.toString() + 'c' + i.toString();
         ge(id).style.display = 'none';

@@ -18,9 +18,9 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 <div id="main" style="display:none">
   <img id="win" src="./imgs/win.png" style="display:none;">
   <img src="./imgs/background.svg" style="display:none;">
-  <canvas id="mycanvas">
+  <canvas id="mycanvas" class="print-me">
   </canvas>
-  <div id="stage">
+  <div id="stage" class="print-me">
   <!--preload-->
   <img src="./imgs/squidsmall-01.svg" id="squidimg" alt="Επίλεξε χαρακτήρα" title="Επίλεξε χαρακτήρα"/>
   <img src="./imgs/squidsmall-02.svg" alt="Επίλεξε χαρακτήρα" title="Επίλεξε χαρακτήρα" style="display:none;"/>
@@ -44,7 +44,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
       <img src="./imgs/b.svg" class="progbtn" id="backbtn"  title="Πίσω" alt="Πίσω">
     </div>
   </div>
-  <div id="programarea1">
+  <div id="programarea1" class="print-me">
     <div class="pcell" id="pcell0">
       <img src="./imgs/f.svg" class="pcellcmd" id="pcell0f" style="display:none;">
       <img src="./imgs/l.svg" class="pcellcmd" id="pcell0l" style="display:none;">
@@ -124,7 +124,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
       <img src="./imgs/b.svg" class="pcellcmd" id="pcell12b" style="display:none;">
     </div>
   </div>
-  <div id="programarea2">
+  <div id="programarea2" class="print-me">
     <div class="pcell" id="pcell13">
       <img src="./imgs/f.svg" class="pcellcmd" id="pcell13f" style="display:none;">
       <img src="./imgs/l.svg" class="pcellcmd" id="pcell13l" style="display:none;">
@@ -206,6 +206,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
   </div>
   <div id="bar">
     <img id="bar_help" src="./imgs/bar_help.svg" title="Βοήθεια" alt="Βοήθεια"/>
+    <img id="print" src="./imgs/print.svg" title="Εκτύπωση" alt="Εκτύπωση" onclick="winprint();">
   </div>
   <div id="target">
     <img id="targetimg" src="./imgs/target0.png" title="Επίλεξε διαδρομή" alt="Επίλεξε διαδρομή">

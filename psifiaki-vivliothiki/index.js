@@ -13,6 +13,7 @@ const emptyListText = document.getElementById("empty-list-text");
 const notFoundImg = document.getElementById("not-found-img");
 const searchInput = document.getElementById("search-input");
 const loader = document.getElementById("loader");
+const audio = new Audio("assets/instructions.mp3");
 
 const iFrameSources = {
     "1" : "https://app.Lumi.education/api/v1/run/2nTtWe/embed",
@@ -23,7 +24,19 @@ const iFrameSources = {
 }
 
 
+function playAudioInstructions() {
+    audio.play();
+}
+
+
+function stopAudioInstructions() {
+    audio.pause();
+    audio.currentTime = 0;
+}
+
+
 function loadFrame(frame) {
+    stopAudioInstructions();
     selectedFrame = frame;
     
     setFrame();
@@ -109,5 +122,6 @@ function normalizeGreek(text) {
 
 
 function goToHome() {
+    stopAudioInstructions();
     window.history.back();
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132.7792 113.5871">
+  <g id="menu">
+    <g id="MAIN_MENU" data-name="MAIN MENU">
+      <g id="home">
+        <path d="m128.3088,67.8537c7.3995-19.7822,8.5365-51.4039-19.8893-62.6574C79.9934-6.0572,16.3561-1.1289,1.2564,40.9715c-13.8044,38.4887,89.8998,126.2071,127.0524,26.8822Z" style="fill: #fff;"/>
+      </g>
+      <g>
+        <circle cx="42.0273" cy="42.8956" r="11.2884" style="fill: #100b09;"/>
+        <circle cx="69.8141" cy="42.8956" r="11.2884" style="fill: #100b09;"/>
+        <circle cx="97.022" cy="42.8956" r="11.2884" style="fill: #100b09;"/>
+        <circle cx="42.0273" cy="68.9457" r="11.2884" style="fill: #100b09;"/>
+        <circle cx="69.8141" cy="68.9457" r="11.2884" style="fill: #100b09;"/>
+        <circle cx="97.022" cy="68.9457" r="11.2884" style="fill: #100b09;"/>
+      </g>
+    </g>
+  </g>
+</svg>
