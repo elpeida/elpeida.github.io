@@ -83,8 +83,8 @@ var audio;
 
 var randomToysIds = []; 
 
-var wrong = "sounds/wrong answer.wav";
-var right = "sounds/right answer 2.wav";
+var wrong = "sounds/Wrong Answer.wav";
+var right = "sounds/Right Answer 2.wav";
 var lvlWin = "sounds/win game level 282.wav";
 
 var lvl1_info = "sounds/instructions/level_1.mp3";
@@ -114,8 +114,10 @@ function decreaseLevel() {
 }
 
 function initiateEventListeners() {
-    document.getElementById("level-1").querySelector("#next_lvl").style.filter = 'brightness(0.75)';
+    document.getElementById("level-1").querySelector("#previous_lvl").style.filter = 'brightness(0.75)';
+    document.getElementById("level-2").querySelector("#next_lvl").style.filter = 'brightness(0.75)';
     document.getElementById("level-1").querySelector("#previous_lvl").addEventListener("click", function () { decreaseLevel() });
+    document.getElementById("level-1").querySelector("#next_lvl").addEventListener("click", function () { increaseLevel() });
     document.getElementById("level-2").querySelector("#next_lvl").addEventListener("click", function () { increaseLevel() });
     document.getElementById("level-2").querySelector("#previous_lvl").addEventListener("click", function () { decreaseLevel() });
     
@@ -207,7 +209,7 @@ function initiateLevel(){
                 toyFound(this)
             }, { once: true });
         }
-        document.getElementById("level-1").querySelector("#next_lvl").style.filter = 'brightness(0.75)';
+        document.getElementById("level-1").querySelector("#previous_lvl").style.filter = 'brightness(0.75)';
         
     }
 
