@@ -94,13 +94,13 @@ function onHome(event) {
 
 function onHelp(event) {
   ge('help').style.display = 'flex';
-  ge('audiohelp').currentTime = 0;
-  //ge('audiohelp').play();
+  act.ah.currentTime = 0; 
+  act.ah.play();
 }
 
 function onHelpHide(event) {
   ge('help').style.display = '';
-  //ge('audiohelp').pause();
+  act.ah.pause();
 }
 
 function onAbout(event) {
@@ -126,11 +126,18 @@ function onFullScreen(event) {
 function onSame(){
   act.same = true;
   initLevel(0);
+  act.ah = ge('audiohelpsame');
+  ge('dialogsame').style.display = 'block';
+  ge('dialogdiff').style.display = 'none';
+
 }
 
 function onDifferent(){
   act.same = false;
   initLevel(0);
+  act.ah = ge('audiohelpdifferent');
+  ge('dialogsame').style.display = 'none';
+  ge('dialogdiff').style.display = 'block';
 }
 
 function onPrevious(event) {
@@ -339,7 +346,9 @@ function initActivity(event){
       heightinems: [25/2,25/2,44/4,35/4,34/4],
       canClick: true,
       same: true,
-  };
+      //ah: ge('audiohelpsame'),
+      };
+
   ge('balloongood').style.display = 'none';
   ge('bar_home').onclick = onHome;
   ge('bar_help').onclick = onHelp;
@@ -359,6 +368,8 @@ function initActivity(event){
   }
   document.body.onresize = onResize;
   initLevel(0);
+
+  onSame();
   onResize();
 }
 
