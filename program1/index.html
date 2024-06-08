@@ -1,6 +1,7 @@
+</div>  
 <!doctype html>
 <!--
-Copyright (C) 2023 Dimitris Nikolos dnikolos@gmail.com
+Copyright (C) 2018 Alkis Georgopoulos <alkisg@gmail.com>.
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 <html lang="el">
@@ -18,16 +19,14 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 <div id="main" style="display:none">
   <img id="win" src="./imgs/win.png" style="display:none;">
   <img src="./imgs/background.svg" style="display:none;">
-  <canvas id="mycanvas" class="print-me">
+  <canvas id="mycanvas">
   </canvas>
-  <div id="stage" class="print-me">
+  <div id="stage">
   <!--preload-->
-  <img src="./imgs/squidsmall-01.svg" id="squidimg" alt="Επίλεξε χαρακτήρα" title="Επίλεξε χαρακτήρα"/>
-  <img src="./imgs/squidsmall-02.svg" alt="Επίλεξε χαρακτήρα" title="Επίλεξε χαρακτήρα" style="display:none;"/>
-  <img src="./imgs/squidsmall-03.svg" alt="Επίλεξε χαρακτήρα" title="Επίλεξε χαρακτήρα" style="display:none;"/>
-  <img src="./imgs/squidsmall-04.svg" alt="Επίλεξε χαρακτήρα" title="Επίλεξε χαρακτήρα" style="display:none;"/>
-
-  
+  <img src="./imgs/squidsmall-01.svg" id="squidimg">
+  <img src="./imgs/squidsmall-02.svg" style="display:none;">
+  <img src="./imgs/squidsmall-03.svg" style="display:none;">
+  <img src="./imgs/squidsmall-04.svg" style="display:none;">
   </div>
   <div id="programbuttons">
     <div id="top">
@@ -44,7 +43,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
       <img src="./imgs/b.svg" class="progbtn" id="backbtn"  title="Πίσω" alt="Πίσω">
     </div>
   </div>
-  <div id="programarea1" class="print-me">
+  <div id="programarea1">
     <div class="pcell" id="pcell0">
       <img src="./imgs/f.svg" class="pcellcmd" id="pcell0f" style="display:none;">
       <img src="./imgs/l.svg" class="pcellcmd" id="pcell0l" style="display:none;">
@@ -117,14 +116,14 @@ SPDX-License-Identifier: CC-BY-SA-4.0
       <img src="./imgs/r.svg" class="pcellcmd" id="pcell11r" style="display:none;">
       <img src="./imgs/b.svg" class="pcellcmd" id="pcell11b" style="display:none;">
     </div>
+  </div>
+  <div id="programarea2">
     <div class="pcell" id="pcell12">
       <img src="./imgs/f.svg" class="pcellcmd" id="pcell12f" style="display:none;">
       <img src="./imgs/l.svg" class="pcellcmd" id="pcell12l" style="display:none;">
       <img src="./imgs/r.svg" class="pcellcmd" id="pcell12r" style="display:none;">
       <img src="./imgs/b.svg" class="pcellcmd" id="pcell12b" style="display:none;">
     </div>
-  </div>
-  <div id="programarea2" class="print-me">
     <div class="pcell" id="pcell13">
       <img src="./imgs/f.svg" class="pcellcmd" id="pcell13f" style="display:none;">
       <img src="./imgs/l.svg" class="pcellcmd" id="pcell13l" style="display:none;">
@@ -191,22 +190,17 @@ SPDX-License-Identifier: CC-BY-SA-4.0
       <img src="./imgs/r.svg" class="pcellcmd" id="pcell23r" style="display:none;">
       <img src="./imgs/b.svg" class="pcellcmd" id="pcell23b" style="display:none;">
     </div>
-    <div class="pcell" id="pcell24">
-      <img src="./imgs/f.svg" class="pcellcmd" id="pcell24f" style="display:none;">
-      <img src="./imgs/l.svg" class="pcellcmd" id="pcell24l" style="display:none;">
-      <img src="./imgs/r.svg" class="pcellcmd" id="pcell24r" style="display:none;">
-      <img src="./imgs/b.svg" class="pcellcmd" id="pcell24b" style="display:none;">
-    </div>
   </div>
   <div id="controls">
     <img class="controlbtn" id="playbtn" src="./imgs/play.svg"  title="Εκτέλεση" alt="Εκτέλεση">
     <img class="controlbtn" id="pausebtn" src="./imgs/pause.svg"  title="Παύση" alt="Παύση">
     <img class="controlbtn" id="restartbtn" src="./imgs/restart.svg"  title="Στοπ" alt="Στοπ">
     <img class="controlbtn" id="clearbtn" src="./imgs/clear.svg"  title="Διαγραφή εντολών" alt="Διαγραφή εντολών">
+    <img class="controlbtn" id="delete1" src="./imgs/x1.svg"/ title="Διαγραφή επιλεγμένης" alt="Διαγραφή επιλεγμένης">
   </div>
   <div id="bar">
     <img id="bar_help" src="./imgs/bar_help.svg" title="Βοήθεια" alt="Βοήθεια"/>
-    <img id="print" src="./imgs/print.svg" title="Εκτύπωση" alt="Εκτύπωση" onclick="winprint();">
+    <img id="printbtn" src="./imgs/print.svg" title="Εκτύπωση" alt="Εκτύπωση"/>
   </div>
   <div id="target">
     <img id="targetimg" src="./imgs/target0.png" title="Επίλεξε διαδρομή" alt="Επίλεξε διαδρομή">
@@ -218,11 +212,11 @@ SPDX-License-Identifier: CC-BY-SA-4.0
     <div id="dialog">Σχεδίασε το πρόγραμμα με τα τέσσερα βελάκια και εκτέλεσε το
       με το πλήκτρο εκτέλεσης για να αναπαράγει το χταπόδι το ίδιο μοτίβο με αυτό που
       βρίσκεται στο πλαίσιο δεξιά.</div>
-  <div id="feedback"></div></div>
-
+  </div>
+</div>
   <audio id="helpaudio">
     <source src="./imgs/xtapodi1.mp3">
   </audio>
-</div>
+
 </body>
 </html>

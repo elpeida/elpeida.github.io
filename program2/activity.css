@@ -38,9 +38,6 @@ body {
   padding-top: 0.5em;  /* workaround to avoid space-evenly */
   padding-bottom: 7em;  /* space for the menubar */
   display: block;
-  align-content: space-around;
-  justify-content: space-around;
-  align-items: center;
   position: relative;
   overflow:hidden;
   margin:auto;

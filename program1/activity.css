@@ -12,16 +12,6 @@
 html, body {  /* flexbox needs this to center the main div */
   width: 100%;
   height: 100%;
-  background-color:white;
-}
-
-@media print {
-  .print-me, .print-me * {
-    visibility: visible;
-  }
-  body * {
-    visibility: hidden;
-  }
 }
 
 body {
@@ -48,9 +38,6 @@ body {
   padding-top: 0.5em;  /* workaround to avoid space-evenly */
   padding-bottom: 7em;  /* space for the menubar */
   display: block;
-  align-content: space-around;
-  justify-content: space-around;
-  align-items: center;
   position: relative;
   overflow:hidden;
   margin:auto;
@@ -67,10 +54,7 @@ body {
   -moz-box-shadow: 0 0 0.2em #111;
   -webkit-box-shadow: 0 0 0.2em #111;
   box-shadow: 0 0 0.2em #111;
-}
 
-#mycanvas img{
-  width:100%;
 }
 
 #stage{
@@ -160,6 +144,8 @@ body {
   z-index:1;
 }
 
+
+
 .pcell{
   position:relative;
   display:inline-block;
@@ -171,6 +157,7 @@ body {
   display:inline-block;
   height:3em;
   width:3em;
+  border: 0.2em solid transparent;
 }
 
 #squidimg{
@@ -192,9 +179,9 @@ body {
 #controls{
   position:absolute;
   margin-top:25em;
-  margin-left:50.5em;
+  margin-left:48.1em;
   height:10em;
-  width:12em;
+  width:16em;
 }
 
 .controlbtn{
@@ -202,6 +189,9 @@ body {
   cursor: pointer;
 }
 
+#clearbtn{
+  margin-left:2.5em;
+}
 
 .controlbtn:hover {
   -webkit-filter: brightness(120%) contrast(1.2);
@@ -214,15 +204,6 @@ body {
   transform: scale(1.05);  
 }
 
-#bar{
-  display:block;
-  position:absolute;
-  margin-top:1em;
-  margin-left:47.5em;
-  width:15em;
-  text-align:center;
-  vertical-align: middle;
-}
 
 #bar img{
   display:inline-block;
@@ -239,7 +220,7 @@ body {
 
 
 #target{
-  background-color:transparent;/*rgba(233,233,253,1);*/
+  background-color:transparent;/*rgba(20,20,130,0.9);*/
   position:absolute;
   margin-top:7em;
   margin-left:47.5em;
@@ -253,15 +234,17 @@ body {
   -moz-box-shadow: 0 0 0.2em #111;
   -webkit-box-shadow: 0 0 0.2em #111;
   box-shadow: 0 0 0.2em #111;
-  
 }
 
-#targetimg{
+#target img{
   position:relative;
   width:80%;
   margin-top:2.3em;
   cursor:pointer;
-  transition: margin-top 0.9s ease-in-out, margin-left 0.9s ease-in-out, transform 0.9s ease-in-out;
+}
+
+.bordered {
+    border: 0.2em solid darkred;
 }
 
 #win{
@@ -301,3 +284,26 @@ body {
   font-size: 2em;
   z-index:1000;
 }
+
+#bar{
+  display:block;
+  position:absolute;
+  margin-top:1em;
+  margin-left:47.5em;
+  width:15em;
+  text-align:center;
+  vertical-align: middle;
+}
+
+#bar img{
+  display:inline-block;
+  height:5em;
+  cursor:pointer;
+}
+
+#bar img:hover {
+  -webkit-filter: brightness(120%) contrast(1.2);
+  filter: brightness(120%) contrast(1.2);
+  transform: scale(1.05);  
+}
+

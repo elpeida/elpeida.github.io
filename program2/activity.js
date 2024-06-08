@@ -9,7 +9,7 @@ const emsofcell = 6.5;
 const blueish = '#7EA5F2';/*'#DAF7FE';*/
 const blackish = '#333';
 const bordercolor = '#7777ff';/*#808aeb';*/
-const MAXCMDS = 25;
+const MAXCMDS = 24;
 
 const UP = 0;
 const LEFT = 1;
